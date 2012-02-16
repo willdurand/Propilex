@@ -1,0 +1,3 @@
+[submodule "vendor/propel"]
+	path = vendor/propel
+	url = http://github.com/propelorm/Propel.git

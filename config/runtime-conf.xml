@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <propel>
+        <datasources default="propilex">
+            <datasource id="propilex">
+                <adapter>mysql</adapter>
+                <connection>
+                    <dsn>mysql:host=127.0.0.1;dbname=propilex</dsn>
+                    <user>root</user>
+                    <password></password>
+                </connection>
+            </datasource>
+        </datasources>
+    </propel>
+</config>

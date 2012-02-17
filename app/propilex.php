@@ -96,15 +96,9 @@ $app->put('/documents/{id}', function ($id, Request $request) use ($app) {
  * Delete a Document identified by a given id
  */
 $app->delete('/documents/{id}', function ($id) use ($app) {
-    try {
-        $document = DocumentQuery::create()
-            ->filterById($id)
-            ->delete();
-
-        return new Response('', 200);
-    } catch (\PropelException $e) {
-        return new Response('', 404);
-    }
+    DocumentQuery::create()
+        ->filterById($id)
+        ->delete();
 });
 
 return $app;

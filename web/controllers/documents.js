@@ -1,11 +1,12 @@
 App.Controllers.Documents = Backbone.Router.extend({
   routes: {
-    "":               "index",
-    "documents/:id":  "edit",
-    "new":            "create"
+    "":                     "indexAction",
+    "new":                  "newAction",
+    "documents/:id":        "editAction",
+    "documents/:id/delete": "deleteAction"
   },
 
-  index: function() {
+  indexAction: function() {
     var documents = new App.Collections.Documents();
     documents.fetch({
       success: function() {
@@ -17,7 +18,11 @@ App.Controllers.Documents = Backbone.Router.extend({
     });
   },
 
-  edit: function(id) {
+  newAction: function() {
+    new App.Views.Edit({ model: new Document() });
+  },
+
+  editAction: function(id) {
     var doc = new Document({ id: id });
     doc.fetch({
       success: function(model, resp) {
@@ -30,7 +35,13 @@ App.Controllers.Documents = Backbone.Router.extend({
     });
   },
 
-  create: function() {
-    new App.Views.Edit({ model: new Document() });
+  deleteAction: function(id) {
+    var doc = new Document({ id: id });
+    doc.destroy({
+      success: function(model, response) {
+        new App.Views.Notice({ message: 'Document successfully deleted' });
+        window.location.hash = '#';
+      }
+    });
   }
 });

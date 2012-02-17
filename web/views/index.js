@@ -9,7 +9,10 @@ App.Views.Index = Backbone.View.extend({
       var out = "<h3><a href='#new'>Create New</a></h3><ul>";
 
       this.collection.each(function(item) {
-        out += "<li><a href='#documents/" + item.get('Id') + "'>" + item.escape('Title') + "</a></li>";
+        out += "<li>";
+        out += "<a href='#documents/" + item.get('Id') + "'>" + item.escape('Title') + "</a>";
+        out += " [<a href='#documents/" + item.get('Id') + "/delete'>delete</a>]";
+        out += "</li>";
       });
 
       out += "</ul>";

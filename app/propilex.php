@@ -92,4 +92,16 @@ $app->put('/documents/{id}', function ($id, Request $request) use ($app) {
     }
 });
 
+$app->delete('/documents/{id}', function ($id) use ($app) {
+    try {
+        $document = DocumentQuery::create()
+            ->filterById($id)
+            ->delete();
+
+        return new Response('', 200);
+    } catch (\PropelException $e) {
+        return new Response('', 404);
+    }
+});
+
 return $app;

@@ -2,3 +2,5 @@ config/conf/
 config/sql/
 src/Propilex/Model/om/
 src/Propilex/Model/map/
+vendor
+!vendor/silex.phar

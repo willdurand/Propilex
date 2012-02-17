@@ -26,6 +26,13 @@ $app->before(function (Request $request) {
 });
 
 /**
+ * Error handler
+ */
+$app->error(function (\Exception $e, $code) {
+    return new Response($e->getMessage(), $code);
+});
+
+/**
  * Entry point
  */
 $app->get('/', function() use ($app) {
@@ -51,13 +58,13 @@ $app->get('/documents/{id}', function ($id) use ($app) {
     $document = DocumentQuery::create()
         ->findPk($id);
 
-    if ($document instanceof Document) {
-        return new Response($document->exportTo($app['json_parser']), 200, array (
-            'Content-Type' => 'application/json',
-        ));
-    } else {
-        return new Response('', 404);
+    if (!$document instanceof Document) {
+        $app->abort(404, 'Document does not exist.');
     }
+
+    return new Response($document->exportTo($app['json_parser']), 200, array (
+            'Content-Type' => 'application/json',
+    ));
 });
 
 /**
@@ -80,16 +87,16 @@ $app->put('/documents/{id}', function ($id, Request $request) use ($app) {
     $document = DocumentQuery::create()
         ->findPk($id);
 
-    if ($document instanceof Document) {
-        $document->fromArray($request->request->all());
-        $document->save();
-
-        return new Response($document->exportTo($app['json_parser']), 200, array (
-            'Content-Type' => 'application/json',
-        ));
-    } else {
-        return new Response('', 404);
+    if (!$document instanceof Document) {
+        $app->abort(404, 'Document does not exist.');
     }
+
+    $document->fromArray($request->request->all());
+    $document->save();
+
+    return new Response($document->exportTo($app['json_parser']), 200, array (
+        'Content-Type' => 'application/json',
+    ));
 });
 
 /**

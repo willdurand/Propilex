@@ -3,6 +3,7 @@
 namespace Propilex\Parser;
 
 /**
+ * @author William Durand <william.durand1@gmail.com>
  */
 class JsonParser extends \PropelJSONParser
 {

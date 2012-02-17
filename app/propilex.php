@@ -106,6 +106,10 @@ $app->delete('/documents/{id}', function ($id) use ($app) {
     DocumentQuery::create()
         ->filterById($id)
         ->delete();
+
+    return new Response('', 204, array (
+        'Content-Type' => 'application/json',
+    ));
 });
 
 return $app;

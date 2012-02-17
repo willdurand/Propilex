@@ -9,12 +9,12 @@ Installation
 
 Install dependencies:
 
-    git submodule update --init
+php composer.phar install
 
 
 Build Model classes, SQL, and the configuration:
 
-    ./vendor/propel/generator/bin/propel-gen config main
+    ./vendor/propel/propel1//generator/bin/propel-gen config main
 
 
 Configure a database:
@@ -25,6 +25,15 @@ Configure a database:
 
 
 You're done!
+
+
+Configuration
+-------------
+
+All the configuration is located in the `config/` directory.
+
+* `runtime-conf.xml` contains the database configuration, if you modify it, don't forget to rebuild things by using the previous command;
+* `app.php` you should **not** edit this file, except to turn on/off debugging stuffs.
 
 
 Credits

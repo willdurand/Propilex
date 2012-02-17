@@ -1,7 +1,7 @@
 Propilex
 ========
 
-A [Silex](http://silex.sensiolabs.org) application which uses [Propel](http://propelorm.org).
+A [Silex](http://silex.sensiolabs.org) application which uses [Propel](http://propelorm.org), [Backbone](http://backbonejs.org/).
 
 
 Installation
@@ -25,3 +25,9 @@ Configure a database:
 
 
 You're done!
+
+
+Credits
+-------
+
+Inspirated by: http://www.jamesyu.org/2011/01/27/cloudedit-a-backbone-js-tutorial-by-example/

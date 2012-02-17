@@ -1,5 +1,5 @@
-config/conf/
-config/sql/
+app/config/conf/
+app/config/sql/
 src/Propilex/Model/om/
 src/Propilex/Model/map/
 vendor

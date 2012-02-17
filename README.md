@@ -14,14 +14,14 @@ Install dependencies:
 
 Build Model classes, SQL, and the configuration:
 
-    ./vendor/propel/propel1//generator/bin/propel-gen config main
+    ./vendor/propel/propel1/generator/bin/propel-gen app/config main
 
 
 Configure a database:
 
     mysql -uroot -e 'CREATE DATABASE propilex'
 
-    mysql -uroot propilex < config/sql/Propilex.Model.schema.sql
+    mysql -uroot propilex < app/config/sql/Propilex.Model.schema.sql
 
 
 You're done!
@@ -30,7 +30,7 @@ You're done!
 Configuration
 -------------
 
-All the configuration is located in the `config/` directory.
+All the configuration is located in the `app/config/` directory.
 
 * `runtime-conf.xml` contains the database configuration, if you modify it, don't forget to rebuild things by using the previous command;
 * `app.php` you should **not** edit this file, except to turn on/off debugging stuffs.

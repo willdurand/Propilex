@@ -1,16 +1,16 @@
 <?php
 
-require_once __DIR__.'/../vendor/silex.phar';
+require_once __DIR__.'/../../vendor/silex.phar';
 
 $app = new Silex\Application();
 
 $app->register(new Silex\Provider\PropelServiceProvider(), array(
-    'propel.path'           => __DIR__ . '/../vendor/propel/propel1/runtime/lib',
-    'propel.config_file'    => __DIR__ . '/../config/conf/Propilex-conf.php',
+    'propel.path'           => __DIR__ . '/../../vendor/propel/propel1/runtime/lib',
+    'propel.config_file'    => __DIR__ . '/conf/Propilex-conf.php',
 ));
 
 $app['autoloader']->registerNamespaces(array(
-    'Propilex'  => __DIR__  . '/../src',
+    'Propilex'  => __DIR__  . '/../../src',
 ));
 
 // Parser that removes "root" on JSON objects

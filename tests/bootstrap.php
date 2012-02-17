@@ -1,9 +1,6 @@
 <?php
 
-require_once __DIR__.'/../vendor/silex.phar';
-require_once __DIR__.'/../vendor/propel/propel1/runtime/lib/Propel.php';
-
-$app = new Silex\Application();
+$app = require_once __DIR__ . '/../config/app.php';
 $app['autoloader']->registerNamespaces(array(
     'Propilex'  => array(
         __DIR__  . '/../src',

@@ -33,7 +33,7 @@ Configuration
 All the configuration is located in the `app/config/` directory.
 
 * `runtime-conf.xml` contains the database configuration, if you modify it, don't forget to rebuild things by using the previous command;
-* `app.php` you should **not** edit this file, except to turn on/off debugging stuffs.
+* `config.php` you should **not** edit this file, except to turn on/off debugging stuffs.
 
 
 Credits

@@ -13,6 +13,14 @@ use Symfony\Component\HttpFoundation\Response;
 $app->before(function (Request $request) {
     if (0 === strpos($request->headers->get('Content-Type'), 'application/json')) {
         $data = json_decode($request->getContent(), true);
+
+        // filter values
+        foreach ($data as $k => $v) {
+            if (false === array_search($k, array('Id', 'Title', 'Body'))) {
+                unset($data[$k]);
+            }
+        }
+
         $request->request->replace(is_array($data) ? $data : array());
     }
 });
@@ -57,7 +65,7 @@ $app->get('/documents/{id}', function ($id) use ($app) {
  */
 $app->post('/documents', function (Request $request) use ($app) {
     $document = new Document();
-    $document->fromArray($request->request);
+    $document->fromArray($request->request->all());
     $document->save();
 
     return new Response($document->exportTo($app['json_parser']), 201, array (
@@ -73,7 +81,7 @@ $app->put('/documents/{id}', function ($id, Request $request) use ($app) {
         ->findPk($id);
 
     if ($document instanceof Document) {
-        $document->fromArray($request->request);
+        $document->fromArray($request->request->all());
         $document->save();
 
         return new Response($document->exportTo($app['json_parser']), 200, array (

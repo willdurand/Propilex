@@ -9,7 +9,7 @@ Installation
 
 Install dependencies:
 
-php composer.phar install
+    php composer.phar install
 
 
 Build Model classes, SQL, and the configuration:

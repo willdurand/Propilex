@@ -5,7 +5,7 @@ require_once __DIR__.'/../vendor/silex.phar';
 $app = new Silex\Application();
 
 $app->register(new Silex\Provider\PropelServiceProvider(), array(
-    'propel.path'           => __DIR__ . '/../vendor/propel/runtime/lib',
+    'propel.path'           => __DIR__ . '/../vendor/propel/propel1/runtime/lib',
     'propel.config_file'    => __DIR__ . '/../config/conf/Propilex-conf.php',
 ));
 

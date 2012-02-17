@@ -1,0 +1,9 @@
+{
+    "hash": "7999d1caf387fabd8ee7545173621a05",
+    "packages": [
+        {
+            "package": "propel\/propel1",
+            "version": "master-dev"
+        }
+    ]
+}

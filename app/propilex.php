@@ -29,7 +29,7 @@ $app->before(function (Request $request) {
  * Entry point
  */
 $app->get('/', function() use ($app) {
-    return new Response(file_get_contents(__DIR__ . '/index.html'), 200);
+    return new Response(file_get_contents(__DIR__ . '/../web/index.html'), 200);
 });
 
 /**

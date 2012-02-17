@@ -92,6 +92,9 @@ $app->put('/documents/{id}', function ($id, Request $request) use ($app) {
     }
 });
 
+/**
+ * Delete a Document identified by a given id
+ */
 $app->delete('/documents/{id}', function ($id) use ($app) {
     try {
         $document = DocumentQuery::create()

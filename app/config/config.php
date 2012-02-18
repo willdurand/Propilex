@@ -15,7 +15,7 @@ $app->register(new Propel\Silex\PropelServiceProvider(), array(
 ));
 
 // Parser that removes "root" on JSON objects
-$app['json_parser'] = new \Propilex\Parser\JsonParser();
+$app['json_parser'] = new Propilex\Parser\JsonParser();
 
 // Debug?
 $app['debug'] = true;

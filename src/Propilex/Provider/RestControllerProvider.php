@@ -39,8 +39,7 @@ class RestControllerProvider implements ServiceProviderInterface
          * Returns all objects
          */
         $app->get(sprintf('/%s', $this->modelName), function () use ($app) {
-            $queryClass = $app['rest_controller.query_class'];
-            $query = $queryClass::create();
+            $query = new $app['rest_controller.query_class'];
 
             return new Response($query->find()->exportTo($app['json_parser']), 200, array(
                 'Content-Type' => 'application/json',
@@ -51,12 +50,11 @@ class RestControllerProvider implements ServiceProviderInterface
          * Returns a specific object identified by a given id
          */
         $app->get(sprintf('/%s/{id}', $this->modelName), function ($id) use ($app) {
-            $queryClass = $app['rest_controller.query_class'];
-            $object = $queryClass::create()
-                ->findPk($id);
+            $query  = new $app['rest_controller.query_class'];
+            $object = $query->findPk($id);
 
             if (!$object instanceof $app['rest_controller.model_class']) {
-                $app->abort(404, sprintf('%s does not exist.', ucfirst($app['rest_controller.model_name'])));
+                $app->abort(404, sprintf('%s with id "%d" does not exist.', ucfirst($app['rest_controller.model_name']), $id));
             }
 
             return new Response($object->exportTo($app['json_parser']), 200, array (
@@ -81,12 +79,11 @@ class RestControllerProvider implements ServiceProviderInterface
          * Update a object identified by a given id
          */
         $app->put(sprintf('/%s/{id}', $this->modelName), function ($id, Request $request) use ($app) {
-            $queryClass = $app['rest_controller.query_class'];
-            $object = $queryClass::create()
-                ->findPk($id);
+            $query  = new $app['rest_controller.query_class'];
+            $object = $query->findPk($id);
 
             if (!$object instanceof $app['rest_controller.model_class']) {
-                $app->abort(404, sprintf('%s does not exist.', ucfirst($app['rest_controller.model_name'])));
+                $app->abort(404, sprintf('%s with id "%d" does not exist.', ucfirst($app['rest_controller.model_name']), $id));
             }
 
             $object->fromArray($request->request->all());
@@ -101,10 +98,8 @@ class RestControllerProvider implements ServiceProviderInterface
          * Delete a object identified by a given id
          */
         $app->delete(sprintf('/%s/{id}', $this->modelName), function ($id) use ($app) {
-            $queryClass = $app['rest_controller.query_class'];
-            $queryClass::create()
-                ->filterById($id)
-                ->delete();
+            $query = new $app['rest_controller.query_class'];
+            $query->filterByPrimaryKey($id)->delete();
 
             return new Response('', 204, array (
                 'Content-Type' => 'application/json',

@@ -31,11 +31,8 @@ $app->get('/', function() use ($app) {
 });
 
 /**
- * Register REST methods to manage documents
+ * Register a REST controller to manage documents
  */
-$app->register(new Propilex\Provider\RestControllerProvider(), array(
-    'rest_controller.model_name'    => 'documents',
-    'rest_controller.model_class'   => '\Propilex\Model\Document',
-));
+$app->mount('/documents', new Propilex\Provider\RestController('document', '\Propilex\Model\Document'));
 
 return $app;

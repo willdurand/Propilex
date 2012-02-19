@@ -1,6 +1,6 @@
 var Document = Backbone.Model.extend({
   url : function() {
-    var base = 'documents';
+    var base = 'documents/';
 
     if (this.isNew()) {
       return base;

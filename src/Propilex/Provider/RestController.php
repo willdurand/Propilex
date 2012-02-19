@@ -18,10 +18,13 @@ class RestController implements ControllerProviderInterface
 
     private $modelClass;
 
-    public function __construct($modelName, $modelClass = null)
+    private $lastModifiedGetter;
+
+    public function __construct($modelName, $modelClass = null, $lastModifiedGetter = null)
     {
-        $this->modelName  = $modelName;
-        $this->modelClass = $modelClass;
+        $this->modelName          = $modelName;
+        $this->modelClass         = $modelClass;
+        $this->lastModifiedGetter = $lastModifiedGetter;
     }
 
     /**
@@ -34,6 +37,10 @@ class RestController implements ControllerProviderInterface
 
         if (null !== $this->modelClass) {
             $app[$prefix.'model_class'] = $this->modelClass;
+        }
+
+        if (null !== $this->lastModifiedGetter) {
+            $app[$prefix.'last_modified_getter'] = $this->lastModifiedGetter;
         }
 
         if (isset($app[$prefix.'model_class'])) {
@@ -68,9 +75,15 @@ class RestController implements ControllerProviderInterface
                 );
             }
 
-            return new Response($object->exportTo($app['json_parser']), 200, array (
+            $response = new Response($object->exportTo($app['json_parser']), 200, array (
                 'Content-Type' => 'application/json',
             ));
+
+            if (isset($app[$prefix.'last_modified_getter'])) {
+                $response->setLastModified($object->$app[$prefix.'last_modified_getter']());
+            }
+
+            return $response;
         });
 
         /**

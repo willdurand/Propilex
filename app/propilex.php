@@ -33,6 +33,8 @@ $app->get('/', function() use ($app) {
 /**
  * Register a REST controller to manage documents
  */
-$app->mount('/documents', new Propilex\Provider\RestController('document', '\Propilex\Model\Document'));
+$app->mount('/documents', new Propilex\Provider\RestController(
+    'document', '\Propilex\Model\Document', 'getUpdatedAt'
+));
 
 return $app;

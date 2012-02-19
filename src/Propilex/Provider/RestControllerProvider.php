@@ -6,6 +6,7 @@ use Silex\Application;
 use Silex\ServiceProviderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * @author William Durand <william.durand1@gmail.com>
@@ -29,13 +30,6 @@ class RestControllerProvider implements ServiceProviderInterface
         }
 
         /**
-         * Error handler
-         */
-        $app->error(function (\Exception $e, $code) {
-            return new Response($e->getMessage(), $code);
-        });
-
-        /**
          * Returns all objects
          */
         $app->get(sprintf('/%s', $this->modelName), function () use ($app) {
@@ -54,7 +48,9 @@ class RestControllerProvider implements ServiceProviderInterface
             $object = $query->findPk($id);
 
             if (!$object instanceof $app['rest_controller.model_class']) {
-                $app->abort(404, sprintf('%s with id "%d" does not exist.', ucfirst($app['rest_controller.model_name']), $id));
+                throw new NotFoundHttpException(
+                    sprintf('%s with id "%d" does not exist.', ucfirst($app['rest_controller.model_name']), $id)
+                );
             }
 
             return new Response($object->exportTo($app['json_parser']), 200, array (
@@ -83,7 +79,9 @@ class RestControllerProvider implements ServiceProviderInterface
             $object = $query->findPk($id);
 
             if (!$object instanceof $app['rest_controller.model_class']) {
-                $app->abort(404, sprintf('%s with id "%d" does not exist.', ucfirst($app['rest_controller.model_name']), $id));
+                throw new NotFoundHttpException(
+                    sprintf('%s with id "%d" does not exist.', ucfirst($app['rest_controller.model_name']), $id)
+                );
             }
 
             $object->fromArray($request->request->all());

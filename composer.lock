@@ -1,5 +1,5 @@
 {
-    "hash": "c53680dee251b3dd26a90df5026ad712",
+    "hash": "875028c1220b9feca1f28259fc0302fb",
     "packages": [
         {
             "package": "phing/phing",
@@ -20,7 +20,7 @@
         {
             "package": "propel/propel-service-provider",
             "version": "dev-master",
-            "source-reference": "432398842bbba4367d4dcba6b6b59e4c5ad0d796"
+            "source-reference": "aaef6f3ecbd6c9cd2d4deba53a3b0a1d7aef4bfd"
         },
         {
             "package": "propel/propel1",

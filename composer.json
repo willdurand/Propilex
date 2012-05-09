@@ -2,7 +2,11 @@
     "name": "willdurand/propilex",
     "description": "Silex + Propel + Backbone",
     "require": {
+        "silex/silex": "dev-master",
         "propel/propel-service-provider": "dev-master"
+    },
+    "autoload": {
+        "psr-0": { "Propilex": "src" }
     },
     "authors": [
         {

@@ -10,7 +10,6 @@ $app['autoloader']->registerNamespaces(array(
 ));
 
 $app->register(new Propel\Silex\PropelServiceProvider(), array(
-    'propel.path'           => __DIR__ . '/../../vendor/propel/propel1/runtime/lib',
     'propel.config_file'    => __DIR__ . '/conf/Propilex-conf.php',
 ));
 

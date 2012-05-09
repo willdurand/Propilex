@@ -14,7 +14,7 @@ Install dependencies:
 
 Build Model classes, SQL, and the configuration:
 
-    ./vendor/propel/propel1/generator/bin/propel-gen app/config main
+    bin/bootstrap
 
 
 Configure a database:

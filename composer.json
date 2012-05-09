@@ -1,9 +1,8 @@
 {
-    "name": "willdurand\/propilex",
+    "name": "willdurand/propilex",
     "description": "Silex + Propel + Backbone",
     "require": {
-        "propel\/propel1": "dev-master",
-        "propel\/propel-service-provider": "dev-master"
+        "propel/propel-service-provider": "dev-master"
     },
     "authors": [
         {

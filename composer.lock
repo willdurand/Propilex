@@ -121,14 +121,14 @@
         {
             "package": "symfony/http-foundation",
             "version": "dev-master",
-            "source-reference": "54c22f4bf8625303503a117dcc68544d3f8ac876",
+            "source-reference": "5d15807c883c6a927eb3ac3c04e9a3f62b92e5b4",
             "alias-pretty-version": "2.1.x-dev",
             "alias-version": "2.1.9999999.9999999-dev"
         },
         {
             "package": "symfony/http-foundation",
             "version": "dev-master",
-            "source-reference": "54c22f4bf8625303503a117dcc68544d3f8ac876"
+            "source-reference": "5d15807c883c6a927eb3ac3c04e9a3f62b92e5b4"
         },
         {
             "package": "symfony/http-kernel",

@@ -49,7 +49,7 @@ class RestController implements ControllerProviderInterface
             throw new \InvalidArgumentException(sprintf('You have to configure the "%s.model_class" parameter.', $prefix));
         }
 
-        $controllers = new ControllerCollection();
+        $controllers = new ControllerCollection($app['route_factory'] );
 
         /**
          * Returns all objects

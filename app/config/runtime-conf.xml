@@ -5,9 +5,9 @@
             <datasource id="propilex">
                 <adapter>mysql</adapter>
                 <connection>
-                    <dsn>mysql:host=127.0.0.1;dbname=propilex</dsn>
+                    <dsn>mysql:host=127.0.0.1;port=8889;dbname=birthday</dsn>
                     <user>root</user>
-                    <password></password>
+                    <password>root</password>
                 </connection>
             </datasource>
         </datasources>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<database name="propilex" namespace="Propilex\Model" defaultIdMethod="native">
+<database name="birthday" namespace="Propilex\Model" defaultIdMethod="native">
     <table name="document">
         <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
         <column name="title" type="varchar" required="true" />
@@ -7,4 +7,67 @@
 
         <behavior name="timestampable" />
     </table>
+
+    <table name="user">
+        <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
+        <column name="location_id" type="integer" required="true"/>
+        <foreign-key foreignTable="location" onDelete="setnull" onUpdate="cascade">
+		  <reference local="location_id" foreign="id" />
+		</foreign-key>
+        <column name="firstname" type="varchar" required="true" />
+        <column name="lastname" type="varchar" required="true" />
+        <column name="email" type="varchar" required="false" />
+        <column name="affiliation" type="varchar" required="false" />
+        <column name="description" type="longvarchar" required="false" />
+        <column name="photo" type="varchar" required="false" />
+        <column name="answered" type="enum" valueSet="en attente de validation, présent, absent" required="true" />
+
+        <behavior name="timestampable" />
+    </table>
+    
+    <table name="location">
+        <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
+        <column name="title" type="varchar" required="true" />
+    </table>
+    
+    <table name="meal">
+        <column name="id" type="integer" primaryKey="true" required="true" autoIncrement="true" />
+        <column name="type" type="enum" valueSet="matin, midi, soir" required="true" />
+        <column name="date" type="date" required="true" />
+    </table>
+    
+    <table name="food">
+        <column name="id" type="integer" primaryKey="true" required="true" autoIncrement="true" />
+        <column name="user_id" type="integer" required="true"/>
+        <foreign-key foreignTable="user" onDelete="setnull" onUpdate="cascade" >
+		  <reference local="user_id" foreign="id" />
+		</foreign-key>
+        <column name="type" type="enum" valueSet="entrée, plat de résistance, fromage, dessert, boisson" required="true" />
+        <column name="portion" type="integer" required="true" default="4" />
+    </table>
+    
+    <table name="userMeal">
+        <column name="user_id" type="integer" required="true" primaryKey="true" />
+        <column name="meal_id" type="integer" required="true" primaryKey="true" />
+        <foreign-key foreignTable="user" onDelete="setnull" onUpdate="cascade" >
+		  <reference local="user_id" foreign="id" />
+		</foreign-key>
+		<foreign-key foreignTable="meal" onDelete="setnull" onUpdate="cascade" >
+		  <reference local="meal_id" foreign="id" />
+		</foreign-key>
+        <column name="number" type="integer" required="true" default="1" />
+    </table>
+    
+    <table name="activity">
+        <column name="id" type="integer" primaryKey="true" required="true" autoIncrement="true" />
+        <column name="user_id" type="integer" required="true"/>
+        <foreign-key foreignTable="user" onDelete="setnull" onUpdate="cascade" >
+		  <reference local="user_id" foreign="id" />
+		</foreign-key>
+        <column name="type" type="enum" valueSet="réponse, édition, connection" required="true" />
+        <column name="message" type="longvarchar" required="false" />
+        
+        <behavior name="timestampable" />
+    </table>
+
 </database>

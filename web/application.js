@@ -4,7 +4,8 @@ var App = {
   Collections:  {},
 
   init: function() {
-    new App.Controllers.Documents();
+	new App.Controllers.Users();
+    //new App.Controllers.Documents();
     Backbone.history.start();
   }
 };

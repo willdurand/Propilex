@@ -10,7 +10,7 @@
 
     <table name="user">
         <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
-        <column name="location_id" type="integer" required="true"/>
+        <column name="location_id" type="integer" required="false"/>
         <foreign-key foreignTable="location" onDelete="setnull" onUpdate="cascade">
 		  <reference local="location_id" foreign="id" />
 		</foreign-key>
@@ -20,7 +20,7 @@
         <column name="affiliation" type="varchar" required="false" />
         <column name="description" type="longvarchar" required="false" />
         <column name="photo" type="varchar" required="false" />
-        <column name="answered" type="enum" valueSet="en attente de validation, présent, absent" required="true" />
+        <column name="answered" type="enum" valueSet="en attente de validation, présent, absent" required="true" default="en attente de validation"/>
 
         <behavior name="timestampable" />
     </table>

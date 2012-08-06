@@ -14,7 +14,7 @@ $app->before(function (Request $request) {
 
         // filter values
         foreach ($data as $k => $v) {
-            if (false === array_search($k, array('Id', 'Title', 'Body'))) {
+            if (false === array_search($k, array('Id', 'Title', 'Body', 'Firstname', 'Lastname', 'Location_Id', 'Description', 'Email'))) {
                 unset($data[$k]);
             }
         }
@@ -35,6 +35,13 @@ $app->get('/', function() use ($app) {
  */
 $app->mount('/documents', new Propilex\Provider\RestController(
     'document', '\Propilex\Model\Document', 'getUpdatedAt'
+));
+
+/**
+ * Register a REST controller to manage documents
+ */
+$app->mount('/users', new Propilex\Provider\RestController(
+	'user', '\Propilex\Model\User', 'getUpdatedAt'
 ));
 
 return $app;

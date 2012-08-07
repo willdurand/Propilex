@@ -1,4 +1,6 @@
 var User = Backbone.Model.extend({
+  idAttribute: "Id",
+		
   defaults: {
     "edit": false,
     "active": false

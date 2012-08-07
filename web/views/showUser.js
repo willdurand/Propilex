@@ -32,18 +32,29 @@ App.Views.ShowUser = Backbone.View.extend({
 	  out += '<span class="description">' + item.get('Description') + '</span>';
 	  out += '</div>';
 	  $(this.el).html(out);
+	  
+	  if (item.get('active') ){
+		  $(this.el).addClass('active');
+	  }
+	  else {
+		  $(this.el).removeClass('active');
+	  }
+	  
 	  return this;
   },
   
   setActive: function() {
 	  if (this.$('.moreInformation').css('display') == 'none') {
 		  this.model.set('active', true);
+		  $(this.el).addClass('active');
 		  this.$('.moreInformation').show();
 	  }
 	  else {
 		  this.model.set('active', false);
+		  $(this.el).removeClass('active');
 		  this.$('.moreInformation').hide();
 		  window.location.hash = '#';
+		  return false;
 	  }
   }
 });

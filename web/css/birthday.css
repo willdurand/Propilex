@@ -1,0 +1,6 @@
+#invites { margin:0; padding:0; }
+#invites li { float:left; list-style:none; margin:0 10px 10px 0; position:relative; }
+#invites li img { position:relative; z-index:10; }
+#invites li.active img { z-index:101; }
+#invites li a { display:block; }
+#invites .moreInformation { background-color:#fff; border:4px #efefef solid; height:200px; left:-10px; padding-left:100px; position:absolute; top:-10px; width:400px; z-index:100; }

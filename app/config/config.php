@@ -8,6 +8,10 @@ $app->register(new Propel\Silex\PropelServiceProvider(), array(
     'propel.model_path'		=> __DIR__ . '/../../src/Propilex/Model',
 ));
 
+$app->register(new Silex\Provider\TwigServiceProvider(), array(
+	'twig.path'	=> __DIR__ . '/../../views',
+));
+
 // Parser that removes "root" on JSON objects
 $app['json_parser'] = new Propilex\Parser\JsonParser();
 

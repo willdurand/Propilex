@@ -3,7 +3,10 @@
     "description": "Birthday website. Based on Propilex.",
     "require": {
         "silex/silex": "dev-master",
-        "propel/propel-service-provider": "dev-master"
+        "propel/propel-service-provider": "dev-master",
+        "twig/twig": "1.*",
+        "monolog/monolog": "1.0.*",
+        "kriswallsmith/assetic": "1.0.*"
     },
     "minimum-stability" : "dev",
     "autoload": {
@@ -11,8 +14,8 @@
     },
     "authors": [
         {
-            "name": "William DURAND",
-            "email": "william.durand1@gmail.com"
+            "name": "Nicolas BEHIER-DEVIGNE",
+            "email": "nbehierdevigne@gmail.com"
         }
     ]
 }

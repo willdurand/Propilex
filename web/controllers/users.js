@@ -25,6 +25,9 @@ App.Controllers.Users = Backbone.Router.extend({
   },
   
   showAction: function(id) {
+	  App.users.each(function(user){
+		  user.set('active', false);
+	  });
 	  App.users.get(id).set('active', true);
   },
   

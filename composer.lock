@@ -1,6 +1,16 @@
 {
-    "hash": "40c3c7cdff3f45b8f516aa9ee8c7810f",
+    "hash": "a3941071aa0684bb07dcb608b89b5b1b",
     "packages": [
+        {
+            "package": "kriswallsmith/assetic",
+            "version": "1.0.x-dev",
+            "source-reference": "ed9bf0fcc710e26051ac656b4d6b1a53381da160",
+            "commit-date": "1340139242"
+        },
+        {
+            "package": "monolog/monolog",
+            "version": "1.0.2"
+        },
         {
             "package": "phing/phing",
             "version": "2.4.12"
@@ -32,8 +42,8 @@
         {
             "package": "propel/propel1",
             "version": "dev-master",
-            "source-reference": "20460221f2a29cbac590458715fe182e5c13cf63",
-            "commit-date": "1344042328"
+            "source-reference": "6eb19ea7857e829edba3c4822dff8efed7b28194",
+            "commit-date": "1344332537"
         },
         {
             "package": "silex/silex",
@@ -94,6 +104,18 @@
             "version": "dev-master",
             "source-reference": "v2.1.0-RC1",
             "commit-date": "1343744077"
+        },
+        {
+            "package": "twig/twig",
+            "version": "dev-master",
+            "alias-pretty-version": "1.9.x-dev",
+            "alias-version": "1.9.9999999.9999999-dev"
+        },
+        {
+            "package": "twig/twig",
+            "version": "dev-master",
+            "source-reference": "f2f698c820d4396f519ef4175ad6fe79fcfb9ecf",
+            "commit-date": "1344328685"
         }
     ],
     "packages-dev": null,

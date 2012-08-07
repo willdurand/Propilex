@@ -13,9 +13,9 @@
 
     <meta name="viewport" content="width=device-width">
 	<link rel="shortcut icon" href="favicon.ico">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="{{ app.request.basepath }}/css/style.css">
 
-    <script src="js/libs/modernizr-2.5.3-respond-1.1.0.min.js"></script>
+    <script src="{{ app.request.basepath }}/js/libs/modernizr-2.5.3-respond-1.1.0.min.js"></script>
 </head>
 <body>
     <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
@@ -34,18 +34,8 @@
     </div>
     <div id="main-container">
         <div id="main" class="wrapper clearfix">
-            
-            <article>
-                <section>
-                    <h2>Les invités</h2>
-                    <div id="appUser"></div>
-                </section>
-            </article>
-            
-            <aside>
-                <div id="notice"></div>
-            </aside>
-            
+            {% block content %}
+            {% endblock %}
         </div> <!-- #main -->
     </div> <!-- #main-container -->
 
@@ -57,28 +47,28 @@
 
     <!-- Libraries -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.2.min.js"><\/script>')</script>
-    <script src="/js/libs/underscore.js"></script>
-    <script src="/js/libs/backbone.js"></script>
+    <script>window.jQuery || document.write('<script src="{{ app.request.basepath }}/js/libs/jquery-1.7.2.min.js"><\/script>')</script>
+    <script src="{{ app.request.basepath }}/js/libs/underscore.js"></script>
+    <script src="{{ app.request.basepath }}/js/libs/backbone.js"></script>
     <script src="http://github.com/cowboy/jquery-dotimeout/raw/master/jquery.ba-dotimeout.min.js"></script>
 
     <!-- Application -->
-    <script src="/application.js"></script>
+    <script src="{{ app.request.basepath }}/application.js"></script>
 
     <!-- Models -->
-    <script src="/models/user.js"></script>
+    <script src="{{ app.request.basepath }}/models/user.js"></script>
 
     <!-- Collections -->
-    <script src="/collections/users.js"></script>
+    <script src="{{ app.request.basepath }}/collections/users.js"></script>
 
     <!-- Views -->
-    <script src="/views/indexUser.js"></script>
-    <script src="/views/showUser.js"></script>
-    <script src="/views/editUser.js"></script>
-    <script src="/views/notice.js"></script>
+    <script src="{{ app.request.basepath }}/views/indexUser.js"></script>
+    <script src="{{ app.request.basepath }}/views/showUser.js"></script>
+    <script src="{{ app.request.basepath }}/views/editUser.js"></script>
+    <script src="{{ app.request.basepath }}/views/notice.js"></script>
 
     <!-- Controllers -->
-    <script src="/controllers/users.js"></script>
+    <script src="{{ app.request.basepath }}/controllers/users.js"></script>
 
     <script type="text/javascript">
         $(function() {

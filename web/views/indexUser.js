@@ -9,7 +9,7 @@ App.Views.IndexUser = Backbone.View.extend({
       var out = '<ul id="invites">';
 
       this.collection.each(function(item) {
-    	
+    	new App.Views.ShowUser({model: item});
       });
 
       out += '</ul>';

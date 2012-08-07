@@ -1,4 +1,4 @@
-App.Views.EditUser = Backbone.View.extend({
+App.Views.ShowUser = Backbone.View.extend({
   events: {
 	  "click .setActive": "setActive",
   },
@@ -13,7 +13,7 @@ App.Views.EditUser = Backbone.View.extend({
 
   render: function() {
 	  var item = this.model;
-	  out += '<a href="#users/' + item.get('Id') + '/show" class="setActive">';
+	  out = '<a href="#users/' + item.get('Id') + '/show" class="setActive">';
 	  out += '<img src="img/users/photo_' + item.get('Id') + '" alt="Photo de ' + item.getDisplayName() + '"/>';
 	  out += '</a><div class="moreInformation" style="display:none;">';
 	  out += '<span class="firstname">' + item.escape('Firstname') + '</span>';
@@ -23,7 +23,7 @@ App.Views.EditUser = Backbone.View.extend({
 	  if (item.getNumber() > 0 ) {
 	  	 out += '<span class="answer">Ils ont confirmés pour <span class="number">' + item.get('Number') + '</span> personne(s)</span>';
 	  }
-	  else if (item.getAnswered() == true) {
+	  else if (item.isAnswered() == true) {
 	  	 out += '<span class="answer">Ils ne pourront venir</span>';
 	  }
 	  else {

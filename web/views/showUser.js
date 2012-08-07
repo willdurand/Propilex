@@ -1,6 +1,8 @@
 App.Views.ShowUser = Backbone.View.extend({
   events: {
 	  "click .setActive": "setActive",
+	  "mouseenter .editEnabled": "setEditable",
+	  "click .saveField": "saveField"
   },
   
   tagName: "li",
@@ -16,7 +18,7 @@ App.Views.ShowUser = Backbone.View.extend({
 	  out = '<a href="#users/' + item.get('Id') + '/show" class="setActive">';
 	  out += '<img src="img/users/photo_' + item.get('Id') + '.jpg" alt="Photo de ' + item.getDisplayName() + '"/>';
 	  out += '</a><div class="moreInformation" style="display:' + ( item.get('active') ? 'block' : 'none') + ';">';
-	  out += '<span class="firstname">' + item.escape('Firstname') + '</span>';
+	  out += '<span class="firstname editEnabled form-field-text">' + item.escape('Firstname') + '</span>';
 	  out += ' ' + ( item.getNumber() > 0 ? 'sont des' : 'est un' ) + ' ';
 	  out += '<span class="affiliation">' + item.get('Affiliation') + '</span>';
 
@@ -56,5 +58,29 @@ App.Views.ShowUser = Backbone.View.extend({
 		  window.location.hash = '#';
 		  return false;
 	  }
+  },
+  
+  setEditable: function(e) {
+	  // @todo display associate form field and save button
+	  var elem = $(e.target);
+	  var elemClasses = elem.attr('class').split(' ');
+	  var formFieldType = '';
+	  _.each(elemClasses, function(elemClass) {
+		  if (elemClass.search('form-field-') == 0 ) {
+			  formFieldType = elemClass;
+		  }
+	  });
+	  
+	  switch (formFieldType) {
+	    case 'form-field-text': 
+	    	elem.css({'border': '1px solid #777', 'background-color': '#efefef'});
+	    	break;
+	    default :
+	    	break;
+	  }
+  },
+  
+  saveField: function() {
+	  // @todo get new value, assign to model and save it
   }
 });

@@ -1,9 +1,8 @@
 App.Controllers.Users = Backbone.Router.extend({
   routes: {
     "":                 "indexAction",
-    "users/new":        "newAction",
     "users/:id":        "editAction",
-    "users/:id/delete": "deleteAction"
+    "users/:id/show":	"showAction"
   },
 
   indexAction: function() {
@@ -18,10 +17,6 @@ App.Controllers.Users = Backbone.Router.extend({
     });
   },
 
-  newAction: function() {
-    new App.Views.EditUser({ model: new User() });
-  },
-
   editAction: function(id) {
     var usr = new User({ id: id });
     usr.fetch({
@@ -34,14 +29,9 @@ App.Controllers.Users = Backbone.Router.extend({
       }
     });
   },
-
-  deleteAction: function(id) {
-    var usr = new User({ id: id });
-    usr.destroy({
-      success: function(model, response) {
-        new App.Views.Notice({ message: 'User successfully deleted' });
-        window.location.hash = '#';
-      }
-    });
+  
+  showAction: function(id) {
+	  App.Collections.Users.get(id).set('active', true);
   }
+  
 });

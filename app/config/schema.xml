@@ -19,7 +19,6 @@
         <column name="email" type="varchar" required="false" />
         <column name="affiliation" type="varchar" required="false" />
         <column name="description" type="longvarchar" required="false" />
-        <column name="photo" type="varchar" required="false" />
         <column name="answered" type="enum" valueSet="en attente de validation, présent, absent" required="true" default="en attente de validation"/>
 
         <behavior name="timestampable" />

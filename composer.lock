@@ -1,6 +1,12 @@
 {
-    "hash": "a3941071aa0684bb07dcb608b89b5b1b",
+    "hash": "5e4dc4af23b28f9efd424dc340f62152",
     "packages": [
+        {
+            "package": "fate/silex-extensions",
+            "version": "dev-master",
+            "source-reference": "c251bb3ccd581766cccfba895e20d52df39185c6",
+            "commit-date": "1343905243"
+        },
         {
             "package": "kriswallsmith/assetic",
             "version": "1.0.x-dev",
@@ -125,6 +131,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "silex/silex": 20,
-        "propel/propel-service-provider": 20
+        "propel/propel-service-provider": 20,
+        "fate/silex-extensions": 20
     }
 }

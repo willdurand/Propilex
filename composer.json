@@ -6,7 +6,8 @@
         "propel/propel-service-provider": "dev-master",
         "twig/twig": "1.*",
         "monolog/monolog": "1.0.*",
-        "kriswallsmith/assetic": "1.0.*"
+        "kriswallsmith/assetic" : "1.0.*",
+        "fate/Silex-Extensions": "dev-master"
     },
     "minimum-stability" : "dev",
     "autoload": {

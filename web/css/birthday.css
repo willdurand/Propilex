@@ -3,4 +3,5 @@
 #invites li img { position:relative; z-index:10; }
 #invites li.active img { z-index:101; }
 #invites li a { display:block; }
-#invites .moreInformation { background-color:#fff; border:4px #efefef solid; height:200px; left:-10px; padding-left:100px; position:absolute; top:-10px; width:400px; z-index:100; }
+#invites .moreInformation { background-color:rgba(255,255,255,0.95); -webkit-border-radius:4px; border-radius:4px; -webkit-box-shadow:0px 0px 10px 5px rgba(0, 0, 0, 0.2); box-shadow:0px 0px 10px 5px rgba(0, 0, 0, 0.2); height:200px; left:-10px; padding-left:100px; position:absolute; top:-10px; width:400px; z-index:100; }
+.displayEdit { background-color:#efefef; border:1px solid #333; }

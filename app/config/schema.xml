@@ -1,12 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <database name="birthday" namespace="Propilex\Model" defaultIdMethod="native">
-    <table name="document">
-        <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
-        <column name="title" type="varchar" required="true" />
-        <column name="body" type="longvarchar" required="true" />
-
-        <behavior name="timestampable" />
-    </table>
 
     <table name="user">
         <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />

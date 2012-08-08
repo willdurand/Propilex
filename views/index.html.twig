@@ -20,4 +20,21 @@
         App.users.reset({{ users | raw }});
     });
 </script>
+
+<script type="text/template" id="user_show_template">
+<a href="#users/<%= Id %>/show" class="setActive">
+	<img src="img/users/photo_<%= Id %>.jpg" alt="Photo de <%= DisplayName %>"/>
+</a>
+<div class="moreInformation" style="display:<% print(active ? 'block' : 'none') %>;">
+	<span class="firstname editEnabled form-field-text" title="Prénom"><%= Firstname %></span>
+	<% print(Answered > 0 ? 'sont des' : 'est un') %>
+	<span class="affiliation"><%= Affiliation %></span>
+	<span class="answer"><%= Answer %></span>
+	<span class="description"><%= Description %></span>
+</div>
+</script>
+
+<script type="text/template" id="user_edit_template">
+
+</script>
 {% endblock %}

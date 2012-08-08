@@ -17,28 +17,23 @@ App.Views.ShowUser = Backbone.View.extend({
   },
 
   render: function() {
-	  var item = this.model;
-	  out = '<a href="#users/' + item.get('Id') + '/show" class="setActive">';
-	  out += '<img src="img/users/photo_' + item.get('Id') + '.jpg" alt="Photo de ' + item.getDisplayName() + '"/>';
-	  out += '</a><div class="moreInformation" style="display:' + ( item.get('active') ? 'block' : 'none') + ';">';
-	  out += '<span class="firstname editEnabled form-field-text" title="Prénom">' + item.escape('Firstname') + '</span>';
-	  out += ' ' + ( item.getNumber() > 0 ? 'sont des' : 'est un' ) + ' ';
-	  out += '<span class="affiliation">' + item.get('Affiliation') + '</span>';
-
-	  if (item.getNumber() > 0 ) {
-	  	 out += '<span class="answer">Ils ont confirmés pour <span class="number">' + item.get('Number') + '</span> personne(s)</span>';
+	  var templateData = this.model.toJSON();
+	  templateData.DisplayName = this.model.getDisplayName();
+	  if (templateData.Affiliation == null) { templateData.Affiliation = ''; }
+	  if (this.model.getNumber() > 0 ) {
+		  templateData.Answer = '<span class="answer">Ils ont confirmés</span>';
 	  }
-	  else if (item.isAnswered() == true) {
-	  	 out += '<span class="answer">Ils ne pourront venir</span>';
+	  else if (this.model.isAnswered() == true) {
+		  templateData.Answer = '<span class="answer">Ils ne pourront venir</span>';
 	  }
 	  else {
-	  	 out += '<span class="answer">Nous sommes en attente de réponse</span>';
+		  templateData.Answer = '<span class="answer">Nous sommes en attente de réponse</span>';
 	  }
-	  out += '<span class="description">' + item.get('Description') + '</span>';
-	  out += '</div>';
-	  $(this.el).html(out);
 	  
-	  if (item.get('active') ){
+	  var template = _.template( $("#user_show_template").html(), templateData);
+	  $(this.el).html(template );
+	  
+	  if (this.model.get('active') ){
 		  $(this.el).addClass('active');
 	  }
 	  else {

@@ -27,10 +27,8 @@ $app->before(function (Request $request) {
  * Entry point
  */
 $app->get('/', function() use ($app) {
-    $users = Propilex\Model\UserQuery::create()
-    			->find()
-    			->exportTo($app['json_parser']);
-    return $app['twig']->render('index.html.twig', array('users' => $users));
+    $users = Propilex\Model\UserQuery::selectUsers();
+    return $app['twig']->render('index.html.twig', array('users' => json_encode($users) ) );
 });
 
 /**

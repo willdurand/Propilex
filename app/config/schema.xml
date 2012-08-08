@@ -38,13 +38,13 @@
         <column name="portion" type="integer" required="true" default="4" />
     </table>
     
-    <table name="userMeal">
-        <column name="user_id" type="integer" required="true" primaryKey="true" />
-        <column name="meal_id" type="integer" required="true" primaryKey="true" />
-        <foreign-key foreignTable="user" onDelete="setnull" onUpdate="cascade" >
+    <table name="user_meal" isCrossRef="true">
+        <column name="user_id" type="integer" primaryKey="true" />
+        <column name="meal_id" type="integer" primaryKey="true" />
+        <foreign-key foreignTable="user">
 		  <reference local="user_id" foreign="id" />
 		</foreign-key>
-		<foreign-key foreignTable="meal" onDelete="setnull" onUpdate="cascade" >
+		<foreign-key foreignTable="meal">
 		  <reference local="meal_id" foreign="id" />
 		</foreign-key>
         <column name="number" type="integer" required="true" default="1" />

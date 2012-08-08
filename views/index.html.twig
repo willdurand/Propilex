@@ -12,3 +12,12 @@
     <div id="notice"></div>
 </aside>
 {% endblock %}
+
+{% block javascript %}
+<script type="text/javascript">
+    $(function() {
+        App.users = new App.Collections.Users;
+        App.users.reset({{ users | raw }});
+    });
+</script>
+{% endblock %}

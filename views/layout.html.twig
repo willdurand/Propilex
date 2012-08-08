@@ -71,6 +71,9 @@
     <!-- Controllers -->
     <script src="{{ app.request.basepath }}/controllers/users.js"></script>
 
+	{% block javascript %}
+    {% endblock %}
+    
     <script type="text/javascript">
         $(function() {
             App.init();

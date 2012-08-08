@@ -27,16 +27,21 @@ $app->before(function (Request $request) {
  * Entry point
  */
 $app->get('/', function() use ($app) {
-    return $app['twig']->render('index.html.twig');
+    $users = Propilex\Model\UserQuery::create()
+    			->find()
+    			->exportTo($app['json_parser']);
+    return $app['twig']->render('index.html.twig', array('users' => $users));
     //return new Response(file_get_contents(__DIR__ . '/../web/index.html'), 200);
 });
 
 /**
  * Register a REST controller to manage documents
  */
+/*
 $app->mount('/documents', new Propilex\Provider\RestController(
     'document', '\Propilex\Model\Document', 'getUpdatedAt'
 ));
+*/
 
 /**
  * Register a REST controller to manage documents
@@ -44,5 +49,14 @@ $app->mount('/documents', new Propilex\Provider\RestController(
 $app->mount('/users', new Propilex\Provider\RestController(
 	'user', '\Propilex\Model\User', 'getUpdatedAt'
 ));
+
+/**
+ * Get all Users Informations
+ */
+$app->get('/getUsers', function() use ($app) {
+    $query = new Propilex\Model\UserQuery();
+    
+    return $app->json($query->leftJoinUsermeal()->leftJoinLocation()->find()->exportTo($app['json_parser'] ) );
+});
 
 return $app;

@@ -1,8 +1,11 @@
 App.Views.ShowUser = Backbone.View.extend({
   events: {
 	  "click .setActive": "setActive",
-	  "mouseenter .editEnabled": "setEditable",
-	  "click .saveField": "saveField"
+	  "mouseenter .editEnabled": "showEditable",
+	  "mouseleave .editEnabled": "hideEditable",
+
+	  "click .saveField": "saveField",
+	  "click .editEnabled": "setEditable"
   },
   
   tagName: "li",
@@ -18,7 +21,7 @@ App.Views.ShowUser = Backbone.View.extend({
 	  out = '<a href="#users/' + item.get('Id') + '/show" class="setActive">';
 	  out += '<img src="img/users/photo_' + item.get('Id') + '.jpg" alt="Photo de ' + item.getDisplayName() + '"/>';
 	  out += '</a><div class="moreInformation" style="display:' + ( item.get('active') ? 'block' : 'none') + ';">';
-	  out += '<span class="firstname editEnabled form-field-text">' + item.escape('Firstname') + '</span>';
+	  out += '<span class="firstname editEnabled form-field-text" title="Prénom">' + item.escape('Firstname') + '</span>';
 	  out += ' ' + ( item.getNumber() > 0 ? 'sont des' : 'est un' ) + ' ';
 	  out += '<span class="affiliation">' + item.get('Affiliation') + '</span>';
 
@@ -47,12 +50,12 @@ App.Views.ShowUser = Backbone.View.extend({
   
   setActive: function() {
 	  if (this.$('.moreInformation').css('display') == 'none') {
-		  this.model.set('active', true);
+		  this.model.set({'active': true});
 		  $(this.el).addClass('active');
 		  this.$('.moreInformation').show();
 	  }
 	  else {
-		  this.model.set('active', false);
+		  this.model.set({'active': false});
 		  $(this.el).removeClass('active');
 		  this.$('.moreInformation').hide();
 		  window.location.hash = '#';
@@ -60,9 +63,26 @@ App.Views.ShowUser = Backbone.View.extend({
 	  }
   },
   
+  showEditable: function(e) {
+  	var elem = $(e.target);
+  	if (!this.model.get('editing') ) {
+  		elem.addClass('displayEdit');
+  	}
+  },
+  
+  hideEditable: function(e) {
+  	var elem = $(e.target);
+  	if (!this.model.get('editing') ) {
+  		elem.removeClass('displayEdit');
+  	}
+  },
+
   setEditable: function(e) {
 	  // @todo display associate form field and save button
 	  var elem = $(e.target);
+	  this.model.set({'editing': true}, {silent: true});
+	  elem.removeClass('displayEdit');
+
 	  var elemClasses = elem.attr('class').split(' ');
 	  var formFieldType = '';
 	  _.each(elemClasses, function(elemClass) {
@@ -73,7 +93,11 @@ App.Views.ShowUser = Backbone.View.extend({
 	  
 	  switch (formFieldType) {
 	    case 'form-field-text': 
-	    	elem.css({'border': '1px solid #777', 'background-color': '#efefef'});
+	    	var value = elem.text();
+	    	var width = elem.width();
+	    	var formField = $('<input type="text" name="' + formFieldType + '" id="' + formFieldType + '" style="width:' + width + 'px"/>').val(value);
+	    	var formButton = $('<img src="/img/check_16.png" alt="sauvegarder" class="saveField"/>');
+	    	elem.html(formField).append(formButton);
 	    	break;
 	    default :
 	    	break;
@@ -82,5 +106,6 @@ App.Views.ShowUser = Backbone.View.extend({
   
   saveField: function() {
 	  // @todo get new value, assign to model and save it
+	  this.model.set({'editing': false}, {silent: true});
   }
 });

@@ -3,7 +3,8 @@ var User = Backbone.Model.extend({
 		
   defaults: {
     "edit": false,
-    "active": false
+    "active": false,
+    "editing": false
   },
 	
   url : function() {

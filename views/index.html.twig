@@ -26,15 +26,33 @@
 	<img src="img/users/photo_<%= Id %>.jpg" alt="Photo de <%= DisplayName %>"/>
 </a>
 <div class="moreInformation" style="display:<% print(active ? 'block' : 'none') %>;">
+	<a href="#users/<%= Id %>/edit" class="action edit">Modifier</a>
+	<a href="#users/<%= Id %>/close" class="action close">Fermer</a>
 	<span class="firstname editEnabled form-field-text" title="Prénom"><%= Firstname %></span>
 	<% print(Answered > 0 ? 'sont des' : 'est un') %>
 	<span class="affiliation"><%= Affiliation %></span>
-	<span class="answer"><%= Answer %></span>
+	<span class="answer">
+		<% if(Number > 0){ %><span class="answer">Ils ont confirmés</span>
+		<% }else if(IsAnswered){ %><span class="answer">Ils ne pourront venir</span>
+		<% }else{ %><span class="answer">Nous sommes en attente de réponse</span><% } %>
+	</span>
 	<span class="description"><%= Description %></span>
 </div>
 </script>
 
 <script type="text/template" id="user_edit_template">
-
+<img src="img/users/photo_<%= Id %>.jpg" alt="Photo de <%= DisplayName %>"/>
+<div class="moreInformation" style="display:<% print(active ? 'block' : 'none') %>;">
+	<form id="userForm<%= Id %>" action="#users/<%= Id %>/save">
+	<input type="submit" value="Sauvegarder">
+	<a href="#users/<%= Id %>/show" class="action undo">Annuler</a>
+	<input type="text" name="firstname" value="<%= Firstname %>"/>
+	<span class="affiliation"><%= Affiliation %></span>
+	<input type="radio" name="answered" value="0" <% if (Answered == 0){ %>checked="checked"<% } %>/>
+	<input type="radio" name="answered" value="0" <% if (Answered == 1){ %>checked="checked"<% } %>/>
+	<input type="radio" name="answered" value="0" <% if (Answered == 2){ %>checked="checked"<% } %>/>
+	<textearea name="description"><%= Description %></textarea>
+	</form>
+</div>
 </script>
 {% endblock %}

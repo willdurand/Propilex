@@ -5,7 +5,6 @@ var App = {
 
   init: function() {
 	new App.Controllers.Users();
-    //new App.Controllers.Documents();
     Backbone.history.start();
   }
 };

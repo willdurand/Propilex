@@ -1,11 +1,7 @@
 App.Views.ShowUser = Backbone.View.extend({
   events: {
 	  "click .setActive": "setActive",
-	  "mouseenter .editEnabled": "showEditable",
-	  "mouseleave .editEnabled": "hideEditable",
-
-	  "click .saveField": "saveField",
-	  "click .editEnabled": "setEditable"
+	  "submit": "validateAndSave"
   },
   
   tagName: "li",
@@ -19,18 +15,16 @@ App.Views.ShowUser = Backbone.View.extend({
   render: function() {
 	  var templateData = this.model.toJSON();
 	  templateData.DisplayName = this.model.getDisplayName();
+	  templateData.Number = this.model.getNumber();
+	  templateData.IsAnswered = this.model.isAnswered();
 	  if (templateData.Affiliation == null) { templateData.Affiliation = ''; }
-	  if (this.model.getNumber() > 0 ) {
-		  templateData.Answer = '<span class="answer">Ils ont confirmés</span>';
-	  }
-	  else if (this.model.isAnswered() == true) {
-		  templateData.Answer = '<span class="answer">Ils ne pourront venir</span>';
+	  
+	  if (this.model.get('editing') ) {
+		  var template = _.template( $("#user_edit_template").html(), templateData);
 	  }
 	  else {
-		  templateData.Answer = '<span class="answer">Nous sommes en attente de réponse</span>';
+		  var template = _.template( $("#user_show_template").html(), templateData);
 	  }
-	  
-	  var template = _.template( $("#user_show_template").html(), templateData);
 	  $(this.el).html(template );
 	  
 	  if (this.model.get('active') ){
@@ -58,49 +52,13 @@ App.Views.ShowUser = Backbone.View.extend({
 	  }
   },
   
-  showEditable: function(e) {
-  	var elem = $(e.target);
-  	if (!this.model.get('editing') ) {
-  		elem.addClass('displayEdit');
-  	}
-  },
-  
-  hideEditable: function(e) {
-  	var elem = $(e.target);
-  	if (!this.model.get('editing') ) {
-  		elem.removeClass('displayEdit');
-  	}
-  },
-
-  setEditable: function(e) {
-	  // @todo display associate form field and save button
-	  var elem = $(e.target);
-	  this.model.set({'editing': true}, {silent: true});
-	  elem.removeClass('displayEdit');
-
-	  var elemClasses = elem.attr('class').split(' ');
-	  var formFieldType = '';
-	  _.each(elemClasses, function(elemClass) {
-		  if (elemClass.search('form-field-') == 0 ) {
-			  formFieldType = elemClass;
-		  }
-	  });
-	  
-	  switch (formFieldType) {
-	    case 'form-field-text': 
-	    	var value = elem.text();
-	    	var width = elem.width();
-	    	var formField = $('<input type="text" name="' + formFieldType + '" id="' + formFieldType + '" style="width:' + width + 'px"/>').val(value);
-	    	var formButton = $('<img src="/img/check_16.png" alt="sauvegarder" class="saveField"/>');
-	    	elem.html(formField).append(formButton);
-	    	break;
-	    default :
-	    	break;
-	  }
-  },
-  
-  saveField: function() {
-	  // @todo get new value, assign to model and save it
-	  this.model.set({'editing': false}, {silent: true});
+  validateAndSave: function() {
+	  // @todo validate value
+	  // @todo send ajax post
+	  // @todo Afficher les erreurs potentielles
+	  // @todo Mettre à jour les données du Model
+	  this.model.set({'editing': false}, {'silent': true});
+	  window.location.hash = 'users/' + this.model.get('Id') + '/show';
+	  return false;
   }
 });

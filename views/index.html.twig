@@ -23,7 +23,7 @@
 
 <script type="text/template" id="user_show_template">
 <a href="#users/<%= Id %>/show" class="setActive">
-	<img src="img/users/photo_<%= Id %>.jpg" alt="Photo de <%= DisplayName %>"/>
+	<img src="{{ app.request.basepath }}/img/users/photo_<%= Id %>.jpg" alt="Photo de <%= DisplayName %>"/>
 </a>
 <div class="moreInformation show" style="display:<% print(active ? 'block' : 'none') %>;">
 	<div class="actions">
@@ -45,7 +45,7 @@
 <script type="text/template" id="user_edit_template">
 <img src="img/users/photo_<%= Id %>.jpg" alt="Photo de <%= DisplayName %>"/>
 <div class="moreInformation edit" style="display:<% print(active ? 'block' : 'none') %>;">
-	<form id="userForm<%= Id %>" action="#users/<%= Id %>/save">
+	<form id="userForm<%= Id %>">
 	<div class="formElement"><label for="Firstname">Prénom</label><input type="text" name="Firstname" value="<%= Firstname %>"/></div>
 	<div class="formElement"><label for="Affiliation">Affiliation</label><input type="text" name="Affiliation" value="<%= Affiliation %>"/></div>
 	<div class="formElement"><label for="Answered">Présence</label>
@@ -58,7 +58,7 @@
 	<label for="Description">Description</label>
 	<textarea name="Description"><%= Description %></textarea>
 	</div>
-	<div class="actions"><input type="submit" value="Sauvegarder"><a href="#users/<%= Id %>/show" class="action undo">Annuler</a></div>
+	<div class="actions"><input type="submit" value="Sauvegarder"><a href="#users/<%= Id %>/show" class="action undo">Annuler</a><img src="{{ app.request.basepath }}/img/ajax-loader.gif" alt="Indicateur requête en cours" style="display:none" id="userEditAjaxIndicator"/></div>
 	</form>
 </div>
 </script>

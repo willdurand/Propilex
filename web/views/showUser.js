@@ -52,19 +52,23 @@ App.Views.ShowUser = Backbone.View.extend({
 	  }
   },
   
-  validateAndSave: function() {
-	  // @todo validate value
+  validateAndSave: function(e) {
 	  var values = this.$('form').serialize();
-	  // @todo send ajax post
+	  // @todo validate value
+	  // send ajax PUT
 	  $.ajax({
 		  type: 'PUT',
 		  url: '/users/' + this.model.get('Id'),
 		  data: values,
-		  beforeSend: function() {},
-		  complete: function() {},
-		  succeed: function() {},
+		  beforeSend: function() { $('#userEditAjaxIndicator').show(); },
+		  complete: function() { $('#userEditAjaxIndicator').hide(); },
+		  success: function(jqXHR, textStatus, errorThrown) {
+			  if (textStatus == 'success') {
+				  this.model.set(jqXHR);
+			  }
+		  }.bind(this),
 		  error: function() {}
-	  })
+	  });
 	  // @todo Afficher les erreurs potentielles
 	  // @todo Mettre à jour les données du Model
 	  this.model.set({'editing': false}, {'silent': true});

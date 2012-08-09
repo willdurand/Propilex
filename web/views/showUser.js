@@ -54,7 +54,17 @@ App.Views.ShowUser = Backbone.View.extend({
   
   validateAndSave: function() {
 	  // @todo validate value
+	  var values = this.$('form').serialize();
 	  // @todo send ajax post
+	  $.ajax({
+		  type: 'PUT',
+		  url: '/users/' + this.model.get('Id'),
+		  data: values,
+		  beforeSend: function() {},
+		  complete: function() {},
+		  succeed: function() {},
+		  error: function() {}
+	  })
 	  // @todo Afficher les erreurs potentielles
 	  // @todo Mettre à jour les données du Model
 	  this.model.set({'editing': false}, {'silent': true});

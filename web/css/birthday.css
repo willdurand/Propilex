@@ -1,3 +1,7 @@
+nav a { padding:15px 2%; }
+nav a img { opacity:0.9; }
+nav a:hover img { opacity:1; }
+
 /* Users list */
 #invites { margin:0; padding:0; }
 #invites li { float:left; list-style:none; margin:0 10px 10px 0; position:relative; }

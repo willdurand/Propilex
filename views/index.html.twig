@@ -25,9 +25,11 @@
 <a href="#users/<%= Id %>/show" class="setActive">
 	<img src="img/users/photo_<%= Id %>.jpg" alt="Photo de <%= DisplayName %>"/>
 </a>
-<div class="moreInformation" style="display:<% print(active ? 'block' : 'none') %>;">
+<div class="moreInformation show" style="display:<% print(active ? 'block' : 'none') %>;">
+	<div class="actions">
 	<a href="#users/<%= Id %>/edit" class="action edit">Modifier</a>
 	<a href="#users/<%= Id %>/close" class="action close">Fermer</a>
+	</div>
 	<span class="firstname editEnabled form-field-text" title="Prénom"><%= Firstname %></span>
 	<% print(Answered > 0 ? 'sont des' : 'est un') %>
 	<span class="affiliation"><%= Affiliation %></span>
@@ -42,16 +44,21 @@
 
 <script type="text/template" id="user_edit_template">
 <img src="img/users/photo_<%= Id %>.jpg" alt="Photo de <%= DisplayName %>"/>
-<div class="moreInformation" style="display:<% print(active ? 'block' : 'none') %>;">
+<div class="moreInformation edit" style="display:<% print(active ? 'block' : 'none') %>;">
 	<form id="userForm<%= Id %>" action="#users/<%= Id %>/save">
-	<input type="submit" value="Sauvegarder">
-	<a href="#users/<%= Id %>/show" class="action undo">Annuler</a>
-	<input type="text" name="firstname" value="<%= Firstname %>"/>
-	<span class="affiliation"><%= Affiliation %></span>
-	<input type="radio" name="answered" value="0" <% if (Answered == 0){ %>checked="checked"<% } %>/>
-	<input type="radio" name="answered" value="0" <% if (Answered == 1){ %>checked="checked"<% } %>/>
-	<input type="radio" name="answered" value="0" <% if (Answered == 2){ %>checked="checked"<% } %>/>
-	<textearea name="description"><%= Description %></textarea>
+	<div class="formElement"><label for="firstname">Prénom</label><input type="text" name="firstname" value="<%= Firstname %>"/></div>
+	<div class="formElement"><label for="affiliation">Affiliation</label><input type="text" name="affiliation" value="<%= Affiliation %>"/></div>
+	<div class="formElement"><label for="answered">Présence</label>
+	<div class="verticalAlign">
+	<label class="radio"><input type="radio" name="answered" value="0" <% if (Answered == 0){ %>checked="checked"<% } %>/> En attente de réponse</label>
+	<label class="radio"><input type="radio" name="answered" value="1" <% if (Answered == 1){ %>checked="checked"<% } %>/> Présent</label>
+	<label><input type="radio" name="answered" value="2" <% if (Answered == 2){ %>checked="checked"<% } %>/> Absent</label>
+	</div></div>
+	<div class="formElement">
+	<label for="description">Description</label>
+	<textarea name="description"><%= Description %></textarea>
+	</div>
+	<div class="actions"><input type="submit" value="Sauvegarder"><a href="#users/<%= Id %>/show" class="action undo">Annuler</a></div>
 	</form>
 </div>
 </script>

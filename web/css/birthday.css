@@ -1,7 +1,17 @@
+/* Users list */
 #invites { margin:0; padding:0; }
 #invites li { float:left; list-style:none; margin:0 10px 10px 0; position:relative; }
 #invites li img { position:relative; z-index:10; }
 #invites li.active img { z-index:101; }
 #invites li a { display:block; }
-#invites .moreInformation { background-color:rgba(255,255,255,0.95); -webkit-border-radius:4px; border-radius:4px; -webkit-box-shadow:0px 0px 10px 5px rgba(0, 0, 0, 0.2); box-shadow:0px 0px 10px 5px rgba(0, 0, 0, 0.2); height:200px; left:-10px; padding-left:100px; position:absolute; top:-10px; width:400px; z-index:100; }
-.displayEdit { background-color:#efefef; border:1px solid #333; }
+#invites .moreInformation { background-color:rgba(255,255,255,0.95); -webkit-border-radius:4px; border-radius:4px; -webkit-box-shadow:0px 0px 10px 5px rgba(0, 0, 0, 0.2); box-shadow:0px 0px 10px 5px rgba(0, 0, 0, 0.2); min-height:200px; left:-10px; padding-left:100px; position:absolute; top:-10px; width:400px; z-index:100; }
+
+/* User form */
+#invites .moreInformation .formElement { clear:left; margin-bottom:4px; }
+#invites .moreInformation label { display:block; float:left; width:6em; }
+#invites .moreInformation label.radio { width:100%; }
+#invites .moreInformation .verticalAlign { float:left; margin:-1.6em 0 0 6em; }
+#invites .moreInformation textarea { height:50px; }
+#invites .moreInformation.show .actions { float:right; }
+#invites .moreInformation .actions input[type=submit] { margin:0 1em 0 6em; }
+#invites .moreInformation .actions a { display:inline; font-size:0.9em; }

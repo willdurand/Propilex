@@ -31,13 +31,21 @@
 	<a href="#users/<%= Id %>/close" class="action close">Fermer</a>
 	</div>
 	<span class="firstname editEnabled form-field-text" title="Prénom"><%= Firstname %></span>
-	<% print(Answered > 0 ? 'sont des' : 'est un') %>
+	<% if(Number > 0){ %>sont des
 	<span class="affiliation"><%= Affiliation %></span>
 	<span class="answer">
-		<% if(Number > 0){ %><span class="answer">Ils ont confirmés</span>
-		<% }else if(IsAnswered){ %><span class="answer">Ils ne pourront venir</span>
+		<% if(Answered == 1){ %><span class="answer">Ils ont confirmés</span>
+		<% }else if(Answered == 2){ %><span class="answer">Ils ne pourront venir</span>
 		<% }else{ %><span class="answer">Nous sommes en attente de réponse</span><% } %>
 	</span>
+	<% } else { %>est un
+	<span class="affiliation"><%= Affiliation %></span>
+	<span class="answer">
+		<% if(Answered == 1){ %><span class="answer">Il a confirmé</span>
+		<% }else if(Answered == 2){ %><span class="answer">Il ne pourra venir</span>
+		<% }else{ %><span class="answer">Nous sommes en attente de réponse</span><% } %>
+	</span>
+	<% } %>
 	<span class="description"><%= Description %></span>
 </div>
 </script>

@@ -31,6 +31,15 @@ $app->get('/', function() use ($app) {
     return $app['twig']->render('index.html.twig', array('users' => json_encode($users) ) );
 });
 
+
+/**
+ * Security page
+ */
+$app->get('/private', function() use ($app) {
+    $users = Propilex\Model\UserQuery::selectUsersList();
+    return $app['twig']->render('private.html.twig', array('users' => $users) );
+});
+    
 /**
  * Register a REST controller to manage documents
  */

@@ -54,7 +54,9 @@ App.Views.ShowUser = Backbone.View.extend({
   
   validateAndSave: function(e) {
 	  var values = this.$('form').serialize();
+	  
 	  // @todo validate value
+	  
 	  // send ajax PUT
 	  $.ajax({
 		  type: 'PUT',
@@ -64,13 +66,17 @@ App.Views.ShowUser = Backbone.View.extend({
 		  complete: function() { $('#userEditAjaxIndicator').hide(); },
 		  success: function(jqXHR, textStatus, errorThrown) {
 			  if (textStatus == 'success') {
+				  // Mettre à jour les données du Model
 				  this.model.set(jqXHR);
+				  //console.log(this.model.isValid() );
+			  }
+			  else {
+				// @todo Afficher les erreurs potentielles
 			  }
 		  }.bind(this),
 		  error: function() {}
 	  });
-	  // @todo Afficher les erreurs potentielles
-	  // @todo Mettre à jour les données du Model
+	  
 	  this.model.set({'editing': false}, {'silent': true});
 	  window.location.hash = 'users/' + this.model.get('Id') + '/show';
 	  return false;

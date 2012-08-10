@@ -22,11 +22,16 @@ var User = Backbone.Model.extend({
   },
   
   getNumber: function() {
-	  return this.get('Firstname').search(',');
+	  return this.get('Firstname').search(' ');
   },
   
   isAnswered: function() {
 	  return true;
+  },
+  
+  validate: function(attributes) {
+	  if (! _.isString(attributes.Firstname ) ) { console.log("not a string"); return false; }
+	  if (attributes.Firstname.length == 0 ) { console.log("empty string"); return false; }
   }
 
 });

@@ -47,4 +47,18 @@ class UserQuery extends BaseUserQuery
         
         return $users;
     }
+    
+    /**
+     * Prepare list of users
+     * @return array
+     */
+    public static function selectUsersList()
+    {
+        $users = self::create()
+	        ->select(array('Id', 'Firstname'))
+        	->find()
+        	->toArray();
+    
+        return $users;
+    }
 }

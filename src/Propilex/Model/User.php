@@ -19,6 +19,11 @@ use \PropelException;
  */
 class User extends BaseUser
 {
+    public function getAnswered()
+    {
+        return $this->answered;
+    }
+    
     /**
      * Set the value of [answered] column.
      *

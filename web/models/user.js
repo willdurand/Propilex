@@ -30,8 +30,9 @@ var User = Backbone.Model.extend({
   },
   
   validate: function(attributes) {
-	  if (! _.isString(attributes.Firstname ) ) { console.log("not a string"); return false; }
-	  if (attributes.Firstname.length == 0 ) { console.log("empty string"); return false; }
+	  //if (! _.isString(attributes.Firstname ) ) { return {'message':'Firstname not a string', 'attribut': 'Firstname'}; }
+	  //if (attributes.Firstname.length == 0 ) { return {'message':'Firstname empty string', 'attribut': 'Firstname'}; }
+	  return true;
   }
 
 });

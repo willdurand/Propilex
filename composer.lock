@@ -1,5 +1,5 @@
 {
-    "hash": "5e4dc4af23b28f9efd424dc340f62152",
+    "hash": "0d9fa95ad70db88c750723999b73e754",
     "packages": [
         {
             "package": "fate/silex-extensions",
@@ -48,8 +48,8 @@
         {
             "package": "propel/propel1",
             "version": "dev-master",
-            "source-reference": "6eb19ea7857e829edba3c4822dff8efed7b28194",
-            "commit-date": "1344332537"
+            "source-reference": "8b026396ef595c6a47deec3c9d940f005fe7ca30",
+            "commit-date": "1344497128"
         },
         {
             "package": "silex/silex",
@@ -60,8 +60,8 @@
         {
             "package": "silex/silex",
             "version": "dev-master",
-            "source-reference": "ee00393c33b3de861082602747a84d49897b9315",
-            "commit-date": "1344077943"
+            "source-reference": "6d7cf048c704c0c58276b01eccfacab4dd11d013",
+            "commit-date": "1344453846"
         },
         {
             "package": "symfony/event-dispatcher",
@@ -110,6 +110,18 @@
             "version": "dev-master",
             "source-reference": "v2.1.0-RC1",
             "commit-date": "1343744077"
+        },
+        {
+            "package": "symfony/security",
+            "version": "dev-master",
+            "alias-pretty-version": "2.1.x-dev",
+            "alias-version": "2.1.9999999.9999999-dev"
+        },
+        {
+            "package": "symfony/security",
+            "version": "dev-master",
+            "source-reference": "v2.1.0-RC1",
+            "commit-date": "1343512949"
         },
         {
             "package": "twig/twig",

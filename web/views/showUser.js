@@ -55,7 +55,16 @@ App.Views.ShowUser = Backbone.View.extend({
   validateAndSave: function(e) {
 	  var values = this.$('form').serialize();
 	  
-	  // @todo validate value
+	  // validate value
+	  if (this.model.validate(values) !== true) {
+		  return false;
+	  }
+	  /*this.model.set(values, {'silent': true});
+	  console.log(this.model.validate() );
+	  console.log(this.model.isValid() )
+	  if (!this.model.validate(values) ) {
+		  return false;
+	  }*/
 	  
 	  // send ajax PUT
 	  $.ajax({

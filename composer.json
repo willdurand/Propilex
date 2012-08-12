@@ -3,6 +3,7 @@
     "description": "Birthday website. Based on Propilex.",
     "require": {
         "silex/silex": "dev-master",
+        "symfony/security": "2.1.*",
         "propel/propel-service-provider": "dev-master",
         "twig/twig": "1.*",
         "monolog/monolog": "1.0.*",

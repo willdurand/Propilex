@@ -5,6 +5,27 @@ $app = require_once __DIR__ . '/config/config.php';
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
+/*
+$users = Propilex\Model\UserQuery::selectUsersList();
+$usersRole = array();
+foreach ($users as $user ) {
+    if ($user['id'] == 0) {
+    	$usersRole[] = array('ROLE_ADMIN', '');
+    }
+    else {
+        $usersRole[] = array('ROLE_USER', '');
+    }
+}
+
+$app['security.firewalls'] = array(
+    'admin' => array(
+        'pattern' => '^/private', 
+        'http' => true, 
+        'users' => $usersRole
+    )
+);
+*/
+
 /**
  * @see http://silex.sensiolabs.org/doc/cookbook/json_request_body.html
  */
@@ -22,6 +43,17 @@ $app->before(function (Request $request) {
         $request->request->replace(is_array($data) ? $data : array());
     }
 });
+
+// Put user token on twig template
+/*
+$app->before(function (Request $request) use ($app) {
+    $token = $app['security']->getToken();
+    if (null !== $token) {
+        $user = $token->getUser();
+        // @todo Put variable on twig template
+    }
+});
+*/
 
 /**
  * Entry point

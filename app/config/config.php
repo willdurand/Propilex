@@ -3,6 +3,10 @@
 require_once __DIR__.'/../../vendor/autoload.php';
 
 $app = new Silex\Application();
+
+// @see http://silex.sensiolabs.org/doc/providers/security.html
+//$app->register(new Silex\Provider\SecurityServiceProvider() );
+
 $app->register(new Propel\Silex\PropelServiceProvider(), array(
     'propel.config_file'	=> __DIR__ . '/conf/Propilex-conf.php',
     'propel.model_path'		=> __DIR__ . '/../../src/Propilex/Model',

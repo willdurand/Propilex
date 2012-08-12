@@ -28,11 +28,25 @@ var User = Backbone.Model.extend({
   isAnswered: function() {
 	  return true;
   },
-  
+  /*
   validate: function(attributes) {
 	  //if (! _.isString(attributes.Firstname ) ) { return {'message':'Firstname not a string', 'attribut': 'Firstname'}; }
 	  //if (attributes.Firstname.length == 0 ) { return {'message':'Firstname empty string', 'attribut': 'Firstname'}; }
 	  return true;
+  }
+  */
+  validation: {
+    Firstname: {
+      required: true,
+      msg: 'Le prénom est requis'
+    },
+    Lastname: {
+      required: true,
+      msg: 'Le nom est requis'
+    },
+    Email: {
+      pattern: 'email'
+    }
   }
 
 });

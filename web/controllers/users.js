@@ -34,7 +34,7 @@ App.Controllers.Users = Backbone.Router.extend({
   },
   
   fetchUsers: function() {
-	new App.Views.IndexUser({ collection: App.users });
+	  new App.Views.IndexUser({ collection: App.users });
   }
   
 });

@@ -25,11 +25,11 @@ INSERT INTO `meal` (`id`, `type`, `date`) VALUES
 (6, 1, '2013-07-14'),
 (7, 2, '2013-07-14');
 
-INSERT INTO `user` (`id`, `location_id`, `firstname`, `lastname`, `email`, `affiliation`, `description`, `photo`, `answered`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Nicolas', 'Behier', 'nbd@gmail.com', 'Membre de la famille', 'Ma Description', NULL, 1, '2012-08-06 15:30:08', '2012-08-10 07:05:02'),
-(2, 2, 'Simon, VÃ©ro et Rose', 'Assani', 'simon@gmail.com', 'Polytech Tours', '', NULL, 2, '2012-08-07 07:11:40', '2012-08-10 18:39:35'),
-(3, 1, 'Flavien et Guyguy', 'Lenourichel', 'flavien@gmail.com', 'Erasmus, Lycee', '', NULL, 1, '2012-08-07 07:11:40', '2012-08-10 18:39:47'),
-(4, 1, '', 'Ratia', 'camille@gmail.com', 'Tours', '', NULL, 1, '2012-08-08 09:04:03', '2012-08-10 19:02:07');
+INSERT INTO `user` (`id`, `location_id`, `firstname`, `lastname`, `email`, `affiliation`, `description`, `answered`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Nicolas', 'Behier', 'nbd@gmail.com', 'Membre de la famille', 'Ma Description', 1, '2012-08-06 15:30:08', '2012-08-10 07:05:02'),
+(2, 2, 'Simon, VÃ©ro et Rose', 'Assani', 'simon@gmail.com', 'Polytech Tours', '', 2, '2012-08-07 07:11:40', '2012-08-10 18:39:35'),
+(3, 1, 'Flavien et Guyguy', 'Lenourichel', 'flavien@gmail.com', 'Erasmus, Lycee', '', 1, '2012-08-07 07:11:40', '2012-08-10 18:39:47'),
+(4, 1, 'Camille', 'Ratia', 'camille@gmail.com', 'Tours', '', 1, '2012-08-08 09:04:03', '2012-08-10 19:02:07');
 
 INSERT INTO `usermeal` (`user_id`, `meal_id`, `number`) VALUES
 (1, 1, 2),

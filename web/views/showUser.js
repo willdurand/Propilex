@@ -56,9 +56,9 @@ App.Views.ShowUser = Backbone.View.extend({
 	  var values = this.$('form').serialize();
 	  
 	  // validate value
-	  if (this.model.validate(values) !== true) {
-		  return false;
-	  }
+	  //if (this.model.validate(values) !== true) {
+	//	  return false;
+	  //}
 	  /*this.model.set(values, {'silent': true});
 	  console.log(this.model.validate() );
 	  console.log(this.model.isValid() )
@@ -77,7 +77,6 @@ App.Views.ShowUser = Backbone.View.extend({
 			  if (textStatus == 'success') {
 				  // Mettre à jour les données du Model
 				  this.model.set(jqXHR);
-				  //console.log(this.model.isValid() );
 			  }
 			  else {
 				// @todo Afficher les erreurs potentielles

@@ -12,14 +12,14 @@
     <meta name="author" content="">
 
     <meta name="viewport" content="width=device-width">
-	<link rel="shortcut icon" href="favicon.ico">
-	{% stylesheets 
+	<link rel="shortcut icon" href="{{ app.request.basepath }}/favicon.ico">
+	{#% stylesheets 
 		'style.css' 
 		'birthday.less' 
 		filter='less,yui_css' 
 		output='assets/styles.css' %}
 	<link href="{{ app.request.basepath }}/{{ asset_url }}" rel="stylesheet" media="screen" />
-	{% endstylesheets %}
+	{% endstylesheets %#}
 	<link href="{{ app.request.basepath }}/css/style.css" rel="stylesheet" media="screen" />
 	<link href="{{ app.request.basepath }}/css/birthday.less" rel="stylesheet/less" media="screen" />
 

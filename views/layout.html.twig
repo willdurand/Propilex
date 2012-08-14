@@ -13,8 +13,15 @@
 
     <meta name="viewport" content="width=device-width">
 	<link rel="shortcut icon" href="favicon.ico">
-    <link rel="stylesheet" href="{{ app.request.basepath }}/css/style.css">
-    <link rel="stylesheet/less" type="text/css" href="{{ app.request.basepath }}/css/birthday.less">
+	{% stylesheets 
+		'style.css' 
+		'birthday.less' 
+		filter='less,yui_css' 
+		output='assets/styles.css' %}
+	<link href="{{ app.request.basepath }}/{{ asset_url }}" rel="stylesheet" media="screen" />
+	{% endstylesheets %}
+	<link href="{{ app.request.basepath }}/css/style.css" rel="stylesheet" media="screen" />
+	<link href="{{ app.request.basepath }}/css/birthday.less" rel="stylesheet/less" media="screen" />
 
     <script src="{{ app.request.basepath }}/js/libs/modernizr-2.5.3-respond-1.1.0.min.js"></script>
 </head>

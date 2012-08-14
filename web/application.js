@@ -1,3 +1,5 @@
+_.extend(Backbone.Model.prototype, Backbone.Validation.mixin);
+
 var App = {
   Views:        {},
   Controllers:  {},

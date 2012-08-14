@@ -1,7 +1,8 @@
 App.Views.ShowUser = Backbone.View.extend({
   events: {
 	  "click .setActive": "setActive",
-	  "submit": "validateAndSave"
+	  "submit": "validateAndSave",
+	  "validated:invalid": "render"
   },
   
   tagName: "li",
@@ -34,6 +35,10 @@ App.Views.ShowUser = Backbone.View.extend({
 		  $(this.el).removeClass('active');
 	  }
 	  
+	  if (this.model.hasErrorMessage() ) {
+		  this.displayErrors();
+	  }
+	  
 	  return this;
   },
   
@@ -54,18 +59,22 @@ App.Views.ShowUser = Backbone.View.extend({
   
   validateAndSave: function(e) {
 	  var values = this.$('form').serialize();
+	  var valuesArray = this.$('form').serializeArray();
 	  
-	  // validate value
-	  //if (this.model.validate(values) !== true) {
-	//	  return false;
-	  //}
-	  /*this.model.set(values, {'silent': true});
-	  console.log(this.model.validate() );
-	  console.log(this.model.isValid() )
-	  if (!this.model.validate(values) ) {
+	  this.model.removeAllErrorMessage();
+
+	  _.each(valuesArray, function(element, index, list){
+		  var errorMessage = this.model.preValidate(element.name, element.value);
+		  if (errorMessage != '') {
+			  this.model.addErrorMessage(element.name, errorMessage);
+		  }
+	  }, this);
+
+	  if (this.model.hasErrorMessage() ) {
+		  this.displayErrors();
 		  return false;
-	  }*/
-	  
+	  }
+
 	  // send ajax PUT
 	  $.ajax({
 		  type: 'PUT',
@@ -88,5 +97,20 @@ App.Views.ShowUser = Backbone.View.extend({
 	  this.model.set({'editing': false}, {'silent': true});
 	  window.location.hash = 'users/' + this.model.get('Id') + '/show';
 	  return false;
+  },
+  
+  displayErrors: function() {
+	  this.removeErrors();
+	  _.each(this.model.getAllErrorMessage(), function(element, index, list){
+		  var formElement = this.$('form [name=' + index + ']');
+		  formElement.parent()
+		  	.append('<span class="errorMessage">' + element + '</span>')
+		  	.addClass('error');
+	  }, this);
+  },
+  
+  removeErrors: function() {
+	  this.$('form .errorMessage').remove();
+	  this.$('form .error').removeClass('error');
   }
 });

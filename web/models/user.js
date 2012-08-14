@@ -4,7 +4,8 @@ var User = Backbone.Model.extend({
   defaults: {
     "edit": false,
     "active": false,
-    "editing": false
+    "editing": false,
+    "errorMessages": {}
   },
 	
   url : function() {
@@ -36,17 +37,46 @@ var User = Backbone.Model.extend({
   }
   */
   validation: {
-    Firstname: {
+    Firstname: [{
       required: true,
       msg: 'Le prénom est requis'
-    },
-    Lastname: {
+    },{
+      minLength: 3,
+      msg: 'Le prénom doit comporter au-moins 3 caractères'
+    }],
+    Lastname: [{
       required: true,
       msg: 'Le nom est requis'
-    },
+    },{
+      minLength: 3,
+      msg: 'Le nom doit comporter au-moins 3 caractères'
+    }],
     Email: {
       pattern: 'email'
     }
+  },
+  
+  removeAllErrorMessage: function(){
+	  this.set('errorMessages', {}, {'silent': true});
+  },
+  
+  addErrorMessage: function(name, value){
+	  var messages = this.get('errorMessages');
+	  messages[name] = value;
+	  this.set('errorMessages', messages, {'silent': true});
+  },
+  
+  hasErrorMessage: function(){
+	  return !_.isEmpty(this.get('errorMessages'));
+  },
+  
+  getErrorMessage: function(name){
+	  return this.get('errorMessages')[name];
+  },
+  
+  getAllErrorMessage: function(){
+	  return this.get('errorMessages');
   }
+  
 
 });

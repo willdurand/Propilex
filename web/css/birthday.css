@@ -19,3 +19,5 @@ nav a:hover img { opacity:1; }
 #invites .moreInformation.show .actions { float:right; }
 #invites .moreInformation .actions input[type=submit] { margin:0 1em 0 6em; }
 #invites .moreInformation .actions a { display:inline; font-size:0.9em; }
+#invites .moreInformation .error input { border-color:red; }
+#invites .moreInformation .errorMessage { color:red; display:block; font-size:0.8em; line-height:1.4em; margin-bottom:0.5em; margin-left:7.5em; }

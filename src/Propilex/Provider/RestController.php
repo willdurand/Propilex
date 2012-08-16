@@ -115,6 +115,10 @@ class RestController implements ControllerProviderInterface
             $object->fromArray($request->request->all());
             $object->save();
 
+            if (isset($app['monolog']) ) {
+            	$app['monolog']->addInfo(sprintf('Update %s with id %d', ucfirst($modelName), $id) );
+            }
+            
             return new Response($object->exportTo($app['json_parser']), 200, array (
                 'Content-Type' => 'application/json',
             ));

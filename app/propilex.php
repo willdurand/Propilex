@@ -79,4 +79,23 @@ $app->mount('/users', new Propilex\Provider\RestController(
 	'user', '\Propilex\Model\User', 'getUpdatedAt'
 ));
 
+/**
+ * Get users activities
+ */
+$app->get('/activities', function() use ($app) {
+    $activities = array(
+    	array(
+    		'date' => '2012-08-16 07:12:02',
+    		'message' => 'Update User with id 3', 
+            'type' => 'user_update'
+        ), 
+        array(
+            'date' => '2012-08-16 07:14:02', 
+            'message' => 'Update User with id 2',
+    		'type' => 'user_update'
+    	),
+    );
+    return $app['twig']->render('activities.html.twig', array('activities' => $activities) );
+});
+
 return $app;

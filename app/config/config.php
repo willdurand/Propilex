@@ -19,6 +19,11 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 	'twig.path'	=> __DIR__ . '/../../views',
 ));
 
+$app->register(new Silex\Provider\MonologServiceProvider(), array(
+	'monolog.logfile' => __DIR__.'/../../log/development.log',
+	'monolog.name' => 'birthday'
+));
+
 $app->register(new SilexExtension\AsseticExtension(), array(
     'assetic.class_path' => __DIR__.'/../../vendor/assetic/src',
     'assetic.path_to_web' => __DIR__ . '/../../web/assets',

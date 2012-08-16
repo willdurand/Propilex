@@ -5,6 +5,7 @@
         "silex/silex": "dev-master",
         "propel/propel-service-provider": "dev-master"
     },
+	"minimum-stability" : "dev",
     "autoload": {
         "psr-0": { "Propilex": "src" }
     },

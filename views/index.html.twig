@@ -14,10 +14,21 @@
 {% endblock %}
 
 {% block javascript %}
+<script src="{{ app.request.basepath }}/application.js"></script>
+<script src="{{ app.request.basepath }}/models/user.js"></script>
+<script src="{{ app.request.basepath }}/collections/users.js"></script>
+<script src="{{ app.request.basepath }}/views/indexUser.js"></script>
+<script src="{{ app.request.basepath }}/views/showUser.js"></script>
+{# <script src="{{ app.request.basepath }}/views/editUser.js"></script> #}
+<script src="{{ app.request.basepath }}/views/notice.js"></script>
+<script src="{{ app.request.basepath }}/controllers/users.js"></script>
+
 <script type="text/javascript">
     $(function() {
         App.users = new App.Collections.Users;
         App.users.reset({{ users | raw }});
+
+        App.init();
     });
 </script>
 

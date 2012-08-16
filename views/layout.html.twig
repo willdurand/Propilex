@@ -63,32 +63,8 @@
     <script src="{{ app.request.basepath }}/js/libs/backbone.validation.0.6.2.js"></script>
     <script src="{{ app.request.basepath }}/js/libs/jquery.ba-dotimeout.1.0.min.js"></script>
     <script src="{{ app.request.basepath }}/js/libs/less-1.3.0.min.js"></script>
-
-    <!-- Application -->
-    <script src="{{ app.request.basepath }}/application.js"></script>
-
-    <!-- Models -->
-    <script src="{{ app.request.basepath }}/models/user.js"></script>
-
-    <!-- Collections -->
-    <script src="{{ app.request.basepath }}/collections/users.js"></script>
-
-    <!-- Views -->
-    <script src="{{ app.request.basepath }}/views/indexUser.js"></script>
-    <script src="{{ app.request.basepath }}/views/showUser.js"></script>
-    <script src="{{ app.request.basepath }}/views/editUser.js"></script>
-    <script src="{{ app.request.basepath }}/views/notice.js"></script>
-
-    <!-- Controllers -->
-    <script src="{{ app.request.basepath }}/controllers/users.js"></script>
-
+    
 	{% block javascript %}
     {% endblock %}
-    
-    <script type="text/javascript">
-        $(function() {
-            App.init();
-        });
-    </script>
 </body>
 </html>

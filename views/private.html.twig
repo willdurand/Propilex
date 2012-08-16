@@ -1,0 +1,49 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+<article>
+    <section>
+        <h2>Bienvenue</h2>
+        <p>Ce site privé n'est peut-être pas celui que vous recherchez, vérifions cela ensemble.</p>
+        <form id="privateForm">
+        <div class="formElement">
+        <label for="evenement">Quel événement sera fêté ?</label>
+        <select id="evenement" name="evenement">
+        	<option value="">?</option>
+        	<option value="1">Fiançaille</option>
+        	<option value="2">Crémaillère</option>
+        	<option value="3">Mariage</option>
+        	<option value="4">Naissance</option>
+        	<option value="5">Anniversaire</option>
+        </select>
+        </div>
+        
+        <div class="formElement">
+        <label for="location">Dans quelle région ?</label>
+        <select id="location" name="location">
+        	<option value="">?</option>
+        	<option value="1">Centre</option>
+        	<option value="2">Normandie</option>
+        	<option value="3">Pays de Loire</option>
+        	<option value="4">Bretagne</option>
+        	<option value="5">Poitou-Charente</option>
+        </select>
+        </div>
+        
+        <div class="formElement">
+        <label for="username">Qui êtes-vous ?</label>
+        <select id="username" name="username">
+        	<option value="">?</option>
+        	{% for user in users %}
+        	<option value="{{ user.Id }}">{{ user.Firstname }}</option>
+        	{% endfor %}
+        </select>
+        </div>
+        </form>
+    </section>
+</article>
+
+<aside>
+    <div id="notice"></div>
+</aside>
+{% endblock %}

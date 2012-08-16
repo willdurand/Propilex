@@ -1,0 +1,63 @@
+@zindexInformation: 100;
+@labelWidth: 6em;
+@errorFontSize: 0.8em;
+
+.rounded-corners (@radius: 4px) {
+	border-radius: @radius;
+	-webkit-border-radius: @radius;
+	-moz-border-radius: @radius;
+}
+
+.drop-shadow(@x-axis: 0, @y-axis: 1px, @blur: 2px, @alpha: 0.1) {
+	-webkit-box-shadow: @x-axis @y-axis @blur rgba(0, 0, 0, @alpha);
+	-moz-box-shadow: @x-axis @y-axis @blur rgba(0, 0, 0, @alpha);
+	box-shadow: @x-axis @y-axis @blur rgba(0, 0, 0, @alpha);
+}
+
+.opacity(@opacity: 0.5) {
+	-moz-opacity: @opacity;
+	-khtml-opacity: @opacity;
+	-webkit-opacity: @opacity;
+	opacity: @opacity;
+}
+
+nav a { padding:15px 2%; }
+nav a img { .opacity(0.9); }
+nav a:hover img { .opacity(1); }
+
+/* Users list */
+#invites { 
+	margin:0; padding:0;
+	li { 
+		float:left; list-style:none; margin:0 10px 10px 0; position:relative;
+		img { position:relative; z-index:@zindexInformation - 1; }
+		&.active img { z-index:@zindexInformation + 1; }
+		a { display:block; }
+	}
+	.moreInformation { background-color:rgba(255,255,255,0.95); .rounded-corners; .drop-shadow(0, 0, 10px, 0.2); min-height:200px; left:-10px; padding-left:100px; position:absolute; top:-10px; width:400px; z-index:@zindexInformation; }
+}
+
+/* User form */
+#invites .moreInformation {
+	.formElement { clear:left; margin-bottom:4px; }
+	label { display:block; float:left; width:@labelWidth; }
+	label.radio { width:100%; }
+	.verticalAlign { float:left; margin:-1.6em 0 0 @labelWidth; }
+	textarea { height:50px; }
+	&.show .actions { float:right; }
+	.actions {
+		input[type=submit] { margin:0 1em 0 @labelWidth; }
+		a { display:inline; font-size:0.9em; }
+	}
+	.error input { border-color:red; }
+	.errorMessage { color:red; display:block; font-size:@errorFontSize; line-height:1.4em; margin-bottom:0.5em; margin-left:@labelWidth / @errorFontSize; }
+}
+
+/* Activities */
+#activities {
+	@border-color: #ccc;
+	border-top:1px solid @border-color; padding-left:0; 
+	li {
+		border-bottom:1px solid @border-color;
+		.date {  }
+}

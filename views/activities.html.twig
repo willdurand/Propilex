@@ -1,0 +1,18 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+<article>
+    <section>
+        <h2>Suivi de l'application</h2>
+        <ul id="activities">
+        {% for activity in activities %}
+        <li class="{{ activity.type }}"><span class="date">{{ activity.date }}</span> {{ activity.message }}</li>
+        {% endfor %}
+        </ul>
+    </section>
+</article>
+
+<aside>
+    <div id="notice"></div>
+</aside>
+{% endblock %}

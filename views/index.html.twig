@@ -1,0 +1,84 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+<article>
+    <section>
+        <h2>Les invités</h2>
+        <div id="appUser"></div>
+    </section>
+</article>
+
+<aside>
+    <div id="notice"></div>
+</aside>
+{% endblock %}
+
+{% block javascript %}
+<script src="{{ app.request.basepath }}/application.js"></script>
+<script src="{{ app.request.basepath }}/models/user.js"></script>
+<script src="{{ app.request.basepath }}/collections/users.js"></script>
+<script src="{{ app.request.basepath }}/views/indexUser.js"></script>
+<script src="{{ app.request.basepath }}/views/showUser.js"></script>
+{# <script src="{{ app.request.basepath }}/views/editUser.js"></script> #}
+<script src="{{ app.request.basepath }}/views/notice.js"></script>
+<script src="{{ app.request.basepath }}/controllers/users.js"></script>
+
+<script type="text/javascript">
+    $(function() {
+        App.users = new App.Collections.Users;
+        App.users.reset({{ users | raw }});
+
+        App.init();
+    });
+</script>
+
+<script type="text/template" id="user_show_template">
+<a href="#users/<%= Id %>/show" class="setActive">
+	<img src="{{ app.request.basepath }}/img/users/photo_<%= Id %>.jpg" alt="Photo de <%= DisplayName %>"/>
+</a>
+<div class="moreInformation show" style="display:<% print(active ? 'block' : 'none') %>;">
+	<div class="actions">
+	<a href="#users/<%= Id %>/edit" class="action edit">Modifier</a>
+	<a href="#users/<%= Id %>/close" class="action close">Fermer</a>
+	</div>
+	<span class="firstname editEnabled form-field-text" title="Prénom"><%= Firstname %></span>
+	<% if(Number > 0){ %>sont des
+	<span class="affiliation"><%= Affiliation %></span>
+	<span class="answer">
+		<% if(Answered == 1){ %><span class="answer">Ils ont confirmés</span>
+		<% }else if(Answered == 2){ %><span class="answer">Ils ne pourront venir</span>
+		<% }else{ %><span class="answer">Nous sommes en attente de réponse</span><% } %>
+	</span>
+	<% } else { %>est un
+	<span class="affiliation"><%= Affiliation %></span>
+	<span class="answer">
+		<% if(Answered == 1){ %><span class="answer">Il a confirmé</span>
+		<% }else if(Answered == 2){ %><span class="answer">Il ne pourra venir</span>
+		<% }else{ %><span class="answer">Nous sommes en attente de réponse</span><% } %>
+	</span>
+	<% } %>
+	<span class="description"><%= Description %></span>
+</div>
+</script>
+
+<script type="text/template" id="user_edit_template">
+<img src="img/users/photo_<%= Id %>.jpg" alt="Photo de <%= DisplayName %>"/>
+<div class="moreInformation edit" style="display:<% print(active ? 'block' : 'none') %>;">
+	<form id="userForm<%= Id %>">
+	<div class="formElement"><label for="Firstname">Prénom</label><input type="text" name="Firstname" value="<%= Firstname %>"/></div>
+	<div class="formElement"><label for="Affiliation">Affiliation</label><input type="text" name="Affiliation" value="<%= Affiliation %>"/></div>
+	<div class="formElement"><label for="Answered">Présence</label>
+	<div class="verticalAlign">
+	<label class="radio"><input type="radio" name="Answered" value="0" <% if (Answered == 0){ %>checked="checked"<% } %>/> En attente de réponse</label>
+	<label class="radio"><input type="radio" name="Answered" value="1" <% if (Answered == 1){ %>checked="checked"<% } %>/> Présent</label>
+	<label class="radio"><input type="radio" name="Answered" value="2" <% if (Answered == 2){ %>checked="checked"<% } %>/> Absent</label>
+	</div></div>
+	<div class="formElement">
+	<label for="Description">Description</label>
+	<textarea name="Description"><%= Description %></textarea>
+	</div>
+	<div class="actions"><input type="submit" value="Sauvegarder"><a href="#users/<%= Id %>/show" class="action undo">Annuler</a><img src="{{ app.request.basepath }}/img/ajax-loader.gif" alt="Indicateur requête en cours" style="display:none" id="userEditAjaxIndicator"/></div>
+	</form>
+</div>
+</script>
+{% endblock %}

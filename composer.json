@@ -1,17 +1,23 @@
 {
-    "name": "willdurand/propilex",
-    "description": "Silex + Propel + Backbone",
+    "name": "nbehier/BirthdayPropilex",
+    "description": "Birthday website. Based on Propilex.",
     "require": {
         "silex/silex": "dev-master",
-        "propel/propel-service-provider": "dev-master"
+        "symfony/security": "2.1.*",
+        "propel/propel-service-provider": "dev-master",
+        "twig/twig": "1.*",
+        "monolog/monolog": "1.0.*",
+        "kriswallsmith/assetic" : "1.0.*",
+        "fate/Silex-Extensions": "dev-master"
     },
+    "minimum-stability" : "dev",
     "autoload": {
         "psr-0": { "Propilex": "src" }
     },
     "authors": [
         {
-            "name": "William DURAND",
-            "email": "william.durand1@gmail.com"
+            "name": "Nicolas BEHIER-DEVIGNE",
+            "email": "nbehierdevigne@gmail.com"
         }
     ]
 }

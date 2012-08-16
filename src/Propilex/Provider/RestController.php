@@ -49,7 +49,7 @@ class RestController implements ControllerProviderInterface
             throw new \InvalidArgumentException(sprintf('You have to configure the "%s.model_class" parameter.', $prefix));
         }
 
-        $controllers = new ControllerCollection();
+        $controllers = new ControllerCollection($app['route_factory'] );
 
         /**
          * Returns all objects
@@ -115,6 +115,10 @@ class RestController implements ControllerProviderInterface
             $object->fromArray($request->request->all());
             $object->save();
 
+            if (isset($app['monolog']) ) {
+            	$app['monolog']->addInfo(sprintf('Update %s with id %d', ucfirst($modelName), $id) );
+            }
+            
             return new Response($object->exportTo($app['json_parser']), 200, array (
                 'Content-Type' => 'application/json',
             ));

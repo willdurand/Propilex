@@ -1,6 +1,13 @@
 app/config/conf/
+app/config/runtime-conf.xml
 app/config/sql/
 src/Propilex/Model/om/
 src/Propilex/Model/map/
+bin/bootstrap
 vendor
 !vendor/silex.phar
+.settings
+.externalToolBuilders
+.project
+.buildpath
+deployment.*

@@ -8,54 +8,13 @@
         <link href="/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
     </head>
 
-    <body style="padding-top: 40px">
-        <div class="container">
-            <div class="navbar navbar-fixed-top">
-                <div class="navbar-inner">
-                    <div class="container">
-                        <a class="brand" href="#">Propilex</a>
-                    </div>
-                </div>
-            </div>
+    <body style="padding-top: 40px" data-api-url="/">
 
-            <div class="row">
-                <div class="span12">
-                    <h2>Backbone.js + Silex + Propel = LOVE</h2>
-                    <div id="notice"></div>
-                </div>
-            </div>
-            <div id="app"></div>
-        </div>
-
-        <!-- Libraries -->
         <script src="/js/libs/jquery.js"></script>
         <script src="/js/libs/underscore.js"></script>
         <script src="/js/libs/backbone.js"></script>
-        <script src="http://github.com/cowboy/jquery-dotimeout/raw/master/jquery.ba-dotimeout.min.js"></script>
-
-        <!-- Application -->
-        <script src="/application.js"></script>
-
-        <!-- Models -->
-        <script src="/models/document.js"></script>
-
-        <!-- Collections -->
-        <script src="/collections/documents.js"></script>
-
-        <!-- Views -->
-        <script src="/views/index.js"></script>
-        <script src="/views/edit.js"></script>
-        <script src="/views/notice.js"></script>
-
-        <!-- Controllers -->
-        <script src="/controllers/documents.js"></script>
-
         <script src="/bootstrap/js/bootstrap.min.js"></script>
 
-        <script type="text/javascript">
-            $(function() {
-                App.init();
-            });
-        </script>
+        <script data-main="/js/propilex/main" src="/js/libs/require/require.js"></script>
     </body>
 </html>

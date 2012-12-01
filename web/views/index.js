@@ -6,18 +6,19 @@ App.Views.Index = Backbone.View.extend({
 
   render: function() {
     if(this.collection.models.length > 0) {
-      var out = "<h3><a href='#new'>Create New</a></h3><ul>";
+      var out = '<div class="row"><div class="span12"><p><a class="btn" href="#new">Create New</a></p></div></div>';
+      out += '<div class="row"><div class="span12"><table class="table">';
 
       this.collection.each(function(item) {
-        out += "<li>";
-        out += "<a href='#documents/" + item.get('Id') + "'>" + item.escape('Title') + "</a>";
-        out += " [<a href='#documents/" + item.get('Id') + "/delete'>delete</a>]";
-        out += "</li>";
+        out += "<tr>";
+        out += "<td><a href='#documents/" + item.get('Id') + "'>" + item.escape('Title') + "</a></td>";
+        out += '<td><a class="btn" href="#documents/"' + item.get('Id') + '/delete">delete</a></td>';
+        out += "</tr>";
       });
 
-      out += "</ul>";
+      out += "</table></div></div>";
     } else {
-      out = "<h3>No documents! <a href='#new'>Create one</a></h3>";
+      out = '<div class="alert"><button type="button" class="close" data-dismiss="alert">×</button>No documents!</div><a class="btn" href="#new">Create one</a>';
     }
     $(this.el).html(out);
     $('#app').html(this.el);

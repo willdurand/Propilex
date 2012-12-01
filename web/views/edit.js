@@ -32,16 +32,15 @@ App.Views.Edit = Backbone.View.extend({
   },
 
   render: function() {
-    var out = '<form>';
-    out += "<label for='title'>Title</label>";
-    out += "<input name='title' type='text' />";
-
-    out += "<label for='body'>Body</label>";
-    out += "<textarea name='body'>" + (this.model.escape('Body') || '') + "</textarea>";
+    var out = '<form class="form-horizontal">';
+    out += '<div class="control-group"><label class="control-label" for="title">Title</label><div class="controls"><input name="title" type="text" /></div></div>';
+    out += '<div class="control-group"><label class="control-label" for="body">Body</label><div class="controls">';
+    out += '<textarea name="body">' + (this.model.escape('Body') || '') + "</textarea>";
+    out += '</div></div>';
 
     var submitText = this.model.isNew() ? 'Create' : 'Save';
 
-    out += "<button>" + submitText + "</button>";
+    out += '<div class="control-group"><div class="controls"><input type="submit" class="btn btn-primary" value="' + submitText + '" /></div></div>';
     out += "</form>";
 
     $(this.el).html(out);

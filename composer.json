@@ -2,10 +2,8 @@
     "name": "willdurand/propilex",
     "description": "Silex + Propel + Backbone",
     "require": {
-        "silex/silex": "dev-master",
-        "propel/propel-service-provider": "dev-master"
+        "propel/propel-service-provider": "0.0.*"
     },
-	"minimum-stability" : "dev",
     "autoload": {
         "psr-0": { "Propilex": "src" }
     },
@@ -14,5 +12,6 @@
             "name": "William DURAND",
             "email": "william.durand1@gmail.com"
         }
-    ]
+    ],
+    "minimum-stability": "dev"
 }

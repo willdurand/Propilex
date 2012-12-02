@@ -8,6 +8,10 @@ define(
 
             initialize: function (models, options) {
                 this.url = $('body').data('api-url') + '/documents';
+            },
+
+            parse: function (responseObject) {
+                return responseObject.documents;
             }
         });
     }

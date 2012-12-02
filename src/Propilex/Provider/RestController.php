@@ -36,6 +36,9 @@ class RestController implements ControllerProviderInterface
         $modelName = $this->modelName;
         $prefix    = sprintf('rest_controller.%s.', $this->modelName);
 
+        $pluralizer = new \StandardEnglishPluralizer();
+        $modelNamePlural = $pluralizer->getPluralForm($modelName);
+
         if (null !== $this->modelClass) {
             $app[$prefix.'model_class'] = $this->modelClass;
         }
@@ -55,12 +58,12 @@ class RestController implements ControllerProviderInterface
         /**
          * Returns all objects
          */
-        $controllers->get('/', function () use ($app, $prefix) {
+        $controllers->get('/', function () use ($app, $prefix, $modelNamePlural) {
             $query = new $app[$prefix.'query_class'];
 
-            return new JsonResponse(
-                $query->find()->toArray(null, false, \BasePeer::TYPE_FIELDNAME)
-            );
+            return new JsonResponse(array(
+                $modelNamePlural => $query->find()->toArray(null, false, \BasePeer::TYPE_FIELDNAME),
+            ));
         })->bind($prefix . '_all');
 
         /**
@@ -76,7 +79,9 @@ class RestController implements ControllerProviderInterface
                 );
             }
 
-            $response = new JsonResponse($object->toArray());
+            $response = new JsonResponse(array(
+                $modelName => $object->toArray(),
+            ));
 
             if (isset($app[$prefix.'last_modified_getter'])) {
                 $response->setLastModified($object->$app[$prefix.'last_modified_getter']());
@@ -117,7 +122,9 @@ class RestController implements ControllerProviderInterface
             $object->fromArray($request->request->all(), \BasePeer::TYPE_FIELDNAME);
             $object->save();
 
-            return new JsonResponse($object->toArray());
+            return new JsonResponse(array(
+                $modelName => $object->toArray(),
+            ));
         })->bind($prefix . '_edit');
 
         /**

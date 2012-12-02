@@ -7,13 +7,11 @@ define(
             template: _.template(template),
 
             initialize: function (options) {
-                this.documentCollection = options.documentCollection;
+                this.documentModel = options.documentModel;
             },
 
             render: function () {
-                this.$el.html(this.template({
-                    collection: this.documentCollection
-                }));
+                this.$el.html(this.template(this.documentModel.toJSON()));
             }
         });
     }

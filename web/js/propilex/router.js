@@ -1,34 +1,58 @@
 define(
     function (require) {
+        var vent = _.extend({}, Backbone.Events);
+
         return new (Backbone.Router.extend({
+
             routes: {
-                '': 'allDocuments',
-                'document/:id': 'document'
+                '': 'all',
+                'document/:id': 'get'
             },
 
-            allDocuments: function () {
+            all: function () {
                 var DocumentCollection = require('collections/Document'),
-                    DocumentView = require('views/Document'),
+                    DocumentsView = require('views/Documents'),
                     documentCollection,
-                    documentView;
+                    documentsView,
+                    that = this;
 
                 documentCollection = new DocumentCollection();
-
-                documentView = new DocumentView({
-                    documentCollection: documentCollection
+                documentsView      = new DocumentsView({
+                    documentCollection: documentCollection,
+                    vent: vent
                 });
 
-                documentCollection.fetch();
-                documentView.render();
+                documentCollection.fetch({
+                    success: function () {
+                        documentsView.render();
+                    }
+                });
 
-                $('.main').html(documentView.el);
+                $('.main').html(documentsView.el);
+
+                vent.on('document:detail', function (documentId) {
+                    that.navigate('document/' + documentId, { trigger: true });
+                });
             },
 
-            document: function (id) {
+            get: function (id) {
                 var DocumentModel = require('models/Document'),
-                    documentModel;
+                    DocumentView = require('views/Document'),
+                    documentModel,
+                    documentView;
 
                 documentModel = new DocumentModel({ id: id });
+                documentView  = new DocumentView({
+                    documentModel: documentModel
+                });
+
+                documentModel.fetch({
+                    success: function () {
+                        documentView.render();
+                    }
+                });
+
+                $('.main').html(documentView.el);
             }
         }))();
     }

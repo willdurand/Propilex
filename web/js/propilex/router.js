@@ -6,8 +6,8 @@ define(
 
             routes: {
                 '': 'all',
+                'document/new': 'create',
                 'document/:id': 'get',
-                'document/new': 'new'
             },
 
             all: function () {
@@ -60,7 +60,20 @@ define(
                 $('.main').html(documentView.el);
             },
 
-            new: function () {
+            create: function () {
+                var DocumentModel = require('models/Document'),
+                    DocumentEditView = require('views/Document/Edit'),
+                    documentModel,
+                    documentView;
+
+                documentModel = new DocumentModel();
+                documentView  = new DocumentEditView({
+                    documentModel: documentModel
+                });
+
+                documentView.render();
+
+                $('.main').html(documentView.el);
             }
         }))();
     }

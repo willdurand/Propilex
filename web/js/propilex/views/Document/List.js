@@ -1,13 +1,14 @@
 define(
     [
-        'text!templates/documents.html'
+        'text!templates/documentList.html'
     ],
     function (template) {
         return Backbone.View.extend({
             template: _.template(template),
 
             events: {
-                'click .document-item': 'onClick'
+                'click .document-item': 'onClickItem',
+                'click #document-new': 'onClickNew'
             },
 
             initialize: function (options) {
@@ -21,12 +22,16 @@ define(
                 }));
             },
 
-            onClick: function (e) {
+            onClickItem: function (e) {
                 e.preventDefault();
 
-                var id = $(e.currentTarget).data("id");
+                this.vent.trigger('document:detail', $(e.currentTarget).data("id"));
+            },
 
-                this.vent.trigger('document:detail', id);
+            onClickNew: function (e) {
+                e.preventDefault();
+
+                this.vent.trigger('document:new');
             }
         });
     }

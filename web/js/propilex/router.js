@@ -6,18 +6,19 @@ define(
 
             routes: {
                 '': 'all',
-                'document/:id': 'get'
+                'document/:id': 'get',
+                'document/new': 'new'
             },
 
             all: function () {
                 var DocumentCollection = require('collections/Document'),
-                    DocumentsView = require('views/Documents'),
+                    DocumentListView = require('views/Document/List'),
                     documentCollection,
                     documentsView,
                     that = this;
 
                 documentCollection = new DocumentCollection();
-                documentsView      = new DocumentsView({
+                documentsView      = new DocumentListView({
                     documentCollection: documentCollection,
                     vent: vent
                 });
@@ -33,16 +34,20 @@ define(
                 vent.on('document:detail', function (documentId) {
                     that.navigate('document/' + documentId, { trigger: true });
                 });
+
+                vent.on('document:new', function () {
+                    that.navigate('document/new', { trigger: true });
+                });
             },
 
             get: function (id) {
                 var DocumentModel = require('models/Document'),
-                    DocumentView = require('views/Document'),
+                    DocumentItemView = require('views/Document/Item'),
                     documentModel,
                     documentView;
 
                 documentModel = new DocumentModel({ id: id });
-                documentView  = new DocumentView({
+                documentView  = new DocumentItemView({
                     documentModel: documentModel
                 });
 
@@ -53,6 +58,9 @@ define(
                 });
 
                 $('.main').html(documentView.el);
+            },
+
+            new: function () {
             }
         }))();
     }

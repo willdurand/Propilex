@@ -1,6 +1,6 @@
 define(
     [
-        'text!templates/document.html'
+        'text!templates/documentItem.html'
     ],
     function (template) {
         return Backbone.View.extend({

@@ -6,6 +6,7 @@ use Silex\Application;
 use Silex\ControllerCollection;
 use Silex\ControllerProviderInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -57,10 +58,10 @@ class RestController implements ControllerProviderInterface
         $controllers->get('/', function () use ($app, $prefix) {
             $query = new $app[$prefix.'query_class'];
 
-            return new Response($query->find()->exportTo($app['json_parser']), 200, array(
-                'Content-Type' => 'application/json',
-            ));
-        });
+            return new JsonResponse(
+                $query->find()->toArray(null, false, \BasePeer::TYPE_FIELDNAME)
+            );
+        })->bind($prefix . '_all');
 
         /**
          * Returns a specific object identified by a given id
@@ -75,29 +76,30 @@ class RestController implements ControllerProviderInterface
                 );
             }
 
-            $response = new Response($object->exportTo($app['json_parser']), 200, array (
-                'Content-Type' => 'application/json',
-            ));
+            $response = new JsonResponse($object->toArray());
 
             if (isset($app[$prefix.'last_modified_getter'])) {
                 $response->setLastModified($object->$app[$prefix.'last_modified_getter']());
             }
 
             return $response;
-        });
+        })->bind($prefix . '_get');
 
         /**
          * Create a new object
          */
         $controllers->post('/', function (Request $request) use ($app, $prefix) {
             $object = new $app[$prefix.'model_class'];
-            $object->fromArray($request->request->all());
+            $object->fromArray($request->request->all(), \BasePeer::TYPE_FIELDNAME);
             $object->save();
 
-            return new Response($object->exportTo($app['json_parser']), 201, array (
-                'Content-Type' => 'application/json',
-            ));
-        });
+            return new Response(
+                $app['url_generator']->generate(
+                    $prefix . '_get',
+                    array('id' => $id)
+                )
+            );
+        })->bind($prefix . '_new');
 
         /**
          * Update a object identified by a given id
@@ -112,13 +114,11 @@ class RestController implements ControllerProviderInterface
                 );
             }
 
-            $object->fromArray($request->request->all());
+            $object->fromArray($request->request->all(), \BasePeer::TYPE_FIELDNAME);
             $object->save();
 
-            return new Response($object->exportTo($app['json_parser']), 200, array (
-                'Content-Type' => 'application/json',
-            ));
-        });
+            return new JsonResponse($object->toArray());
+        })->bind($prefix . '_edit');
 
         /**
          * Delete a object identified by a given id
@@ -127,10 +127,8 @@ class RestController implements ControllerProviderInterface
             $query = new $app[$prefix.'query_class'];
             $query->filterByPrimaryKey($id)->delete();
 
-            return new Response('', 204, array (
-                'Content-Type' => 'application/json',
-            ));
-        });
+            return new Response(null, 204);
+        })->bind($prefix . '_delete');
 
         return $controllers;
     }

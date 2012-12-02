@@ -1,6 +1,5 @@
 require({
     paths: {
-        i18n: '/js/libs/require/i18n',
         text: '/js/libs/require/text'
     }
 });
@@ -13,5 +12,7 @@ require(
     function (router, canvasView) {
         canvasView.render();
         $('body').prepend(canvasView.el);
+
+        Backbone.history.start();
     }
 );

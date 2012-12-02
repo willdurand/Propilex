@@ -39,4 +39,4 @@ All the configuration is located in the `app/config/` directory.
 Credits
 -------
 
-Inspirated by: http://www.jamesyu.org/2011/01/27/cloudedit-a-backbone-js-tutorial-by-example/
+Inspired by: http://www.jamesyu.org/2011/01/27/cloudedit-a-backbone-js-tutorial-by-example/

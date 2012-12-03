@@ -8,6 +8,7 @@ define(
                 '': 'all',
                 'document/new': 'create',
                 'document/:id': 'get',
+                'document/:id/edit': 'edit',
             },
 
             listenToEvents: function () {
@@ -21,6 +22,17 @@ define(
                 vent.off('document:new');
                 vent.on('document:new', function () {
                     that.navigate('document/new', { trigger: true });
+                });
+
+                vent.off('document:edit');
+                vent.on('document:edit', function (documentId) {
+                    that.navigate('document/' + documentId + '/edit', { trigger: true });
+                });
+
+                vent.off('document:all');
+                vent.on('document:all', function () {
+                    console.log('on document:all');
+                    that.navigate('', { trigger: true });
                 });
             },
 
@@ -51,16 +63,23 @@ define(
                 var DocumentModel = require('models/Document'),
                     DocumentItemView = require('views/Document/Item'),
                     documentModel,
-                    documentView;
+                    documentView,
+                    that = this;
+
+                this.listenToEvents();
 
                 documentModel = new DocumentModel({ id: id });
                 documentView  = new DocumentItemView({
-                    documentModel: documentModel
+                    documentModel: documentModel,
+                    vent: vent
                 });
 
                 documentModel.fetch({
                     success: function () {
                         documentView.render();
+                    },
+                    error: function () {
+                        that.all();
                     }
                 });
 
@@ -82,6 +101,29 @@ define(
                 });
 
                 documentView.render();
+
+                $('.main').html(documentView.el);
+            },
+
+            edit: function (id) {
+                var DocumentModel = require('models/Document'),
+                    DocumentFormView = require('views/Document/Form'),
+                    documentModel,
+                    documentView;
+
+                this.listenToEvents();
+
+                documentModel = new DocumentModel({ id: id });
+                documentView  = new DocumentFormView({
+                    documentModel: documentModel,
+                    vent: vent
+                });
+
+                documentModel.fetch({
+                    success: function () {
+                        documentView.render();
+                    }
+                });
 
                 $('.main').html(documentView.el);
             }

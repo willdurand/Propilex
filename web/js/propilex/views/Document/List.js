@@ -25,7 +25,7 @@ define(
             onClickItem: function (e) {
                 e.preventDefault();
 
-                this.vent.trigger('document:detail', $(e.currentTarget).data("id"));
+                this.vent.trigger('document:detail', $(e.currentTarget).data('id'));
             },
 
             onClickNew: function (e) {

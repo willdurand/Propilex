@@ -37,7 +37,6 @@ define(
                     errors = this.form.commit();
 
                 if (errors) {
-                    console.log(errors);
                     return;
                 }
 

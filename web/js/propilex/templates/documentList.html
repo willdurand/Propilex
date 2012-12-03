@@ -1,0 +1,20 @@
+<div class="row">
+    <div class="span12">
+        <h2>My Documents</h2>
+
+        <ul class="documents">
+            <% _.each(collection, function (item) { %>
+                <li>
+                    <a href="" class="document-item" data-id="<%- item.id %>"><%- item.title %></a>
+                    <small><%- item.humanized_date %></small>
+                </li>
+            <% }); %>
+        </ul>
+    </div>
+</div>
+
+<div class="row">
+    <div class="span12">
+        <a href="" id="document-new" class="btn btn-primary">New document</a>
+    </div>
+</div>

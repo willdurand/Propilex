@@ -46,6 +46,12 @@ All the configuration is located in the `app/config/` directory.
 * `config.php` you should **not** edit this file, except to turn on/off debugging stuffs.
 
 
+Screenshots
+-----------
+
+![](https://raw.github.com/willdurand/Propilex/master/doc/screenshot_1.png)
+
+
 Credits
 -------
 

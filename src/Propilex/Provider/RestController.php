@@ -93,7 +93,7 @@ class RestController implements ControllerProviderInterface
         /**
          * Create a new object
          */
-        $controllers->post('/', function (Request $request) use ($app, $prefix) {
+        $controllers->post('/', function (Request $request) use ($app, $prefix, $modelName) {
             $object = new $app[$prefix.'model_class'];
             $object->fromArray($request->request->all(), \BasePeer::TYPE_FIELDNAME);
             $object->save();

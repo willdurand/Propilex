@@ -1,6 +1,11 @@
-define(
-    function (require) {
-        var vent = _.extend({}, Backbone.Events);
+define([
+    'ventilator',
+    'models/Document',
+    'collections/Document',
+    'views/Document/Item',
+    'views/Document/Form',
+    'views/Document/List'
+], function (vent, DocumentModel, DocumentCollection, DocumentItemView, DocumentFormView, DocumentListView) {
 
         return new (Backbone.Router.extend({
 
@@ -32,9 +37,7 @@ define(
             },
 
             all: function () {
-                var DocumentCollection = require('collections/Document'),
-                    DocumentListView = require('views/Document/List'),
-                    documentCollection,
+                var documentCollection,
                     $documentsView;
 
                 documentCollection = new DocumentCollection();
@@ -53,9 +56,7 @@ define(
             },
 
             get: function (id) {
-                var DocumentModel = require('models/Document'),
-                    DocumentItemView = require('views/Document/Item'),
-                    documentModel,
+                var documentModel,
                     documentView,
                     that = this;
 
@@ -79,9 +80,7 @@ define(
             },
 
             create: function () {
-                var DocumentModel = require('models/Document'),
-                    DocumentFormView = require('views/Document/Form'),
-                    documentModel,
+                var documentModel,
                     documentView;
 
                 documentModel = new DocumentModel();
@@ -95,9 +94,7 @@ define(
             },
 
             edit: function (id) {
-                var DocumentModel = require('models/Document'),
-                    DocumentFormView = require('views/Document/Form'),
-                    documentModel,
+                var documentModel,
                     documentView;
 
                 documentModel = new DocumentModel({ id: id });

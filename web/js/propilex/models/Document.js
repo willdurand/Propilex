@@ -1,5 +1,5 @@
-define(
-    function (require) {
+define(['moment', 'backbone'],
+    function (moment, Backbone) {
         return Backbone.Model.extend({
             dateFormat: 'YYYY-MM-DD HH:mm:ss',
 

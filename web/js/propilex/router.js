@@ -43,11 +43,9 @@ define(
                     vent: vent
                 });
 
-                documentCollection.fetch({
-                    success: function () {
-                        documentsView.render();
-                        $('.main').removeClass('loading');
-                    }
+                documentCollection.fetch().done(function () {
+                    documentsView.render();
+                    $('.main').removeClass('loading');
                 });
 
                 documentsView.render();
@@ -67,15 +65,14 @@ define(
                     vent: vent
                 });
 
-                documentModel.fetch({
-                    success: function () {
+                documentModel.fetch()
+                    .done(function () {
                         documentView.render();
                         $('.main').removeClass('loading');
-                    },
-                    error: function () {
+                    })
+                    .fail(function () {
                         that.all();
-                    }
-                });
+                    });
 
                 documentView.render();
                 $('.main').html(documentView.el);
@@ -109,11 +106,9 @@ define(
                     vent: vent
                 });
 
-                documentModel.fetch({
-                    success: function () {
-                        documentView.render();
-                        $('.main').removeClass('loading');
-                    }
+                documentModel.fetch().done(function () {
+                    documentView.render();
+                    $('.main').removeClass('loading');
                 });
 
                 documentView.render();

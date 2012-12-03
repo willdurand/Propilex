@@ -6,6 +6,9 @@
         "symfony/yaml": "2.1.*",
         "symfony/validator": "2.1.*"
     },
+    "require-dev": {
+        "symfony/browser-kit": "2.1.*"
+    },
     "autoload": {
         "psr-0": { "Propilex": "src" }
     },

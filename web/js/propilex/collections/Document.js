@@ -7,7 +7,7 @@ define(
             model: DocumentModel,
 
             initialize: function (models, options) {
-                this.url = $('body').data('api-url') + '/documents';
+                this.url = $('body').data('api-url') + '/documents/';
             },
 
             parse: function (responseObject) {

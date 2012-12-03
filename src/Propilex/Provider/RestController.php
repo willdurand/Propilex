@@ -98,12 +98,9 @@ class RestController implements ControllerProviderInterface
             $object->fromArray($request->request->all(), \BasePeer::TYPE_FIELDNAME);
             $object->save();
 
-            return new Response(
-                $app['url_generator']->generate(
-                    $prefix . '_get',
-                    array('id' => $id)
-                )
-            );
+            return new JsonResponse(array(
+                $modelName => $object->toArray(),
+            ));
         })->bind($prefix . '_new');
 
         /**

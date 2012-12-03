@@ -1,15 +1,25 @@
 Propilex
 ========
 
-A [Silex](http://silex.sensiolabs.org) application which uses [Propel](http://propelorm.org), [Backbone](http://backbonejs.org/).
+A [Silex](http://silex.sensiolabs.org) application which uses
+[Propel](http://propelorm.org), [Backbone.JS](http://backbonejs.org/), but also
+[Bower](http://twitter.github.com/bower/) as browser package manager,
+[RequireJS](http://requirejs.org/), [Garlic.js](garlicjs.org), [Twitter
+Bootstrap](http://twitter.github.com/bootstrap/) and [Less CSS](http://lesscss.org/).
 
 
 Installation
 ------------
 
-Install dependencies:
+Install PHP dependencies:
 
     php composer.phar install
+
+
+And browser dependencies using [Bower](http://twitter.github.com/bower/):
+
+    cd web && bower install
+    cd ..
 
 
 Build Model classes, SQL, and the configuration:

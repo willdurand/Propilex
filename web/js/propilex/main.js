@@ -1,6 +1,6 @@
 require({
     paths: {
-        text: '/js/libs/require/text'
+        text: '/components/requirejs-text/text'
     }
 });
 

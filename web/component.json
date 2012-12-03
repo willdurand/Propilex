@@ -7,6 +7,8 @@
         "underscore": "1.4.*",
         "requirejs": "2.1.*",
         "requirejs-text": "2.0.*",
-        "bootstrap.css": "2.1.*"
+        "bootstrap.css": "2.1.*",
+        "backbone-forms": "*",
+        "garlicjs": "1.0.*"
     }
 }

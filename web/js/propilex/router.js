@@ -10,12 +10,27 @@ define(
                 'document/:id': 'get',
             },
 
+            listenToEvents: function () {
+                var that = this;
+
+                vent.off('document:detail');
+                vent.on('document:detail', function (documentId) {
+                    that.navigate('document/' + documentId, { trigger: true });
+                });
+
+                vent.off('document:new');
+                vent.on('document:new', function () {
+                    that.navigate('document/new', { trigger: true });
+                });
+            },
+
             all: function () {
                 var DocumentCollection = require('collections/Document'),
                     DocumentListView = require('views/Document/List'),
                     documentCollection,
-                    documentsView,
-                    that = this;
+                    $documentsView;
+
+                this.listenToEvents();
 
                 documentCollection = new DocumentCollection();
                 documentsView      = new DocumentListView({
@@ -30,14 +45,6 @@ define(
                 });
 
                 $('.main').html(documentsView.el);
-
-                vent.on('document:detail', function (documentId) {
-                    that.navigate('document/' + documentId, { trigger: true });
-                });
-
-                vent.on('document:new', function () {
-                    that.navigate('document/new', { trigger: true });
-                });
             },
 
             get: function (id) {
@@ -62,13 +69,16 @@ define(
 
             create: function () {
                 var DocumentModel = require('models/Document'),
-                    DocumentEditView = require('views/Document/Edit'),
+                    DocumentFormView = require('views/Document/Form'),
                     documentModel,
                     documentView;
 
+                this.listenToEvents();
+
                 documentModel = new DocumentModel();
-                documentView  = new DocumentEditView({
-                    documentModel: documentModel
+                documentView  = new DocumentFormView({
+                    documentModel: documentModel,
+                    vent: vent
                 });
 
                 documentView.render();

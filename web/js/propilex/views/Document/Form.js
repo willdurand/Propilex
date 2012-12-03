@@ -1,17 +1,52 @@
 define(
     [
-        'text!templates/documentEdit.html'
+        'text!templates/documentForm.html'
     ],
     function (template) {
         return Backbone.View.extend({
             template: _.template(template),
 
+            events: {
+                'click .save': 'onClickSave',
+            },
+
             initialize: function (options) {
                 this.documentModel = options.documentModel;
+                this.vent = options.vent;
+                this.form = new Backbone.Form({
+                    model: this.documentModel
+                });
             },
 
             render: function () {
-                this.$el.html(this.template(this.documentModel.toJSON()));
+                this.form.render();
+
+                this.$el.html(this.template({
+                    isNew: this.documentModel.isNew()
+                }));
+
+                this.$el.find('form')
+                    .prepend(this.form.el)
+                    .garlic();
+            },
+
+            onClickSave: function (e) {
+                e.preventDefault();
+
+                var that = this,
+                    errors = this.form.commit();
+
+                if (errors) {
+                    console.log(errors);
+                    return;
+                }
+
+                this.documentModel.save(null, {
+                    success: function () {
+                        that.$el.find('form').garlic('destroy');
+                        that.vent.trigger('document:detail', that.documentModel.get('id'));
+                    }
+                });
             }
         });
     }

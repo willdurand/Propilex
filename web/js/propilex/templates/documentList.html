@@ -4,7 +4,10 @@
 
         <ul class="documents">
             <% _.each(collection, function (item) { %>
-                <li><a href="#" class="document-item" data-id="<%- item.id %>"><%- item.title %></a></li>
+                <li>
+                    <a href="#" class="document-item" data-id="<%- item.id %>"><%- item.title %></a>
+                    <small><%- item.humanized_date %></small>
+                </li>
             <% }); %>
         </ul>
     </div>

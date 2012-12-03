@@ -18,7 +18,7 @@ define(
 
             render: function () {
                 this.$el.html(this.template({
-                    collection: this.documentCollection.toJSON()
+                    collection: this.documentCollection.toViewJSON()
                 }));
             },
 

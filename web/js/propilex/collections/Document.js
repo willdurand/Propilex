@@ -12,6 +12,12 @@ define(
 
             parse: function (responseObject) {
                 return responseObject.documents;
+            },
+
+            toViewJSON: function () {
+                return _.map(this.models, function (model) {
+                    return model.toViewJSON();
+                });
             }
         });
     }

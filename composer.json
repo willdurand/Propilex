@@ -2,7 +2,9 @@
     "name": "willdurand/propilex",
     "description": "Silex + Propel + Backbone",
     "require": {
-        "propel/propel-service-provider": "0.0.*"
+        "propel/propel-service-provider": "0.0.*",
+        "symfony/yaml": "2.1.*",
+        "symfony/validator": "2.1.*"
     },
     "autoload": {
         "psr-0": { "Propilex": "src" }

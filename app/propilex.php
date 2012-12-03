@@ -4,6 +4,13 @@ $app = require_once __DIR__ . '/config/config.php';
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Validator\Mapping\ClassMetadataFactory;
+use Symfony\Component\Validator\Mapping\Loader\YamlFileLoader;
+
+// Configure the validator service
+$app['validator.mapping.class_metadata_factory'] = new ClassMetadataFactory(
+    new YamlFileLoader(__DIR__ . '/validation.yml')
+);
 
 /**
  * @see http://silex.sensiolabs.org/doc/cookbook/json_request_body.html
@@ -26,7 +33,7 @@ $app->before(function (Request $request) {
 /**
  * Entry point
  */
-$app->get('/', function() use ($app) {
+$app->get('/', function() {
     return new Response(file_get_contents(__DIR__ . '/../web/index.html'), 200);
 });
 

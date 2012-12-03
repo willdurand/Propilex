@@ -53,6 +53,21 @@ class RestController implements ControllerProviderInterface
             throw new \InvalidArgumentException(sprintf('You have to configure the "%s.model_class" parameter.', $prefix));
         }
 
+        $app[$prefix.'.validator'] = $app->protect(function ($object) use ($app) {
+            $errors = $app['validator']->validate($object);
+
+            if (0 < count($errors)) {
+                $array = array();
+                foreach ($errors as $error) {
+                    $array[$error->getPropertyPath()] = $error->getMessage();
+                }
+
+                return $array;
+            }
+
+            return true;
+        });
+
         $controllers = new ControllerCollection($app['route_factory'] );
 
         /**
@@ -61,7 +76,7 @@ class RestController implements ControllerProviderInterface
         $controllers->get('/', function () use ($app, $prefix, $modelNamePlural) {
             $query = new $app[$prefix.'query_class'];
 
-            return new JsonResponse(array(
+            return $app->json(array(
                 $modelNamePlural => $query->find()->toArray(null, false, \BasePeer::TYPE_FIELDNAME),
             ));
         })->bind($prefix . '_all');
@@ -88,7 +103,9 @@ class RestController implements ControllerProviderInterface
             }
 
             return $response;
-        })->bind($prefix . '_get');
+        })
+        ->assert('id', '\d+')
+        ->bind($prefix . '_get');
 
         /**
          * Create a new object
@@ -96,11 +113,16 @@ class RestController implements ControllerProviderInterface
         $controllers->post('/', function (Request $request) use ($app, $prefix, $modelName) {
             $object = new $app[$prefix.'model_class'];
             $object->fromArray($request->request->all(), \BasePeer::TYPE_FIELDNAME);
+
+            if (true !== $errors = $app[$prefix.'.validator']($object)) {
+                return $app->json(array('errors' => $errors), 400);
+            }
+
             $object->save();
 
-            return new JsonResponse(array(
+            return $app->json(array(
                 $modelName => $object->toArray(),
-            ));
+            ), 201);
         })->bind($prefix . '_new');
 
         /**
@@ -117,22 +139,39 @@ class RestController implements ControllerProviderInterface
             }
 
             $object->fromArray($request->request->all(), \BasePeer::TYPE_FIELDNAME);
+
+            if (true !== $errors = $app[$prefix.'.validator']($object)) {
+                return $app->json(array('errors' => $errors), 400);
+            }
+
             $object->save();
 
-            return new JsonResponse(array(
+            return $app->json(array(
                 $modelName => $object->toArray(),
-            ));
-        })->bind($prefix . '_edit');
+            ), 200);
+        })
+        ->assert('id', '\d+')
+        ->bind($prefix . '_edit');
 
         /**
          * Delete a object identified by a given id
          */
-        $controllers->delete('/{id}', function ($id) use ($app, $prefix) {
-            $query = new $app[$prefix.'query_class'];
-            $query->filterByPrimaryKey($id)->delete();
+        $controllers->delete('/{id}', function ($id) use ($app, $prefix, $modelName) {
+            $query  = new $app[$prefix.'query_class'];
+            $object = $query->filterByPrimaryKey($id)->findOne();
+
+            if (!$object instanceof $app[$prefix.'model_class']) {
+                throw new NotFoundHttpException(
+                    sprintf('%s with id "%d" does not exist.', ucfirst($modelName), $id)
+                );
+            }
+
+            $object->delete();
 
             return new Response(null, 204);
-        })->bind($prefix . '_delete');
+        })
+        ->assert('id', '\d+')
+        ->bind($prefix . '_delete');
 
         return $controllers;
     }

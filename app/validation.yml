@@ -1,0 +1,6 @@
+Propilex\Model\Document:
+    getters:
+        title:
+            - NotBlank:
+        body:
+            - NotBlank:

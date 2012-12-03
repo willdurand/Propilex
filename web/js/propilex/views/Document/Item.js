@@ -14,6 +14,8 @@ define(
             initialize: function (options) {
                 this.documentModel = options.documentModel;
                 this.vent = options.vent;
+
+                $('.main').addClass('loading');
             },
 
             render: function () {
@@ -29,17 +31,8 @@ define(
             onClickDelete: function (e) {
                 e.preventDefault();
 
-                var that = this;
-
-                this.documentModel.destroy(null, {
-                    success: function () {
-                        console.log('trigger document:all');
-                        that.vent.trigger('document:all');
-                    },
-                    error: function () {
-                        console.log('oO');
-                    }
-                });
+                this.documentModel.destroy();
+                this.vent.trigger('document:all');
             }
         });
     }

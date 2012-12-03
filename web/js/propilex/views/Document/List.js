@@ -14,6 +14,8 @@ define(
             initialize: function (options) {
                 this.documentCollection = options.documentCollection;
                 this.vent = options.vent;
+
+                $('.main').addClass('loading');
             },
 
             render: function () {

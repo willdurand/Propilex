@@ -3,6 +3,11 @@ define(
         return Backbone.Model.extend({
             dateFormat: 'YYYY-MM-DD HH:mm:ss',
 
+            defaults: {
+                title: '',
+                body: ''
+            },
+
             schema: {
                 title: { type: 'Text', validators: [ 'required' ] },
                 body:  { type: 'Text', validators: [ 'required' ] },

@@ -53,9 +53,11 @@ define(
                 documentCollection.fetch({
                     success: function () {
                         documentsView.render();
+                        $('.main').removeClass('loading');
                     }
                 });
 
+                documentsView.render();
                 $('.main').html(documentsView.el);
             },
 
@@ -77,12 +79,14 @@ define(
                 documentModel.fetch({
                     success: function () {
                         documentView.render();
+                        $('.main').removeClass('loading');
                     },
                     error: function () {
                         that.all();
                     }
                 });
 
+                documentView.render();
                 $('.main').html(documentView.el);
             },
 
@@ -101,7 +105,6 @@ define(
                 });
 
                 documentView.render();
-
                 $('.main').html(documentView.el);
             },
 
@@ -122,9 +125,11 @@ define(
                 documentModel.fetch({
                     success: function () {
                         documentView.render();
+                        $('.main').removeClass('loading');
                     }
                 });
 
+                documentView.render();
                 $('.main').html(documentView.el);
             }
         }))();

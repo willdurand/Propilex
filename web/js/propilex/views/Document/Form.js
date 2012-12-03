@@ -16,6 +16,10 @@ define(
                 this.form = new Backbone.Form({
                     model: this.documentModel
                 });
+
+                if (!this.documentModel.isNew()) {
+                    $('.main').addClass('loading');
+                }
             },
 
             render: function () {

@@ -3,43 +3,24 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="/components/bootstrap.css/css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link href="/components/bootstrap.css/css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
+        <link href="/components/backbone-forms/distribution/templates/bootstrap.css" rel="stylesheet" media="screen">
+        <link href="/css/propilex.less" rel="stylesheet/less" type="text/css">
     </head>
 
-    <body>
-        <h1><a href="#">Propilex</a></h1>
-        <h2>Backbone.js + Silex + Propel = LOVE</h2>
+    <body data-api-url="">
+        <script src="/components/jquery/jquery.min.js"></script>
+        <script src="/components/underscore/underscore-min.js"></script>
+        <script src="/components/backbone/backbone-min.js"></script>
+        <script src="/components/bootstrap.css/js/bootstrap.min.js"></script>
+        <script src="/components/moment/moment.js"></script>
+        <script src="/components/backbone-forms/distribution/backbone-forms.min.js"></script>
+        <script src="/components/backbone-forms/distribution/templates/bootstrap.js"></script>
+        <script src="/components/garlicjs/garlic.js"></script>
+        <script src="/components/less.js/dist/less-1.3.1.min.js"></script>
 
-        <div id="notice"></div>
-        <div id="app"></div>
-
-        <!-- Libraries -->
-        <script src="/js/libs/jquery.js"></script>
-        <script src="/js/libs/underscore.js"></script>
-        <script src="/js/libs/backbone.js"></script>
-        <script src="http://github.com/cowboy/jquery-dotimeout/raw/master/jquery.ba-dotimeout.min.js"></script>
-
-        <!-- Application -->
-        <script src="/application.js"></script>
-
-        <!-- Models -->
-        <script src="/models/document.js"></script>
-
-        <!-- Collections -->
-        <script src="/collections/documents.js"></script>
-
-        <!-- Views -->
-        <script src="/views/index.js"></script>
-        <script src="/views/edit.js"></script>
-        <script src="/views/notice.js"></script>
-
-        <!-- Controllers -->
-        <script src="/controllers/documents.js"></script>
-
-                <script type="text/javascript">
-            $(function() {
-                App.init();
-            });
-        </script>
+        <script data-main="/js/propilex/main" src="/components/requirejs/require.js"></script>
     </body>
 </html>

@@ -4,3 +4,4 @@ src/Propilex/Model/om/
 src/Propilex/Model/map/
 vendor
 !vendor/silex.phar
+web/components/

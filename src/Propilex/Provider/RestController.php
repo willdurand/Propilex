@@ -68,7 +68,7 @@ class RestController implements ControllerProviderInterface
             return true;
         });
 
-        $controllers = new ControllerCollection($app['route_factory'] );
+        $controllers = $app['controllers_factory'];
 
         /**
          * Returns all objects

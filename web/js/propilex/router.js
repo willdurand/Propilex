@@ -11,27 +11,22 @@ define(
                 'document/:id/edit': 'edit',
             },
 
-            listenToEvents: function () {
+            initialize: function () {
                 var that = this;
 
-                vent.off('document:detail');
                 vent.on('document:detail', function (documentId) {
                     that.navigate('document/' + documentId, { trigger: true });
                 });
 
-                vent.off('document:new');
                 vent.on('document:new', function () {
                     that.navigate('document/new', { trigger: true });
                 });
 
-                vent.off('document:edit');
                 vent.on('document:edit', function (documentId) {
                     that.navigate('document/' + documentId + '/edit', { trigger: true });
                 });
 
-                vent.off('document:all');
                 vent.on('document:all', function () {
-                    console.log('on document:all');
                     that.navigate('', { trigger: true });
                 });
             },
@@ -41,8 +36,6 @@ define(
                     DocumentListView = require('views/Document/List'),
                     documentCollection,
                     $documentsView;
-
-                this.listenToEvents();
 
                 documentCollection = new DocumentCollection();
                 documentsView      = new DocumentListView({
@@ -67,8 +60,6 @@ define(
                     documentModel,
                     documentView,
                     that = this;
-
-                this.listenToEvents();
 
                 documentModel = new DocumentModel({ id: id });
                 documentView  = new DocumentItemView({
@@ -96,8 +87,6 @@ define(
                     documentModel,
                     documentView;
 
-                this.listenToEvents();
-
                 documentModel = new DocumentModel();
                 documentView  = new DocumentFormView({
                     documentModel: documentModel,
@@ -113,8 +102,6 @@ define(
                     DocumentFormView = require('views/Document/Form'),
                     documentModel,
                     documentView;
-
-                this.listenToEvents();
 
                 documentModel = new DocumentModel({ id: id });
                 documentView  = new DocumentFormView({

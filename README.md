@@ -4,8 +4,9 @@ Propilex
 A [Silex](http://silex.sensiolabs.org) application which uses
 [Propel](http://propelorm.org), [Backbone.JS](http://backbonejs.org/), but also
 [Bower](http://twitter.github.com/bower/) as browser package manager,
-[RequireJS](http://requirejs.org/), [Garlic.js](garlicjs.org), [Twitter
-Bootstrap](http://twitter.github.com/bootstrap/) and [Less CSS](http://lesscss.org/).
+[RequireJS](http://requirejs.org/), [Garlic.js](garlicjs.org),
+[Moment.js](http://momentjs.com/) and [Twitter Bootstrap](http://twitter.github.com/bootstrap/)
+and [Less CSS](http://lesscss.org/).
 
 
 Installation

@@ -1,8 +1,10 @@
 define(
     [
-        'text!templates/documentItem.html'
+        'text!templates/documentItem.html',
+        'underscore',
+        'backbone'
     ],
-    function (template) {
+    function (template, _, Backbone) {
         return Backbone.View.extend({
             template: _.template(template),
 

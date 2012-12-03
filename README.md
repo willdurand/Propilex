@@ -51,6 +51,8 @@ Screenshots
 
 ![](https://raw.github.com/willdurand/Propilex/master/doc/screenshot_1.png)
 
+![](https://raw.github.com/willdurand/Propilex/master/doc/screenshot_2.png)
+
 
 Credits
 -------

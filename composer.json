@@ -3,6 +3,8 @@
     "description": "Silex + Propel + Backbone",
     "require": {
         "propel/propel-service-provider": "0.0.*",
+        "propel/propel1": "1.6.*@dev",
+        "silex/silex": "1.0.*@dev",
         "symfony/yaml": "2.1.*",
         "symfony/validator": "2.1.*"
     },
@@ -17,6 +19,5 @@
             "name": "William DURAND",
             "email": "william.durand1@gmail.com"
         }
-    ],
-    "minimum-stability": "dev"
+    ]
 }

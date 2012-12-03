@@ -1,8 +1,10 @@
 define(
     [
-        'text!templates/canvas.html'
+        'text!templates/canvas.html',
+        'underscore',
+        'backbone'
     ],
-    function (template) {
+    function (template, _, Backbone) {
         return new (Backbone.View.extend({
             initialize: function () {
                 this.template = _.template(template);

@@ -34,7 +34,7 @@ $app->before(function (Request $request) {
  * Entry point
  */
 $app->get('/', function() {
-    return new Response(file_get_contents(__DIR__ . '/../web/index.html'), 200);
+    return file_get_contents(__DIR__ . '/../web/index.html');
 });
 
 /**

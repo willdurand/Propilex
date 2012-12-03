@@ -4,7 +4,7 @@
         "jquery": "~1.8.3",
         "moment": "1.7.*",
         "backbone": "0.9.*",
-        "underscore": "1.4.*",
+        "lodash": "0.10.*",
         "requirejs": "2.1.*",
         "requirejs-text": "2.0.*",
         "bootstrap.css": "2.1.*",

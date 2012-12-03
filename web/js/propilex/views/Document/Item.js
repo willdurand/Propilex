@@ -8,7 +8,7 @@ define(
 
             events: {
                 'click .edit': 'onClickEdit',
-                'click .delete': 'onClickDelete',
+                'click .delete': 'onClickDelete'
             },
 
             initialize: function (options) {

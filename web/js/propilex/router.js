@@ -8,7 +8,7 @@ define(
                 '': 'all',
                 'document/new': 'create',
                 'document/:id': 'get',
-                'document/:id/edit': 'edit',
+                'document/:id/edit': 'edit'
             },
 
             initialize: function () {

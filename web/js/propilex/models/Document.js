@@ -10,7 +10,7 @@ define(
 
             schema: {
                 title: { type: 'Text', validators: [ 'required' ] },
-                body:  { type: 'Text', validators: [ 'required' ] },
+                body:  { type: 'Text', validators: [ 'required' ] }
             },
 
             url : function() {

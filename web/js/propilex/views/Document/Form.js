@@ -7,7 +7,7 @@ define(
             template: _.template(template),
 
             events: {
-                'click .save': 'onClickSave',
+                'click .save': 'onClickSave'
             },
 
             initialize: function (options) {

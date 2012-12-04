@@ -12,11 +12,9 @@ define(
             noticeTemplate: _.template($(template).filter('#message-notice').html()),
 
             initialize: function () {
-                var that = this;
-
                 ventilator.on('canvas:message:notice', function (message) {
-                    that.addNotice(message);
-                });
+                    this.addNotice(message);
+                }, this);
             },
 
             render: function () {

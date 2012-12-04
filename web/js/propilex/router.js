@@ -18,23 +18,21 @@ define(
             },
 
             initialize: function () {
-                var that = this;
-
                 ventilator.on('document:detail', function (documentId) {
-                    that.navigate('document/' + documentId, { trigger: true });
-                });
+                    this.navigate('document/' + documentId, { trigger: true });
+                }, this);
 
                 ventilator.on('document:new', function () {
-                    that.navigate('document/new', { trigger: true });
-                });
+                    this.navigate('document/new', { trigger: true });
+                }, this);
 
                 ventilator.on('document:edit', function (documentId) {
-                    that.navigate('document/' + documentId + '/edit', { trigger: true });
-                });
+                    this.navigate('document/' + documentId + '/edit', { trigger: true });
+                }, this);
 
                 ventilator.on('document:all', function () {
-                    that.navigate('', { trigger: true });
-                });
+                    this.navigate('', { trigger: true });
+                }, this);
             },
 
             all: function () {

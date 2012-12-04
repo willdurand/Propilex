@@ -14,9 +14,9 @@ define(
                 return responseObject.documents;
             },
 
-            toViewJSON: function () {
+            presenter: function () {
                 return _.map(this.models, function (model) {
-                    return model.toViewJSON();
+                    return model.presenter();
                 });
             }
         });

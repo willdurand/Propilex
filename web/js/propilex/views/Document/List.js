@@ -22,7 +22,7 @@ define(
 
             render: function () {
                 this.$el.html(this.template({
-                    collection: this.documentCollection.toViewJSON()
+                    collection: this.documentCollection.presenter()
                 }));
             },
 

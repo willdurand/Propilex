@@ -39,7 +39,7 @@ define(
                 return '';
             },
 
-            toViewJSON: function () {
+            presenter: function () {
                 return _.extend(this.toJSON(), {
                     humanized_date: this.getHumanizedDate()
                 });

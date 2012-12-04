@@ -21,7 +21,7 @@ define(
             },
 
             render: function () {
-                this.$el.html(this.template(this.documentModel.toViewJSON()));
+                this.$el.html(this.template(this.documentModel.presenter()));
             },
 
             onClickEdit: function (e) {

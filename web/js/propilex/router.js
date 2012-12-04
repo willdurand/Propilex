@@ -39,7 +39,7 @@ define(
 
             all: function () {
                 var documentCollection,
-                    $documentsView;
+                    documentsView;
 
                 documentCollection = new DocumentCollection();
                 documentsView      = new DocumentListView({

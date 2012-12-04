@@ -16,7 +16,7 @@ define(
 
             initialize: function (options) {
                 this.documentModel = options.documentModel;
-                this.vent = options.vent;
+                this.ventilator = options.ventilator;
                 this.form = new Backbone.Form({
                     model: this.documentModel
                 });
@@ -51,7 +51,7 @@ define(
                 this.documentModel.save(null, {
                     success: function () {
                         that.$el.find('form').garlic('destroy');
-                        that.vent.trigger('document:detail', that.documentModel.get('id'));
+                        that.ventilator.trigger('document:detail', that.documentModel.get('id'));
                     }
                 });
             }

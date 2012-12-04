@@ -1,12 +1,16 @@
 require({
-    deps: ['bootstrap', 'less'],
+    deps: [
+        'bootstrap',
+        'less'
+    ],
+
     paths: {
         'text': '/components/requirejs-text/text',
         'backbone': '/components/backbone/backbone-min',
-        'backbone-forms-core': '/components/backbone-forms/distribution/backbone-forms',
+        'backbone-forms-core': '/components/backbone-forms/distribution/backbone-forms.min',
         'backbone-forms': '/components/backbone-forms/distribution/templates/bootstrap',
         'jquery': '/components/jquery/jquery',
-        'underscore': '/components/underscore/underscore',
+        'underscore': '/components/lodash/lodash.min',
         'garlicjs': '/components/garlicjs/garlic',
         'bootstrap': '/components/bootstrap.css/js/bootstrap.min',
         'moment': '/components/moment/moment',
@@ -18,33 +22,33 @@ require({
             'exports': 'jQuery'
         },
         'bootstrap': {
-            'deps': ['jquery'],
+            'deps': [ 'jquery' ],
             'exports': '$'
         },
         'underscore': {
             'exports': '_'
         },
         'backbone': {
-            'deps': ['underscore', 'jquery'],
+            'deps': [ 'underscore', 'jquery' ],
             'exports': 'Backbone'
         },
         'backbone-forms-core': {
-            'deps': ['jquery', 'backbone'],
+            'deps': [ 'jquery', 'backbone' ],
             'exports': 'Backbone'
         },
         'backbone-forms': {
-            'deps': ['backbone-forms-core'],
+            'deps': [ 'backbone-forms-core' ],
             'exports': 'Backbone'
         },
         'less': {
             'exports': 'less'
         },
         'garlic': {
-            'deps': ['jquery'],
+            'deps': [ 'jquery' ],
             'exports': '$'
         },
         'moment': {
-            'deps': ['jquery'],
+            'deps': [ 'jquery' ],
             'exports': 'moment'
         }
     }

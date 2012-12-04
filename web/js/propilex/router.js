@@ -1,12 +1,13 @@
-define([
-    'ventilator',
-    'models/Document',
-    'collections/Document',
-    'views/Document/Item',
-    'views/Document/Form',
-    'views/Document/List'
-], function (vent, DocumentModel, DocumentCollection, DocumentItemView, DocumentFormView, DocumentListView) {
-
+define(
+    [
+        'ventilator',
+        'models/Document',
+        'collections/Document',
+        'views/Document/Item',
+        'views/Document/Form',
+        'views/Document/List'
+    ],
+    function (ventilator, DocumentModel, DocumentCollection, DocumentItemView, DocumentFormView, DocumentListView) {
         return new (Backbone.Router.extend({
 
             routes: {
@@ -19,19 +20,19 @@ define([
             initialize: function () {
                 var that = this;
 
-                vent.on('document:detail', function (documentId) {
+                ventilator.on('document:detail', function (documentId) {
                     that.navigate('document/' + documentId, { trigger: true });
                 });
 
-                vent.on('document:new', function () {
+                ventilator.on('document:new', function () {
                     that.navigate('document/new', { trigger: true });
                 });
 
-                vent.on('document:edit', function (documentId) {
+                ventilator.on('document:edit', function (documentId) {
                     that.navigate('document/' + documentId + '/edit', { trigger: true });
                 });
 
-                vent.on('document:all', function () {
+                ventilator.on('document:all', function () {
                     that.navigate('', { trigger: true });
                 });
             },
@@ -43,7 +44,7 @@ define([
                 documentCollection = new DocumentCollection();
                 documentsView      = new DocumentListView({
                     documentCollection: documentCollection,
-                    vent: vent
+                    ventilator: ventilator
                 });
 
                 documentCollection.fetch().done(function () {
@@ -63,7 +64,7 @@ define([
                 documentModel = new DocumentModel({ id: id });
                 documentView  = new DocumentItemView({
                     documentModel: documentModel,
-                    vent: vent
+                    ventilator: ventilator
                 });
 
                 documentModel.fetch()
@@ -86,7 +87,7 @@ define([
                 documentModel = new DocumentModel();
                 documentView  = new DocumentFormView({
                     documentModel: documentModel,
-                    vent: vent
+                    ventilator: ventilator
                 });
 
                 documentView.render();
@@ -100,7 +101,7 @@ define([
                 documentModel = new DocumentModel({ id: id });
                 documentView  = new DocumentFormView({
                     documentModel: documentModel,
-                    vent: vent
+                    ventilator: ventilator
                 });
 
                 documentModel.fetch().done(function () {

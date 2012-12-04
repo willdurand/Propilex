@@ -15,7 +15,7 @@ define(
 
             initialize: function (options) {
                 this.documentModel = options.documentModel;
-                this.vent = options.vent;
+                this.ventilator = options.ventilator;
 
                 $('.main').addClass('loading');
             },
@@ -27,14 +27,14 @@ define(
             onClickEdit: function (e) {
                 e.preventDefault();
 
-                this.vent.trigger('document:edit', this.documentModel.get('id'));
+                this.ventilator.trigger('document:edit', this.documentModel.get('id'));
             },
 
             onClickDelete: function (e) {
                 e.preventDefault();
 
                 this.documentModel.destroy();
-                this.vent.trigger('document:all');
+                this.ventilator.trigger('document:all');
             }
         });
     }

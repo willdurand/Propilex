@@ -1,3 +1,8 @@
-define(['backbone'], function (Backbone) {
-    return _.extend({}, Backbone.Events);
-});
+define(
+    [
+        'backbone'
+    ],
+    function (Backbone) {
+        return _.extend({}, Backbone.Events);
+    }
+);

@@ -9,4 +9,7 @@ $app->register(new Propel\Silex\PropelServiceProvider(), array(
     'propel.model_path'  => __DIR__ . '/../../src/Propilex/Model',
 ));
 
+// Debug?
+$app['debug'] = 'dev' === getenv('APPLICATION_ENV');
+
 return $app;

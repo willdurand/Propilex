@@ -1,13 +1,17 @@
 define(
     [
         'ventilator',
+        'jquery',
+        'backbone',
         'models/Document',
         'collections/Document',
         'views/Document/Item',
         'views/Document/Form',
         'views/Document/List'
     ],
-    function (ventilator, DocumentModel, DocumentCollection, DocumentItemView, DocumentFormView, DocumentListView) {
+    function (ventilator, $, Backbone, DocumentModel, DocumentCollection, DocumentItemView, DocumentFormView, DocumentListView) {
+        "use strict";
+
         return new (Backbone.Router.extend({
 
             routes: {

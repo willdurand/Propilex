@@ -1,8 +1,13 @@
 define(
     [
-        'models/Document'
+        'models/Document',
+        'underscore',
+        'jquery',
+        'backbone'
     ],
-    function (DocumentModel) {
+    function (DocumentModel, _, $, Backbone) {
+        "use strict";
+
         return Backbone.Collection.extend({
             model: DocumentModel,
 

@@ -1,9 +1,13 @@
 define(
     [
         'moment',
+        'underscore',
+        'jquery',
         'backbone'
     ],
-    function (moment, Backbone) {
+    function (moment, _, $, Backbone) {
+        "use strict";
+
         return Backbone.Model.extend({
             dateFormat: 'YYYY-MM-DD HH:mm:ss',
 

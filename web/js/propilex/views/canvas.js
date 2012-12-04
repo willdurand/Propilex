@@ -2,10 +2,13 @@ define(
     [
         'text!templates/canvas.html',
         'underscore',
+        'jquery',
         'backbone',
         'ventilator'
     ],
-    function (template, _, Backbone, ventilator) {
+    function (template, _, $, Backbone, ventilator) {
+        "use strict";
+
         return new (Backbone.View.extend({
             template: _.template(template),
 

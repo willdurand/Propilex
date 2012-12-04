@@ -2,9 +2,12 @@ define(
     [
         'text!templates/documentList.html',
         'underscore',
+        'jquery',
         'backbone'
     ],
-    function (template, _, Backbone) {
+    function (template, _, $, Backbone) {
+        "use strict";
+
         return Backbone.View.extend({
             template: _.template(template),
 

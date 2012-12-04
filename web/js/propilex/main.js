@@ -57,9 +57,13 @@ require({
 require(
     [
         'router',
-        'views/canvas'
+        'views/canvas',
+        'jquery',
+        'backbone'
     ],
-    function (router, canvasView) {
+    function (router, canvasView, $, Backbone) {
+        "use strict";
+
         canvasView.render();
         $('body').prepend(canvasView.el);
 

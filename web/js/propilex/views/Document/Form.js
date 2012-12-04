@@ -1,12 +1,15 @@
 define(
     [
         'text!templates/documentForm.html',
+        'underscore',
         'jquery',
         'backbone',
         'backbone-forms',
         'garlicjs'
     ],
-    function (template, $, Backbone) {
+    function (template, _, $, Backbone) {
+        "use strict";
+
         return Backbone.View.extend({
             template: _.template(template),
 

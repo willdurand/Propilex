@@ -34,6 +34,8 @@ define(
                 e.preventDefault();
 
                 this.documentModel.destroy();
+
+                this.ventilator.trigger('canvas:message:notice', 'Document successfully deleted');
                 this.ventilator.trigger('document:all');
             }
         });

@@ -7,6 +7,15 @@
 </div>
 
 <div class="container">
+    <div class="messages">
+    </div>
     <div class="main">
     </div>
 </div>
+
+<script type="text/template" id="message-notice">
+    <div class="alert alert-info">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <%- message %>
+    </div>
+</script>

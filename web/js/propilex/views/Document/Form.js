@@ -48,11 +48,11 @@ define(
                     return;
                 }
 
-                this.documentModel.save(null, {
-                    success: function () {
-                        that.$el.find('form').garlic('destroy');
-                        that.ventilator.trigger('document:detail', that.documentModel.get('id'));
-                    }
+                this.documentModel.save().done(function () {
+                    that.$el.find('form').garlic('destroy');
+
+                    that.ventilator.trigger('canvas:message:notice', 'Document successfully saved');
+                    that.ventilator.trigger('document:all');
                 });
             }
         });

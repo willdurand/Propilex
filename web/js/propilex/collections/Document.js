@@ -3,9 +3,10 @@ define(
         'models/Document',
         'underscore',
         'jquery',
-        'backbone'
+        'backbone',
+        'moment'
     ],
-    function (DocumentModel, _, $, Backbone) {
+    function (DocumentModel, _, $, Backbone, moment) {
         "use strict";
 
         return Backbone.Collection.extend({
@@ -23,6 +24,15 @@ define(
                 return _.map(this.models, function (model) {
                     return model.presenter();
                 });
+            },
+
+            comparator: function (documentModel) {
+                var createdAt = moment(
+                        documentModel.get('created_at').date,
+                        documentModel.dateFormat
+                    );
+
+                return - createdAt.unix();
             }
         });
     }

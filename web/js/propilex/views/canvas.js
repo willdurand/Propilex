@@ -28,9 +28,9 @@ define(
 
             render: function () {
                 this.$el.html(this.template({
-                    language: t.data.language,
-                    fr: t.data['language.fr'],
-                    en: t.data['language.en']
+                    language: t('language'),
+                    fr: t('language.fr'),
+                    en: t('language.en')
                 }));
             },
 

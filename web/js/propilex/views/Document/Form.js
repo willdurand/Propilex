@@ -39,7 +39,9 @@ define(
 
                 this.$el.find('form')
                     .prepend(this.form.el)
-                    .garlic();
+                    .garlic({ conflictManager: {
+                        message: t('form.conflict')
+                    }});
             },
 
             onClickSave: function (e) {

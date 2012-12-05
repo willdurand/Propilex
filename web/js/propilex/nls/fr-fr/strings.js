@@ -1,8 +1,9 @@
 define({
     'delete': 'Supprimer',
     'edit': 'Modifier',
-    'form.title': 'Titre',
     'form.body': 'Contenu',
+    'form.conflict': 'Cette information a été sauvegardée, ce n\'est pas l\'actuelle. Cliquer ici pour la voir.',
+    'form.title': 'Titre',
     'help': 'Aide',
     'help.h': 'affiche cette aide',
     'help.l': 'liste tous vos documents',

@@ -1,8 +1,9 @@
 define({
     'delete': 'Delete',
     'edit': 'Edit',
-    'form.title': 'Title',
     'form.body': 'Body',
+    'form.conflict': 'This data is your saved data, not the current one. Click here to see it.',
+    'form.title': 'Title',
     'help': 'Help',
     'help.h': 'display this help',
     'help.l': 'list all documents',

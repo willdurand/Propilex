@@ -26,12 +26,14 @@ define(
             },
 
             addNotice: function (message) {
-                $('.messages').append(this.noticeTemplate({
+                var $message = $(this.noticeTemplate({
                     message: message
                 }));
 
+                $('.messages').append($message);
+
                 window.setTimeout(function() {
-                    $('.messages > div:last-child').hide();
+                    $message.remove();
                 }, 3000);
             }
         }))();

@@ -21,34 +21,21 @@ require({
     },
 
     shim: {
-        'jquery': {
-            'exports': 'jQuery'
-        },
         'bootstrap': {
             'deps': [ 'jquery' ],
-            'exports': '$'
-        },
-        'underscore': {
-            'exports': '_'
         },
         'backbone': {
             'deps': [ 'underscore', 'jquery' ],
             'exports': 'Backbone'
         },
         'backbone-forms-core': {
-            'deps': [ 'jquery', 'backbone' ],
-            'exports': 'Backbone'
+            'deps': [ 'jquery', 'backbone' ]
         },
         'backbone-forms': {
-            'deps': [ 'backbone-forms-core' ],
-            'exports': 'Backbone'
-        },
-        'less': {
-            'exports': 'less'
+            'deps': [ 'backbone-forms-core' ]
         },
         'garlic': {
-            'deps': [ 'jquery' ],
-            'exports': '$'
+            'deps': [ 'jquery' ]
         },
         'moment-core': {
             'deps': [ 'jquery' ]
@@ -82,6 +69,7 @@ require(
 
         $.t = t;
 
+        // set language thanks to the i18n locale value
         moment.lang(requirejs.s.contexts._.config.config.i18n.locale.substr(0, 2));
 
         canvasView.render();

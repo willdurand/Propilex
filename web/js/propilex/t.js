@@ -3,10 +3,11 @@ define(
         'i18n!nls/strings'
     ],
     function (strings) {
-        var t = function (key, params) {
+        return function (key, params) {
             "use strict";
 
-            var string = this.t.data[key] || key;
+            var data = strings || {},
+                string = data[key] || key;
 
             if (typeof params !== "undefined") {
                 this.each(params, function (key, value) {
@@ -16,9 +17,5 @@ define(
 
             return string;
         };
-
-        t.data = strings || {};
-
-        return t;
     }
 );

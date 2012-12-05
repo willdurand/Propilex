@@ -6,9 +6,10 @@ define(
         'jquery',
         'backbone',
         'ventilator',
-        't'
+        't',
+        'key'
     ],
-    function (template, _, $, Backbone, ventilator, t) {
+    function (template, _, $, Backbone, ventilator, t, key) {
         "use strict";
 
         return new (Backbone.View.extend({
@@ -24,13 +25,22 @@ define(
                 ventilator.on('canvas:message:notice', function (message) {
                     this.addNotice(message);
                 }, this);
+
+                var that = this;
+                key('h', function () { that.displayHelp(); });
+                key('n', function () { ventilator.trigger('document:new'); });
+                key('l', function () { ventilator.trigger('document:all'); });
             },
 
             render: function () {
                 this.$el.html(this.template({
                     language: t('language'),
                     fr: t('language.fr'),
-                    en: t('language.en')
+                    en: t('language.en'),
+                    help: t('help'),
+                    helph: t('help.h'),
+                    helpl: t('help.l'),
+                    helpn: t('help.n')
                 }));
             },
 
@@ -51,6 +61,10 @@ define(
 
                 localStorage.setItem('locale', $(e.target).data('locale'));
                 location.reload();
+            },
+
+            displayHelp: function () {
+                this.$el.find('#help').modal();
             }
         }))();
     }

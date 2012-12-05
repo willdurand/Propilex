@@ -1,6 +1,10 @@
 define({
     'delete': 'Delete',
     'edit': 'Edit',
+    'help': 'Help',
+    'help.h': 'display this help',
+    'help.l': 'list all documents',
+    'help.n': 'add a new document',
     'language': 'Language',
     'language.en': 'English',
     'language.fr': 'French',

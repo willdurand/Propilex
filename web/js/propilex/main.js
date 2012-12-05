@@ -15,7 +15,8 @@ require({
         'bootstrap': '/components/bootstrap.css/js/bootstrap.min',
         'moment': '/components/moment/moment',
         'less': '/components/less.js/dist/less-1.3.1.min',
-        'i18n': '/components/requirejs-i18n/i18n'
+        'i18n': '/components/requirejs-i18n/i18n',
+        'key': '/components/keymaster/keymaster.min'
     },
 
     shim: {
@@ -51,6 +52,9 @@ require({
         'moment': {
             'deps': [ 'jquery' ],
             'exports': 'moment'
+        },
+        'key': {
+            'exports': 'key'
         }
     },
 

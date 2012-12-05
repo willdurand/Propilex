@@ -13,7 +13,8 @@ require({
         'underscore': '/components/lodash/lodash.min',
         'garlicjs': '/components/garlicjs/garlic',
         'bootstrap': '/components/bootstrap.css/js/bootstrap.min',
-        'moment': '/components/moment/moment',
+        'moment-core': '/components/moment/moment',
+        'moment': '/components/moment/lang/fr',
         'less': '/components/less.js/dist/less-1.3.1.min',
         'i18n': '/components/requirejs-i18n/i18n',
         'key': '/components/keymaster/keymaster.min'
@@ -49,9 +50,11 @@ require({
             'deps': [ 'jquery' ],
             'exports': '$'
         },
+        'moment-core': {
+            'deps': [ 'jquery' ]
+        },
         'moment': {
-            'deps': [ 'jquery' ],
-            'exports': 'moment'
+            'deps': [ 'moment-core' ]
         },
         'key': {
             'exports': 'key'
@@ -71,12 +74,15 @@ require(
         'views/canvas',
         'jquery',
         'backbone',
-        't'
+        't',
+        'moment'
     ],
-    function (router, canvasView, $, Backbone, t) {
+    function (router, canvasView, $, Backbone, t, moment) {
         "use strict";
 
         $.t = t;
+
+        moment.lang(requirejs.s.contexts._.config.config.i18n.locale.substr(0, 2));
 
         canvasView.render();
         $('body').prepend(canvasView.el);

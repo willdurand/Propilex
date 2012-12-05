@@ -1,8 +1,9 @@
 define(
     [
-        'i18n!nls/strings'
+        'i18n!nls/strings',
+        'underscore'
     ],
-    function (strings) {
+    function (strings, _) {
         return function (key, params) {
             "use strict";
 
@@ -10,7 +11,7 @@ define(
                 string = data[key] || key;
 
             if (typeof params !== "undefined") {
-                this.each(params, function (key, value) {
+                _.each(params, function (key, value) {
                     string = string.replace('%' + key + '%', value);
                 });
             }

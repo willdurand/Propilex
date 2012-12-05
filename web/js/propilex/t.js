@@ -17,7 +17,7 @@ define(
             return string;
         };
 
-        t.data = strings;
+        t.data = strings || {};
 
         return t;
     }

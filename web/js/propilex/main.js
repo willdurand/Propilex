@@ -52,6 +52,12 @@ require({
             'deps': [ 'jquery' ],
             'exports': 'moment'
         }
+    },
+
+    config: {
+        i18n: {
+            locale: localStorage.getItem('locale') || 'en-us'
+        }
     }
 });
 

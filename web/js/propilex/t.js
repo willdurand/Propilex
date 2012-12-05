@@ -1,24 +1,21 @@
 define(
     [
-        'i18n!nls/strings'
+        'i18n!nls/strings',
+        'underscore'
     ],
-    function (strings) {
-        var t = function (key, params) {
-            "use strict";
+    function (strings, _) {
+        "use strict";
 
-            var string = this.t.data[key] || key;
+        return function (key, params) {
+            var string = strings[key] || key;
 
             if (typeof params !== "undefined") {
-                this.each(params, function (key, value) {
+                _.each(params, function (value, key) {
                     string = string.replace('%' + key + '%', value);
                 });
             }
 
             return string;
         };
-
-        t.data = strings || {};
-
-        return t;
     }
 );

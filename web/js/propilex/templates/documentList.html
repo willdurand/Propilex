@@ -1,6 +1,6 @@
 <div class="row">
     <div class="span12">
-        <h2>My Documents</h2>
+        <h2><%- $.t('title.list') %></h2>
 
         <ul class="documents">
             <% _.each(collection, function (item) { %>
@@ -15,6 +15,6 @@
 
 <div class="row">
     <div class="span12">
-        <a href="" id="document-new" class="btn btn-primary"><i class="icon-plus-sign icon-white"></i> New document</a>
+        <a href="" id="document-new" class="btn btn-primary"><i class="icon-plus-sign icon-white"></i> <%- $.t('new') %></a>
     </div>
 </div>

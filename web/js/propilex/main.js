@@ -14,7 +14,8 @@ require({
         'garlicjs': '/components/garlicjs/garlic',
         'bootstrap': '/components/bootstrap.css/js/bootstrap.min',
         'moment': '/components/moment/moment',
-        'less': '/components/less.js/dist/less-1.3.1.min'
+        'less': '/components/less.js/dist/less-1.3.1.min',
+        'i18n': '/components/requirejs-i18n/i18n'
     },
 
     shim: {
@@ -59,10 +60,13 @@ require(
         'router',
         'views/canvas',
         'jquery',
-        'backbone'
+        'backbone',
+        't'
     ],
-    function (router, canvasView, $, Backbone) {
+    function (router, canvasView, $, Backbone, t) {
         "use strict";
+
+        $.t = t;
 
         canvasView.render();
         $('body').prepend(canvasView.el);

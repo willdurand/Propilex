@@ -33,7 +33,7 @@ define(
                 this.form.render();
 
                 this.$el.html(this.template({
-                    isNew: this.documentModel.isNew()
+                    document: this.documentModel
                 }));
 
                 this.$el.find('form')

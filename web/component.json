@@ -10,6 +10,7 @@
         "bootstrap.css": "2.1.*",
         "backbone-forms": "*",
         "garlicjs": "1.0.*",
-        "less.js": "1.3.*"
+        "less.js": "1.3.*",
+        "requirejs-i18n": "2.0.*"
     }
 }

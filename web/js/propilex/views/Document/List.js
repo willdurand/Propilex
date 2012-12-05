@@ -32,13 +32,13 @@ define(
             onClickItem: function (e) {
                 e.preventDefault();
 
-                this.ventilator.trigger('document:detail', $(e.currentTarget).data('id'));
+                this.ventilator.trigger('document:get', $(e.currentTarget).data('id'));
             },
 
             onClickNew: function (e) {
                 e.preventDefault();
 
-                this.ventilator.trigger('document:new');
+                this.ventilator.trigger('document:create');
             }
         });
     }

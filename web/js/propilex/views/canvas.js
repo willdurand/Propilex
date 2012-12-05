@@ -28,7 +28,7 @@ define(
 
                 var that = this;
                 key('h', function () { that.displayHelp(); });
-                key('n', function () { ventilator.trigger('document:new'); });
+                key('n', function () { ventilator.trigger('document:create'); });
                 key('l', function () { ventilator.trigger('document:all'); });
             },
 

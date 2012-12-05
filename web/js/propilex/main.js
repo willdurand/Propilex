@@ -1,3 +1,4 @@
+/*globals requirejs: true */
 require({
     deps: [
         'bootstrap',
@@ -22,7 +23,7 @@ require({
 
     shim: {
         'bootstrap': {
-            'deps': [ 'jquery' ],
+            'deps': [ 'jquery' ]
         },
         'backbone': {
             'deps': [ 'underscore', 'jquery' ],

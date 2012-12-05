@@ -1,5 +1,5 @@
 define(function (require) {
-    var t = require('t')
+    var t = require('t'),
         $ = require('jquery');
 
     QUnit.module('tTest');
@@ -9,12 +9,16 @@ define(function (require) {
     });
 
     QUnit.test('returns the string if not in the catalog', function () {
-        QUnit.strictEqual('should_not_exist', t('should_not_exist'));
+        QUnit.strictEqual(t('should_not_exist'), 'should_not_exist');
     });
 
     QUnit.test('can be exposed through $', function () {
         $.t = t;
 
-        QUnit.strictEqual('foo', $.t('foo'));
+        QUnit.strictEqual($.t('foo'), 'This is foo');
+    });
+
+    QUnit.test('replaces placeholders by their values', function () {
+        QUnit.strictEqual(t('bar', { name: 'Sparta' }), 'This is Sparta');
     });
 });

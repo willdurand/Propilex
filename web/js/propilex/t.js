@@ -4,14 +4,13 @@ define(
         'underscore'
     ],
     function (strings, _) {
-        return function (key, params) {
-            "use strict";
+        "use strict";
 
-            var data = strings || {},
-                string = data[key] || key;
+        return function (key, params) {
+            var string = strings[key] || key;
 
             if (typeof params !== "undefined") {
-                _.each(params, function (key, value) {
+                _.each(params, function (value, key) {
                     string = string.replace('%' + key + '%', value);
                 });
             }

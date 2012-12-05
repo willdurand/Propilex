@@ -3,13 +3,16 @@ Propilex
 
 A [Silex](http://silex.sensiolabs.org) application which uses
 [Propel](http://propelorm.org),
-[Backbone.JS](http://backbonejs.org/), but also
-[Bower](http://twitter.github.com/bower/) as browser package manager,
-[RequireJS](http://requirejs.org/),
-[Garlic.js](garlicjs.org),
-[Moment.js](http://momentjs.com/),
-[Twitter Bootstrap](http://twitter.github.com/bootstrap/),
-and [Less CSS](http://lesscss.org/).
+[Backbone.JS](http://backbonejs.org/), but also:
+
+* [Bower](http://twitter.github.com/bower/) as browser package manager;
+* [RequireJS](http://requirejs.org/);
+* [Garlic.js](garlicjs.org);
+* [Moment.js](http://momentjs.com/);
+* [Twitter Bootstrap](http://twitter.github.com/bootstrap/);
+* [Less CSS](http://lesscss.org/);
+* [Backbone.Forms](https://github.com/powmedia/backbone-forms);
+* [Keymaster](https://github.com/madrobby/keymaster).
 
 
 Installation
@@ -58,7 +61,7 @@ Screenshots
 ![](https://raw.github.com/willdurand/Propilex/master/doc/screenshot_2.png)
 
 
-Credits
+License
 -------
 
-Inspired by: http://www.jamesyu.org/2011/01/27/cloudedit-a-backbone-js-tutorial-by-example/
+Propilex is released under the MIT License. See the bundled LICENSE file for details.

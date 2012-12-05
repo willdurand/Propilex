@@ -1,3 +1,4 @@
+/*global window */
 define(
     [
         'text!templates/canvas.html',
@@ -28,6 +29,10 @@ define(
                 $('.messages').append(this.noticeTemplate({
                     message: message
                 }));
+
+                window.setTimeout(function() {
+                    $('.messages > div:last-child').hide();
+                }, 3000);
             }
         }))();
     }

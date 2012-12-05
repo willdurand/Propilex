@@ -3,9 +3,10 @@ define(
         'moment',
         'underscore',
         'jquery',
-        'backbone'
+        'backbone',
+        't'
     ],
-    function (moment, _, $, Backbone) {
+    function (moment, _, $, Backbone, t) {
         "use strict";
 
         return Backbone.Model.extend({
@@ -17,8 +18,8 @@ define(
             },
 
             schema: {
-                title: { type: 'Text', validators: [ 'required' ] },
-                body:  { type: 'TextArea', validators: [ 'required' ] }
+                title: { type: 'Text', validators: [ 'required' ], title: t('form.title') },
+                body:  { type: 'TextArea', validators: [ 'required' ], title: t('form.body') }
             },
 
             url : function() {

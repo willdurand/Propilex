@@ -1,6 +1,8 @@
 define({
     'delete': 'Delete',
     'edit': 'Edit',
+    'form.title': 'Title',
+    'form.body': 'Body',
     'help': 'Help',
     'help.h': 'display this help',
     'help.l': 'list all documents',

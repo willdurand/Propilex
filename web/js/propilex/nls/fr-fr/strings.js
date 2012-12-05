@@ -1,6 +1,8 @@
 define({
-    'edit': 'Modifier',
     'delete': 'Supprimer',
+    'edit': 'Modifier',
+    'form.title': 'Titre',
+    'form.body': 'Contenu',
     'help': 'Aide',
     'help.h': 'affiche cette aide',
     'help.l': 'liste tous vos documents',

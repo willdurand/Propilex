@@ -6,6 +6,7 @@
         paths: {
             'i18n': '/components/requirejs-i18n/i18n',
             'jquery': '/components/jquery/jquery',
+            'underscore': '/components/lodash/lodash.min'
         }
     });
 

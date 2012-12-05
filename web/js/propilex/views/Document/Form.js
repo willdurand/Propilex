@@ -5,9 +5,10 @@ define(
         'jquery',
         'backbone',
         'backbone-forms',
-        'garlicjs'
+        'garlicjs',
+        't'
     ],
-    function (template, _, $, Backbone) {
+    function (template, _, $, Backbone, t) {
         "use strict";
 
         return Backbone.View.extend({
@@ -56,7 +57,7 @@ define(
 
                     that.ventilator.trigger(
                         'canvas:message:notice',
-                        $.t('message.save', { title: that.documentModel.get('title') })
+                        t('message.save', { title: that.documentModel.get('title') })
                     );
                     that.ventilator.trigger('document:all');
                 });

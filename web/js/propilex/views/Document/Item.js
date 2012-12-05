@@ -3,9 +3,10 @@ define(
         'text!templates/documentItem.html',
         'underscore',
         'jquery',
-        'backbone'
+        'backbone',
+        't'
     ],
-    function (template, _, $, Backbone) {
+    function (template, _, $, Backbone, t) {
         return Backbone.View.extend({
             template: _.template(template),
 
@@ -38,7 +39,7 @@ define(
 
                 this.ventilator.trigger(
                     'canvas:message:notice',
-                    $.t('message.delete', { title: this.documentModel.get('title') })
+                    t('message.delete', { title: this.documentModel.get('title') })
                 );
                 this.ventilator.trigger('document:all');
             }

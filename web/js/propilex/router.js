@@ -14,6 +14,8 @@ define(
 
         return new (Backbone.Router.extend({
 
+            documentCollection: new DocumentCollection(),
+
             routes: {
                 '': 'all',
                 'document/new': 'create',
@@ -40,16 +42,14 @@ define(
             },
 
             all: function () {
-                var documentCollection,
-                    documentsView;
+                var documentsView;
 
-                documentCollection = new DocumentCollection();
-                documentsView      = new DocumentListView({
-                    documentCollection: documentCollection,
+                documentsView = new DocumentListView({
+                    documentCollection: this.documentCollection,
                     ventilator: ventilator
                 });
 
-                documentCollection.fetch().done(function () {
+                this.documentCollection.fetch().done(function () {
                     documentsView.render();
                     $('.main').removeClass('loading');
                 });

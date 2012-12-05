@@ -4,9 +4,9 @@ define(
         'underscore',
         'jquery',
         'backbone',
+        't',
         'backbone-forms',
-        'garlicjs',
-        't'
+        'garlicjs'
     ],
     function (template, _, $, Backbone, t) {
         "use strict";

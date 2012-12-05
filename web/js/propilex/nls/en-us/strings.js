@@ -4,6 +4,8 @@ define({
     'language': 'Language',
     'language.en': 'English',
     'language.fr': 'French',
+    'message.delete': 'Document "%title%" has been deleted.',
+    'message.save': 'Document "%title%" has been saved.',
     'new': 'New document',
     'save': 'Save',
     'title.edit': 'Editing %title%',

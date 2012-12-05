@@ -36,7 +36,10 @@ define(
 
                 this.documentModel.destroy();
 
-                this.ventilator.trigger('canvas:message:notice', 'Document successfully deleted');
+                this.ventilator.trigger(
+                    'canvas:message:notice',
+                    $.t('message.delete', { title: this.documentModel.get('title') })
+                );
                 this.ventilator.trigger('document:all');
             }
         });

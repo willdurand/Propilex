@@ -54,7 +54,10 @@ define(
                 this.documentModel.save().done(function () {
                     that.$el.find('form').garlic('destroy');
 
-                    that.ventilator.trigger('canvas:message:notice', 'Document successfully saved');
+                    that.ventilator.trigger(
+                        'canvas:message:notice',
+                        $.t('message.save', { title: that.documentModel.get('title') })
+                    );
                     that.ventilator.trigger('document:all');
                 });
             }

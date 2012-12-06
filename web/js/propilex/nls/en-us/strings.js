@@ -14,6 +14,7 @@ define({
     'language.fr': 'French',
     'message.delete': 'Document "%title%" has been deleted.',
     'message.save': 'Document "%title%" has been saved.',
+    'message.error.fetch': 'Something went wrong while trying to fetch data :(',
     'new': 'New document',
     'save': 'Save',
     'title.edit': 'Editing %title%',

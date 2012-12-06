@@ -14,6 +14,7 @@ define({
     'language.fr': 'Français',
     'message.delete': 'Le document "%title%" a bien été supprimé.',
     'message.save': 'Le document "%title%" a bien été enregistré.',
+    'message.error.fetch': 'Un problème est survenu lors de la tentative de récupération des données :(',
     'new': 'Nouveau document',
     'save': 'Enregistrer',
     'title.edit': 'Edition de %title%',

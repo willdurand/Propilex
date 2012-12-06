@@ -3,13 +3,14 @@ define(
         'ventilator',
         'jquery',
         'backbone',
+        't',
         'models/Document',
         'collections/Document',
         'views/Document/Item',
         'views/Document/Form',
         'views/Document/List'
     ],
-    function (ventilator, $, Backbone, DocumentModel, DocumentCollection, DocumentItemView, DocumentFormView, DocumentListView) {
+    function (ventilator, $, Backbone, t, DocumentModel, DocumentCollection, DocumentItemView, DocumentFormView, DocumentListView) {
         "use strict";
 
         return new (Backbone.Router.extend({
@@ -52,10 +53,15 @@ define(
                 documentsView.render();
                 $('.main').html(documentsView.el);
 
-                this.documentCollection.fetch().done(function () {
-                    documentsView.render();
-                    $('.main').removeClass('loading');
-                });
+                this.documentCollection.fetch()
+                    .done(function () {
+                        documentsView.render();
+                        $('.main').removeClass('loading');
+                    })
+                    .fail(function () {
+                        ventilator.trigger('canvas:message:error', t('message.error.fetch'));
+                        $('.main').removeClass('loading');
+                    });
             },
 
             get: function (id) {

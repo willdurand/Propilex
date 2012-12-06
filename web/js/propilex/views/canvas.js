@@ -15,7 +15,7 @@ define(
         return new (Backbone.View.extend({
             template: _.template(template),
 
-            noticeTemplate: _.template($(template).filter('#message-notice').html()),
+            messageTemplate: _.template($(template).filter('#message').html()),
 
             events: {
                 'click .languages a': 'onSelectLanguage'
@@ -23,7 +23,11 @@ define(
 
             initialize: function () {
                 ventilator.on('canvas:message:notice', function (message) {
-                    this.addNotice(message);
+                    this.addMessage(message, 'info');
+                }, this);
+
+                ventilator.on('canvas:message:error', function (message) {
+                    this.addMessage(message, 'error');
                 }, this);
 
                 var that = this;
@@ -44,9 +48,10 @@ define(
                 }));
             },
 
-            addNotice: function (message) {
-                var $message = $(this.noticeTemplate({
-                    message: message
+            addMessage: function (message, level) {
+                var $message = $(this.messageTemplate({
+                    message: message,
+                    level: level
                 }));
 
                 $('.messages').append($message);

@@ -53,15 +53,10 @@ define(
                 documentsView.render();
                 $('.main').html(documentsView.el);
 
-                this.documentCollection.fetch()
-                    .done(function () {
-                        documentsView.render();
-                        $('.main').removeClass('loading');
-                    })
-                    .fail(function () {
-                        ventilator.trigger('canvas:message:error', t('message.error.fetch'));
-                        $('.main').removeClass('loading');
-                    });
+                this.documentCollection.fetch().done(function () {
+                    documentsView.render();
+                    $('.main').removeClass('loading');
+                });
             },
 
             get: function (id) {

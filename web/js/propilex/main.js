@@ -63,12 +63,24 @@ require(
         'jquery',
         'backbone',
         't',
-        'moment'
+        'moment',
+        'ventilator'
     ],
-    function (router, canvasView, $, Backbone, t, moment) {
+    function (router, canvasView, $, Backbone, t, moment, ventilator) {
         "use strict";
 
+        // expose t in templates
         $.t = t;
+
+        // configure ajax error handling
+        $.ajaxSetup({
+            statusCode: {
+                500: function () {
+                    ventilator.trigger('canvas:message:error', t('error.internal_server_error'));
+                    $('.main').removeClass('loading');
+                }
+            }
+        });
 
         // set language thanks to the i18n locale value
         moment.lang(requirejs.s.contexts._.config.config.i18n.locale.substr(0, 2));

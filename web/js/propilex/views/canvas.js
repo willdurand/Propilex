@@ -64,7 +64,7 @@ define(
             },
 
             displayHelp: function () {
-                this.$el.find('#help').modal();
+                this.$('#help').modal();
             }
         }))();
     }

@@ -37,7 +37,7 @@ define(
                     document: this.documentModel
                 }));
 
-                this.$el.find('form')
+                this.$('form')
                     .prepend(this.form.el)
                     .garlic({ conflictManager: {
                         message: t('form.conflict')
@@ -55,7 +55,7 @@ define(
                 }
 
                 this.documentModel.save().done(function () {
-                    that.$el.find('form').garlic('destroy');
+                    that.$('form').garlic('destroy');
 
                     that.ventilator.trigger(
                         'canvas:message:notice',

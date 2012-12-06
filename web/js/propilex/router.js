@@ -49,13 +49,13 @@ define(
                     ventilator: ventilator
                 });
 
+                documentsView.render();
+                $('.main').html(documentsView.el);
+
                 this.documentCollection.fetch().done(function () {
                     documentsView.render();
                     $('.main').removeClass('loading');
                 });
-
-                documentsView.render();
-                $('.main').html(documentsView.el);
             },
 
             get: function (id) {
@@ -66,8 +66,12 @@ define(
                 documentModel = new DocumentModel({ id: id });
                 documentView  = new DocumentItemView({
                     documentModel: documentModel,
+                    documentCollection: this.documentCollection,
                     ventilator: ventilator
                 });
+
+                documentView.render();
+                $('.main').html(documentView.el);
 
                 documentModel.fetch()
                     .done(function () {
@@ -77,9 +81,6 @@ define(
                     .fail(function () {
                         that.all();
                     });
-
-                documentView.render();
-                $('.main').html(documentView.el);
             },
 
             create: function () {
@@ -106,13 +107,13 @@ define(
                     ventilator: ventilator
                 });
 
+                documentView.render();
+                $('.main').html(documentView.el);
+
                 documentModel.fetch().done(function () {
                     documentView.render();
                     $('.main').removeClass('loading');
                 });
-
-                documentView.render();
-                $('.main').html(documentView.el);
             }
         }))();
     }

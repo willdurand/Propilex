@@ -17,6 +17,7 @@ define(
 
             initialize: function (options) {
                 this.documentModel = options.documentModel;
+                this.documentCollection = options.documentCollection;
                 this.ventilator = options.ventilator;
 
                 $('.main').addClass('loading');
@@ -35,13 +36,16 @@ define(
             onClickDelete: function (e) {
                 e.preventDefault();
 
-                this.documentModel.destroy();
+                var that = this;
+                this.documentModel.destroy().done(function () {
+                    that.documentCollection.remove(this.documentModel);
 
-                this.ventilator.trigger(
-                    'canvas:message:notice',
-                    t('message.delete', { title: this.documentModel.get('title') })
-                );
-                this.ventilator.trigger('document:all');
+                    that.ventilator.trigger(
+                        'canvas:message:notice',
+                        t('message.delete', { title: that.documentModel.get('title') })
+                    );
+                    that.ventilator.trigger('document:all');
+                });
             }
         });
     }

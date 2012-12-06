@@ -41,7 +41,11 @@ Configure a database:
     mysql -uroot propilex < app/config/sql/Propilex.Model.schema.sql
 
 
-You're done!
+You're done! You can run the application using the PHP built-in webserver:
+
+    php -S 0.0.0.0:4000 -t web/
+
+Open `http://localhost:4000/` in your browser to see the Propilex running.
 
 
 Configuration

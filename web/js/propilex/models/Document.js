@@ -37,8 +37,8 @@ define(
             },
 
             getHumanizedDate: function () {
-                if (undefined !== this.get('created_at')) {
-                    return moment(this.get('created_at').date, this.dateFormat).fromNow();
+                if (null !== this.getCreatedAt()) {
+                    return this.getCreatedAt().fromNow();
                 }
 
                 return '';
@@ -48,6 +48,14 @@ define(
                 return _.extend(this.toJSON(), {
                     humanized_date: this.getHumanizedDate()
                 });
+            },
+
+            getCreatedAt: function () {
+                if (undefined !== this.get('created_at')) {
+                    return moment(this.get('created_at').date, this.dateFormat);
+                }
+
+                return null;
             }
         });
     }

@@ -27,12 +27,7 @@ define(
             },
 
             comparator: function (documentModel) {
-                var createdAt = moment(
-                        documentModel.get('created_at').date,
-                        documentModel.dateFormat
-                    );
-
-                return - createdAt.unix();
+                return - documentModel.getCreatedAt().unix();
             }
         });
     }

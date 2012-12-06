@@ -45,7 +45,7 @@ You're done! You can run the application using the PHP built-in webserver:
 
     php -S 0.0.0.0:4000 -t web/
 
-Open `http://localhost:4000/` in your browser to see the Propilex running.
+Open `http://localhost:4000/` in your browser to see Propilex running.
 
 
 Configuration

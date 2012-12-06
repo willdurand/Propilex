@@ -14,7 +14,7 @@ define({
     'language.fr': 'Français',
     'message.delete': 'Le document "%title%" a bien été supprimé.',
     'message.save': 'Le document "%title%" a bien été enregistré.',
-    'error.internal_server_error': 'Un problème est survenu lors de la tentative de récupération des données :(',
+    'error.internal_server_error': 'Un problème est survenu lors de la tentative de récupération des données.',
     'new': 'Nouveau document',
     'save': 'Enregistrer',
     'title.edit': 'Edition de %title%',

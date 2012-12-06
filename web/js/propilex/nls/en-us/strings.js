@@ -3,6 +3,7 @@ define({
     'edit': 'Edit',
     'form.body': 'Body',
     'form.conflict': 'This data is your saved data, not the current one. Click here to see it.',
+    'form.required': 'This field is required',
     'form.title': 'Title',
     'help': 'Help',
     'help.h': 'display this help',

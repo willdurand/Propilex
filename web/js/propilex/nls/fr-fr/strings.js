@@ -3,6 +3,7 @@ define({
     'edit': 'Modifier',
     'form.body': 'Contenu',
     'form.conflict': 'Cette information a été sauvegardée, ce n\'est pas l\'actuelle. Cliquer ici pour la voir.',
+    'form.required': 'Cette information est obligatoire',
     'form.title': 'Titre',
     'help': 'Aide',
     'help.h': 'affiche cette aide',

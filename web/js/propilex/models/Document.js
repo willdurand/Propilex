@@ -18,8 +18,8 @@ define(
             },
 
             schema: {
-                title: { type: 'Text', validators: [ 'required' ], title: t('form.title') },
-                body:  { type: 'TextArea', validators: [ 'required' ], title: t('form.body') }
+                title: { type: 'Text', validators: [ { type: 'required', message: t('form.required') } ], title: t('form.title') },
+                body:  { type: 'TextArea', validators: [ { type: 'required', message: t('form.required') } ], title: t('form.body') }
             },
 
             url : function() {

@@ -1,5 +1,6 @@
 app/config/conf/
 app/config/sql/
+app/config/runtime-conf.xml
 src/Propilex/Model/om/
 src/Propilex/Model/map/
 vendor

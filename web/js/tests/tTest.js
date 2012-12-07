@@ -2,7 +2,7 @@ define(function (require) {
     var t = require('t'),
         $ = require('jquery');
 
-    QUnit.module('tTest');
+    QUnit.module('t');
 
     QUnit.test('is a function', function () {
         QUnit.strictEqual(typeof t, 'function');

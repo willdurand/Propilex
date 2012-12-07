@@ -3,4 +3,8 @@
 CURRENT_DIR=`pwd`
 
 export PHP_CLASSPATH="$CURRENT_DIR/vendor/phing/phing/classes"
-$CURRENT_DIR/vendor/propel/propel1/generator/bin/propel-gen app/config main
+$CURRENT_DIR/vendor/propel/propel1/generator/bin/propel-gen app/config main > /dev/null
+
+if [ 0 -eq $? ] ; then
+    echo 'Ok';
+fi

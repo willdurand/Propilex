@@ -6,6 +6,7 @@ php:
 before_script:
     - curl -s http://getcomposer.org/installer | php
     - php composer.phar install --dev
+    - cp app/config/runtime-conf.xml.dist app/config/runtime-conf.xml
     - bin/bootstrap
     - mysql -uroot -e 'CREATE DATABASE propilex'
     - mysql -uroot propilex < app/config/sql/Propilex.Model.schema.sql

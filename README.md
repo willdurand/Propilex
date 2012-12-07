@@ -31,6 +31,7 @@ And browser dependencies using [Bower](http://twitter.github.com/bower/):
 
 Build Model classes, SQL, and the configuration:
 
+    cp app/config/runtime-conf.xml.dist app/config/runtime-conf.xml
     bin/bootstrap
 
 
@@ -54,6 +55,7 @@ Configuration
 All the configuration is located in the `app/config/` directory.
 
 * `runtime-conf.xml` contains the database configuration, if you modify it, don't forget to rebuild things by using the previous command;
+* `build.properties` you should **not** edit this file, except to change the database vendor (`mysql` by default);
 * `config.php` you should **not** edit this file, except to turn on/off debugging stuffs.
 
 

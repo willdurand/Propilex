@@ -67,6 +67,35 @@ Screenshots
 ![](https://raw.github.com/willdurand/Propilex/master/doc/screenshot_2.png)
 
 
+Unit Tests
+----------
+
+First, install the application as described in section _Installation_.
+
+### Backend
+
+Install dev depedencies:
+
+    php composer.phar install --dev
+
+Then run the testsuite:
+
+    phpunit
+
+
+### Frontend
+
+In a browser, open `/js/tests/index.html`.
+
+In a shell, install [PhantomJS](http://phantomjs.org/), start the web server:
+
+    php -S localhost:4000 -t web/
+
+And run the following comand:
+
+    phantomjs web/js/tests/run-qunit.js http://localhost:4000/js/tests/index.html
+
+
 License
 -------
 

@@ -1,6 +1,8 @@
 Propilex
 ========
 
+[![Build Status](https://secure.travis-ci.org/willdurand/Propilex.png?branch=master)](https://travis-ci.org/willdurand/Propilex)
+
 A [Silex](http://silex.sensiolabs.org) application which uses
 [Propel](http://propelorm.org),
 [Backbone.JS](http://backbonejs.org/), but also:
@@ -70,7 +72,7 @@ Screenshots
 Unit Tests
 ----------
 
-First, install the application as described in section _Installation_.
+First, install the application as described in section [Installation](#installation).
 
 ### Backend
 

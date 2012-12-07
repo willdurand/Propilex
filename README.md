@@ -82,7 +82,7 @@ Install dev depedencies:
 
 Then run the testsuite:
 
-    phpunit
+    bin/phpunit
 
 
 ### Frontend

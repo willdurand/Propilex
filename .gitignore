@@ -6,3 +6,5 @@ src/Propilex/Model/map/
 vendor
 !vendor/silex.phar
 web/components/
+bin/phpunit
+bin/propel*

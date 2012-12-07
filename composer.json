@@ -9,7 +9,8 @@
         "symfony/validator": "2.1.*"
     },
     "require-dev": {
-        "symfony/browser-kit": "2.1.*"
+        "symfony/browser-kit": "2.1.*",
+        "phpunit/phpunit": "3.7.*"
     },
     "autoload": {
         "psr-0": { "Propilex": "src" }
@@ -19,5 +20,8 @@
             "name": "William DURAND",
             "email": "william.durand1@gmail.com"
         }
-    ]
+    ],
+    "config": {
+        "bin-dir": "bin/"
+    }
 }

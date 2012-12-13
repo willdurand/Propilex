@@ -10,8 +10,8 @@ before_script:
     - bin/bootstrap
     - mysql -uroot -e 'CREATE DATABASE propilex'
     - mysql -uroot propilex < app/config/sql/Propilex.Model.schema.sql
-    - npm install bower
-    - cd web && bower install
+    - npm install -g bower
+    - cd web && bower install && cd ..
 
 script:
     - phpunit --coverage-text

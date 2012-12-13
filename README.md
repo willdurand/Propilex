@@ -89,13 +89,9 @@ Then run the testsuite:
 
 In a browser, open `/js/tests/index.html`.
 
-In a shell, install [PhantomJS](http://phantomjs.org/), start the web server:
+In a shell, install [PhantomJS](http://phantomjs.org/), and run the following comand:
 
-    php -S localhost:4000 -t web/
-
-And run the following comand:
-
-    phantomjs web/js/tests/run-qunit.js http://localhost:4000/js/tests/index.html
+    phantomjs web/js/tests/run-qunit.js file://`pwd`/web/js/tests/index.html
 
 
 License

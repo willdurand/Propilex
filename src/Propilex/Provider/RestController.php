@@ -34,7 +34,7 @@ class RestController implements ControllerProviderInterface
     public function connect(Application $app)
     {
         $modelName = $this->modelName;
-        $prefix    = sprintf('rest_controller.%s.', $this->modelName);
+        $prefix    = sprintf('rest_controller.%s', $this->modelName);
 
         $pluralizer = new \StandardEnglishPluralizer();
         $modelNamePlural = $pluralizer->getPluralForm($modelName);

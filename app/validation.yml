@@ -1,6 +1,6 @@
 Propilex\Model\Document:
     getters:
         title:
-            - NotBlank:
+            - NotBlank: ~
         body:
-            - NotBlank:
+            - NotBlank: ~ 

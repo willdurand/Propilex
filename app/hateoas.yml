@@ -1,0 +1,18 @@
+hateoas:
+    resources:
+        Propilex\Model\Document:
+            - { route: 'rest_controller.document_get', parameters: [ 'id' ], rel: 'self', type: 'application/vnd.propilex.document' }
+
+    collections:
+        Propilex\Model\Document:
+            links:
+                - { route: 'rest_controller.document_all', rel: 'self', type: 'application/vnd.propilex.document' }
+                - { route: 'rest_controller.document_all', parameters: [ page: 'firstPage' ],     rel: 'first',    type: 'application/vnd.propilex.document' }
+                - { route: 'rest_controller.document_all', parameters: [ page: 'lastPage' ],      rel: 'last',     type: 'application/vnd.propilex.document' }
+                - { route: 'rest_controller.document_all', parameters: [ page: 'nextPage' ],      rel: 'next',     type: 'application/vnd.propilex.document' }
+                - { route: 'rest_controller.document_all', parameters: [ page: 'previousPage' ],  rel: 'previous', type: 'application/vnd.propilex.document' }
+
+            attributes:
+                page: 'page'
+                limit: 'maxPerPage'
+                total: 'nbResults'

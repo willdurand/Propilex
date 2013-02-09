@@ -5,8 +5,12 @@
         "propel/propel-service-provider": "0.0.*",
         "propel/propel1": "1.6.*@dev",
         "silex/silex": "1.0.*@dev",
-        "symfony/yaml": "2.1.*",
-        "symfony/validator": "2.1.*"
+        "symfony/validator": "2.1.*",
+        "willdurand/hateoas": "0.0.*",
+        "symfony/property-access": "2.2.*@dev",
+        "symfony/yaml": "2.2.*@dev",
+        "jms/metadata": "1.2.*@dev",
+        "jms/serializer": "1.0.*@dev"
     },
     "require-dev": {
         "symfony/browser-kit": "2.1.*",

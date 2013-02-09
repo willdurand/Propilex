@@ -1,0 +1,13 @@
+Propilex\Model\om\BaseDocument:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+        title:
+            expose: true
+        body:
+            expose: true
+        created_at:
+            expose: true
+        updated_at:
+            expose: true

@@ -74,11 +74,12 @@ class RestController implements ControllerProviderInterface
          * Returns all objects
          */
         $controllers->get('/', function () use ($app, $prefix, $modelNamePlural) {
-            $query = new $app[$prefix.'query_class'];
+            $query   = new $app[$prefix.'query_class'];
+            $objects = $query->paginate();
 
-            return $app->json(array(
-                $modelNamePlural => $query->find()->toArray(null, false, \BasePeer::TYPE_FIELDNAME),
-            ));
+            return new Response($app['hateoas_serializer']->serialize(
+                $app['hateoas_builder']->createCollection($objects, $app[$prefix.'model_class']), 'json'
+            ), 200, array('Content-Type' => 'application/json'));
         })->bind($prefix . '_all');
 
         /**
@@ -94,8 +95,8 @@ class RestController implements ControllerProviderInterface
                 );
             }
 
-            $response = new JsonResponse(array(
-                $modelName => $object->toArray(),
+            $response = new Response($app['hateoas_serializer']->serialize(
+                $app['hateoas_builder']->create($object), 'json'
             ));
 
             if (isset($app[$prefix.'last_modified_getter'])) {

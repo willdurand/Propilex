@@ -17,7 +17,7 @@ define(
             },
 
             parse: function (responseObject) {
-                return responseObject.documents;
+                return responseObject.resources;
             },
 
             presenter: function () {

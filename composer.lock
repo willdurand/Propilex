@@ -973,16 +973,16 @@
         },
         {
             "name": "willdurand/hateoas",
-            "version": "0.0.5",
+            "version": "0.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/willdurand/Hateoas",
-                "reference": "0.0.5"
+                "reference": "0.0.6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/willdurand/Hateoas/zipball/0.0.5",
-                "reference": "0.0.5",
+                "url": "https://api.github.com/repos/willdurand/Hateoas/zipball/0.0.6",
+                "reference": "0.0.6",
                 "shasum": ""
             },
             "require": {
@@ -994,7 +994,7 @@
                 "symfony/routing": "Required if you want to use the LinkBuilder",
                 "symfony/yaml": "Required if you want to use the YamlConfig"
             },
-            "time": "2013-02-10 03:25:13",
+            "time": "2013-02-10 03:57:19",
             "type": "library",
             "autoload": {
                 "psr-0": {

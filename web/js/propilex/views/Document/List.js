@@ -13,7 +13,9 @@ define(
 
             events: {
                 'click .document-item': 'onClickItem',
-                'click #document-new': 'onClickNew'
+                'click #document-new': 'onClickNew',
+                'click .prev': 'onClickPrev',
+                'click .next': 'onClickNext'
             },
 
             initialize: function (options) {
@@ -39,6 +41,28 @@ define(
                 e.preventDefault();
 
                 this.ventilator.trigger('document:create');
+            },
+
+            onClickPrev: function (e) {
+                e.preventDefault();
+
+                var view = this;
+
+                this.documentCollection.previousPage();
+                this.documentCollection.fetch().done(function () {
+                    view.render();
+                });
+            },
+
+            onClickNext: function (e) {
+                e.preventDefault();
+
+                var view = this;
+
+                this.documentCollection.nextPage();
+                this.documentCollection.fetch().done(function () {
+                    view.render();
+                });
             }
         });
     }

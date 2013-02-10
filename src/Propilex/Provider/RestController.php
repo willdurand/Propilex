@@ -73,9 +73,9 @@ class RestController implements ControllerProviderInterface
         /**
          * Returns all objects
          */
-        $controllers->get('/', function () use ($app, $prefix, $modelNamePlural) {
+        $controllers->get('/', function (Request $request) use ($app, $prefix, $modelNamePlural) {
             $query   = new $app[$prefix.'query_class'];
-            $objects = $query->paginate();
+            $objects = $query->paginate($request->query->get('page', 1));
 
             return new Response($app['hateoas_serializer']->serialize(
                 $app['hateoas_builder']->createCollection($objects, $app[$prefix.'model_class']), 'json'

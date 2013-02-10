@@ -11,12 +11,19 @@ define(
 
         return Backbone.Collection.extend({
             model: DocumentModel,
+            page:  1,
+            total: 0,
+            limit: 0,
 
-            initialize: function (models, options) {
-                this.url = $('body').data('api-url') + '/documents/';
+            url: function () {
+                return $('body').data('api-url') + '/documents/?page=' + this.page;
             },
 
             parse: function (responseObject) {
+                this.page  = responseObject.page;
+                this.total = responseObject.total;
+                this.limit = responseObject.limit;
+
                 return responseObject.resources;
             },
 
@@ -28,6 +35,20 @@ define(
 
             comparator: function (documentModel) {
                 return - documentModel.getCreatedAt().unix();
+            },
+
+            previousPage: function () {
+                if (this.page > 1) {
+                    this.page = this.page - 1;
+                }
+            },
+
+            nextPage: function () {
+                var max = Math.ceil(this.total / this.limit);
+
+                if (this.page < max) {
+                    this.page = this.page + 1;
+                }
             }
         });
     }

@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\Mapping\ClassMetadataFactory;
 use Symfony\Component\Validator\Mapping\Loader\YamlFileLoader;
 use Hateoas\Hateoas;
-use Hateoas\Builder\LinkBuilder;
+use Hateoas\Builder\RouteAwareLinkBuilder;
 use Hateoas\Builder\ResourceBuilder;
 use Hateoas\Factory\Config\YamlConfig;
 use Hateoas\Factory\RouteAwareFactory;
@@ -17,14 +17,14 @@ $app['validator.mapping.class_metadata_factory'] = new ClassMetadataFactory(
     new YamlFileLoader(__DIR__ . '/validation.yml')
 );
 
-// Configure a Hateoas services
+// Configure Hateoas services
 $app['hateoas_serializer'] = Hateoas::getSerializer(array(
     ''           => __DIR__ . '/serializer',
     'Propilex'   => __DIR__ . '/serializer',
 ), $app['debug']);
 $app['hateoas_builder']    = new ResourceBuilder(
     new RouteAwareFactory(new YamlConfig(__DIR__ . '/hateoas.yml')),
-    new LinkBuilder($app['url_generator'])
+    new RouteAwareLinkBuilder($app['url_generator'])
 );
 
 /**

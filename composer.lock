@@ -533,12 +533,12 @@
             "source": {
                 "type": "git",
                 "url": "git://github.com/fabpot/Silex.git",
-                "reference": "3563829af174cae24d99938c8c1dab45c33946fa"
+                "reference": "c2ac686ecdbbb9343a9ca1aa85d8f977ba3e7448"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/Silex/zipball/3563829af174cae24d99938c8c1dab45c33946fa",
-                "reference": "3563829af174cae24d99938c8c1dab45c33946fa",
+                "url": "https://api.github.com/repos/fabpot/Silex/zipball/c2ac686ecdbbb9343a9ca1aa85d8f977ba3e7448",
+                "reference": "c2ac686ecdbbb9343a9ca1aa85d8f977ba3e7448",
                 "shasum": ""
             },
             "require": {
@@ -574,7 +574,7 @@
                 "symfony/css-selector": ">=2.1,<2.3-dev",
                 "symfony/dom-crawler": ">=2.1,<2.3-dev"
             },
-            "time": "2013-02-08 11:41:41",
+            "time": "2013-02-09 19:49:37",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -973,16 +973,16 @@
         },
         {
             "name": "willdurand/hateoas",
-            "version": "0.0.4",
+            "version": "0.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/willdurand/Hateoas",
-                "reference": "0.0.4"
+                "reference": "0.0.5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/willdurand/Hateoas/zipball/0.0.4",
-                "reference": "0.0.4",
+                "url": "https://api.github.com/repos/willdurand/Hateoas/zipball/0.0.5",
+                "reference": "0.0.5",
                 "shasum": ""
             },
             "require": {
@@ -994,7 +994,7 @@
                 "symfony/routing": "Required if you want to use the LinkBuilder",
                 "symfony/yaml": "Required if you want to use the YamlConfig"
             },
-            "time": "2013-02-09 00:33:18",
+            "time": "2013-02-10 03:25:13",
             "type": "library",
             "autoload": {
                 "psr-0": {

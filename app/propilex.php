@@ -3,7 +3,6 @@
 $app = require_once __DIR__ . '/config/config.php';
 
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\Mapping\ClassMetadataFactory;
 use Symfony\Component\Validator\Mapping\Loader\YamlFileLoader;
 use Hateoas\Hateoas;

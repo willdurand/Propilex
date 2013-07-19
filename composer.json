@@ -1,6 +1,7 @@
 {
     "name": "willdurand/propilex",
     "description": "Silex + Propel + Backbone",
+    "license": "MIT",
     "require": {
         "propel/propel-service-provider": "0.0.*",
         "propel/propel1": "1.6.*@dev",

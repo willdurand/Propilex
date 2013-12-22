@@ -16,15 +16,19 @@ define(
             limit: 0,
 
             url: function () {
-                return $('body').data('api-url') + '/documents/?page=' + this.page;
+                return [
+                    $('body').data('api-url'),
+                    '/documents',
+                    '?page=', this.page
+                ].join('');
             },
 
             parse: function (responseObject) {
                 this.page  = responseObject.page;
-                this.total = responseObject.total;
+                this.total = responseObject.pages;
                 this.limit = responseObject.limit;
 
-                return responseObject.resources;
+                return responseObject.documents;
             },
 
             presenter: function () {

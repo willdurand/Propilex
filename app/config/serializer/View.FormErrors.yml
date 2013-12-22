@@ -1,0 +1,7 @@
+Propilex\View\FormErrors:
+    xml_root_name: errors
+    properties:
+        errors:
+            xml_list:
+                inline: true
+                entry_name: error

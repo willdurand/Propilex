@@ -1,0 +1,10 @@
+Propilex\Model\Document:
+    exclusion_policy: ALL
+    xml_root_name: document
+    relations:
+        -
+            rel: self
+            href:
+                route: document_get
+                parameters: { id: expr(object.getId()) }
+                absolute: true

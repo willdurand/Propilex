@@ -1,6 +1,6 @@
 <?php
 
-namespace Propilex\Tests;
+namespace Propilex\Tests\Controller;
 
 use Silex\WebTestCase;
 
@@ -8,17 +8,17 @@ class DocumentRestControllerTest extends WebTestCase
 {
     public function createApplication()
     {
-        $app = require __DIR__ . '/../../../app/propilex.php';
+        $app = require __DIR__ . '/../../../../app/propilex.php';
         $app['debug'] = true;
         $app['exception_handler']->disable();
 
-        return $app;
+        return include_once __DIR__ . '/../../../../app/stack.php';
     }
 
     public function testGetDocuments()
     {
         $client   = $this->createClient();
-        $crawler  = $client->request('GET', '/documents/');
+        $crawler  = $client->request('GET', '/documents');
         $response = $client->getResponse();
 
         $this->assertJsonResponse($response);

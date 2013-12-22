@@ -3,10 +3,10 @@
     <propel>
         <datasources default="propilex">
             <datasource id="propilex">
-                <adapter>mysql</adapter>
+                <adapter>sqlite</adapter>
                 <connection>
-                    <dsn>mysql:host=127.0.0.1;dbname=propilex</dsn>
-                    <user>root</user>
+                    <dsn>sqlite:/tmp/database.db</dsn>
+                    <user></user>
                     <password></password>
                 </connection>
             </datasource>

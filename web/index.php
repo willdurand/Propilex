@@ -6,4 +6,5 @@ if (php_sapi_name() === 'cli-server' && is_file($filename)) {
 }
 
 $app = require_once __DIR__ . '/../app/propilex.php';
-$app->run();
+$app = include_once __DIR__ . '/../app/stack.php';
+Stack\run($app);

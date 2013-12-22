@@ -1,0 +1,9 @@
+Propilex\View\FieldError:
+    exclusion_policy: ALL
+    xml_root_name: error
+    properties:
+        field:
+            expose: true
+            xml_attribute: true
+        message:
+            expose: true

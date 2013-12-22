@@ -1,0 +1,6 @@
+Propilex\Model\DocumentCollection:
+    xml_root_name: documents
+    properties:
+        documents:
+            xml_list:
+                entry_name: document

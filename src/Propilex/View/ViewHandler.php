@@ -10,15 +10,18 @@ class ViewHandler
 {
     private $serializer;
 
-    public function __construct(SerializerInterface $serializer)
+    private $request;
+
+    public function __construct(SerializerInterface $serializer, Request $request)
     {
         $this->serializer = $serializer;
+        $this->request    = $request;
     }
 
-    public function handle(Request $request, $data, $statusCode = 200, array $headers = [])
+    public function handle($data, $statusCode = 200, array $headers = [])
     {
-        $format   = $request->attributes->get('_format');
-        $mimeType = $request->attributes->get('_mime_type');
+        $format   = $this->request->attributes->get('_format');
+        $mimeType = $this->request->attributes->get('_mime_type');
 
         if (empty($format) || 'html' === $format) {
             $format   = 'json';

@@ -26,13 +26,13 @@ class DocumentController
             true
         );
 
-        return $app['view_handler']->handle($request, $documents);
+        return $app['view_handler']->handle($documents);
     }
 
     public function getAction(Request $request, Application $app, $id)
     {
         $document = $this->findDocument($app, $id);
-        $response = $app['view_handler']->handle($request, $document);
+        $response = $app['view_handler']->handle($document);
         $response->setLastModified($document->getUpdatedAt());
 
         return $response;
@@ -44,12 +44,12 @@ class DocumentController
         $document->fromArray($request->request->all(), \BasePeer::TYPE_FIELDNAME);
 
         if (true !== $errors = $app['document_validator']($document)) {
-            return $app['view_handler']->handle($app['request'], $errors, 400);
+            return $app['view_handler']->handle($errors, 400);
         }
 
         $app['document_repository']->add($document);
 
-        return $app['view_handler']->handle($request, $document, 201, [
+        return $app['view_handler']->handle($document, 201, [
             'Location' => $app['serializer']->getLinkHref($document, 'self', true),
         ]);
     }
@@ -60,12 +60,12 @@ class DocumentController
         $document->fromArray($request->request->all(), \BasePeer::TYPE_FIELDNAME);
 
         if (true !== $errors = $app['document_validator']($document)) {
-            return $app['view_handler']->handle($app['request'], $errors, 400);
+            return $app['view_handler']->handle($errors, 400);
         }
 
         $app['document_repository']->add($document);
 
-        return $app['view_handler']->handle($request, $document);
+        return $app['view_handler']->handle($document);
     }
 
     public function deleteAction(Request $request, Application $app, $id)

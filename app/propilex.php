@@ -12,15 +12,9 @@ $app = require_once __DIR__ . '/config/config.php';
 // Error
 $app->error(function (\Exception $e, $code) use ($app) {
     return $app['view_handler']->handle(
-        $app['request'],
         new Error($e->getMessage()),
         $code
     );
-});
-
-// Model
-$app['document_repository'] = $app->share(function () {
-    return new PropelDocumentRepository(DocumentQuery::create());
 });
 
 // Validator
@@ -34,9 +28,14 @@ $app['document_validator'] = $app->protect(function (Document $document) use ($a
     return true;
 });
 
+// Model
+$app['document_repository'] = $app->share(function () {
+    return new PropelDocumentRepository(DocumentQuery::create());
+});
+
 // View
 $app['view_handler'] = $app->share(function () use ($app) {
-    return new ViewHandler($app['serializer']);
+    return new ViewHandler($app['serializer'], $app['request']);
 });
 
 /**

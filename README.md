@@ -57,7 +57,7 @@ Usage
 -----
 
 You can use the web interface, or the command line and tools surch as
-[HTTPie](https://github.com/jkbr/httpie) or [cURL](http://curl.haxx.se/):
+[HTTPie](https://github.com/jkbr/httpie) or [cURL](http://curl.haxx.se/).
 
 ### GET
 
@@ -273,7 +273,7 @@ XML response for an error:
 All messages are translated depending on the `Accept-Language` header, either
 error messages or application's messages:
 
-    $ http GET http://localhost:9000/documents/123 Accept:application/json Accept-Language:en
+    $ http GET http://localhost:4000/documents/123 Accept:application/json Accept-Language:en
     HTTP/1.1 404 Not Found
 
 ```json
@@ -282,7 +282,7 @@ error messages or application's messages:
 }
 ```
 
-    $ http GET http://localhost:9000/documents/123 Accept:application/xml Accept-Language:fr
+    $ http GET http://localhost:4000/documents/123 Accept:application/xml Accept-Language:fr
     HTTP/1.1 404 Not Found
 
 ```xml
@@ -292,7 +292,7 @@ error messages or application's messages:
 </error>
 ```
 
-    $ http POST http://localhost:9000/documents Accept-Language:fr
+    $ http POST http://localhost:4000/documents Accept-Language:fr
     HTTP/1.1 400 Bad Request
 
 ```json

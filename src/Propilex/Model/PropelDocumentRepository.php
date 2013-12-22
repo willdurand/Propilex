@@ -52,10 +52,14 @@ class PropelDocumentRepository implements DocumentRepositoryInterface
     /**
      * {@inheritDoc}
      */
-    public function paginate($offset, $limit)
+    public function paginate($page, $limit)
     {
-        return new Pagerfanta(
-            new PropelAdapter($this->query->offset($offset)->limit($limit))
+        $pager = new Pagerfanta(
+            new PropelAdapter($this->query)
         );
+
+        return $pager
+            ->setMaxPerPage($limit)
+            ->setCurrentPage($page);
     }
 }

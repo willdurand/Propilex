@@ -27,5 +27,5 @@ interface DocumentRepositoryInterface
     /**
      * @return \Pagerfanta\Pagerfanta
      */
-    public function paginate($offset, $limit);
+    public function paginate($page, $limit);
 }

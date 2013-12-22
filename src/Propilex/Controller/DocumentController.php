@@ -13,10 +13,10 @@ class DocumentController
 {
     public function listAction(Request $request, Application $app)
     {
-        $page  = (int) $request->query->get('page', 1);
-        $limit = (int) $request->query->get('limit', 10);
-
-        $pager = $app['document_repository']->paginate($page, $limit);
+        $pager = $app['document_repository']->paginate(
+            (int) $request->query->get('page', 1),
+            (int) $request->query->get('limit', 10)
+        );
 
         $documents = $app['hateoas.pagerfanta_factory']->create(
             $pager,

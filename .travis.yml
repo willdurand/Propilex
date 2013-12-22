@@ -1,15 +1,16 @@
 language: php
 
 php:
-    - 5.4
+    - 5.5
 
 before_script:
-    - curl -s http://getcomposer.org/installer | php
-    - php composer.phar install --dev
-    - cp app/config/runtime-conf.xml.dist app/config/runtime-conf.xml
+    - composer self-update
+    - composer install --dev --prefer-dist --no-interaction
+
+    - cp app/config/propel/runtime-conf.xml.dist app/config/propel/runtime-conf.xml
+    - cp app/config/propel/build.properties.dist app/config/propel/build.properties
     - bin/bootstrap
-    - mysql -uroot -e 'CREATE DATABASE propilex'
-    - mysql -uroot propilex < app/config/sql/Propilex.Model.schema.sql
+
     - npm install -g bower
     - cd web && bower install && cd ..
 

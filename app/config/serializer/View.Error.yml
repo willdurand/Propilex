@@ -1,0 +1,6 @@
+Propilex\View\Error:
+    exclusion_policy: ALL
+    xml_root_name: error
+    properties:
+        message:
+            expose: true

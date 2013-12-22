@@ -23,9 +23,9 @@ define(
             },
 
             url : function() {
-                var base = $('body').data('api-url') + '/documents/';
+                var base = $('body').data('api-url') + '/documents';
 
-                return this.isNew() ? base : base + this.id;
+                return this.isNew() ? base : [ base, this.id ].join('/');
             },
 
             parse: function (responseObject) {

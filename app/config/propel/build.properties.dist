@@ -1,12 +1,13 @@
 propel.project      = Propilex
-propel.php.dir      = ${propel.project.dir}/../../src/
+propel.php.dir      = ${propel.project.dir}/../../../src/
 propel.phpconf.dir  = ${propel.project.dir}/conf/
 propel.sql.dir      = ${propel.project.dir}/sql/
 
 propel.namespace.autoPackage = true
 propel.packageObjectModel    = true
 
-propel.database = mysql
+propel.database     = sqlite
+propel.database.url = sqlite:/tmp/database.db
 
 # Enable full use of the DateTime class.
 # Setting this to true means that getter methods for date/time/timestamp

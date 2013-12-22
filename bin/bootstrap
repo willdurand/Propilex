@@ -1,7 +1,14 @@
 #!/usr/bin/env bash
 
-bin/propel-gen app/config main > /dev/null
+bin/propel-gen app/config/propel main > /dev/null
 
 if [ 0 -eq $? ] ; then
-    echo 'Ok';
+    bin/propel-gen app/config/propel insert-sql > /dev/null
+
+    if [ 0 -eq $? ] ; then
+        echo 'All good!';
+    fi
+else
+    echo 'Error while generating models and/or SQL file'
+    exit 1
 fi

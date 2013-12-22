@@ -1,10 +1,11 @@
-app/config/conf/
-app/config/sql/
-app/config/runtime-conf.xml
+app/config/propel/conf
+app/config/propel/sql
+app/config/propel/runtime-conf.xml
+app/config/propel/build.properties
+app/cache
 src/Propilex/Model/om/
 src/Propilex/Model/map/
 vendor
-!vendor/silex.phar
 web/components/
 bin/phpunit
 bin/propel*

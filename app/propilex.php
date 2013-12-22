@@ -1,61 +1,75 @@
 <?php
 
+use Propilex\Model\Document;
+use Propilex\Model\DocumentQuery;
+use Propilex\Model\PropelDocumentRepository;
+use Propilex\View\Error;
+use Propilex\View\FormErrors;
+use Propilex\View\ViewHandler;
+
 $app = require_once __DIR__ . '/config/config.php';
 
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Validator\Mapping\ClassMetadataFactory;
-use Symfony\Component\Validator\Mapping\Loader\YamlFileLoader;
-use Hateoas\Hateoas;
-use Hateoas\Builder\RouteAwareLinkBuilder;
-use Hateoas\Builder\ResourceBuilder;
-use Hateoas\Factory\Config\YamlConfig;
-use Hateoas\Factory\RouteAwareFactory;
+// Error
+$app->error(function (\Exception $e, $code) use ($app) {
+    return $app['view_handler']->handle(
+        $app['request'],
+        new Error($e->getMessage()),
+        $code
+    );
+});
 
-// Configure the validator service
-$app['validator.mapping.class_metadata_factory'] = new ClassMetadataFactory(
-    new YamlFileLoader(__DIR__ . '/validation.yml')
-);
+// Model
+$app['document_repository'] = $app->share(function () {
+    return new PropelDocumentRepository(DocumentQuery::create());
+});
 
-// Configure Hateoas services
-$app['hateoas_serializer'] = Hateoas::getSerializer(array(
-    ''           => __DIR__ . '/serializer',
-    'Propilex'   => __DIR__ . '/serializer',
-), $app['debug']);
-$app['hateoas_builder']    = new ResourceBuilder(
-    new RouteAwareFactory(new YamlConfig(__DIR__ . '/hateoas.yml')),
-    new RouteAwareLinkBuilder($app['url_generator'])
-);
+// Validator
+$app['document_validator'] = $app->protect(function (Document $document) use ($app) {
+    $errors = $app['validator']->validate($document);
 
-/**
- * @see http://silex.sensiolabs.org/doc/cookbook/json_request_body.html
- */
-$app->before(function (Request $request) {
-    if (0 === strpos($request->headers->get('Content-Type'), 'application/json')) {
-        $data = json_decode($request->getContent(), true);
-
-        // filter values
-        foreach ($data as $k => $v) {
-            if (!in_array($k, array('id', 'title', 'body'))) {
-                unset($data[$k]);
-            }
-        }
-
-        $request->request->replace(is_array($data) ? $data : array());
+    if (0 < count($errors)) {
+        return new FormErrors($errors);
     }
+
+    return true;
+});
+
+// View
+$app['view_handler'] = $app->share(function () use ($app) {
+    return new ViewHandler($app['serializer']);
 });
 
 /**
  * Entry point
  */
-$app->get('/', function() {
+$app->get('/', function () {
     return file_get_contents(__DIR__ . '/../web/index.html');
 });
 
 /**
- * Register a REST controller to manage documents
+ * Documents
  */
-$app->mount('/documents', new Propilex\Provider\RestController(
-    'document', 'Propilex\Model\Document', 'getUpdatedAt'
-));
+$app
+    ->get('/documents', 'Propilex\Controller\DocumentController::listAction')
+    ->bind('document_list');
+
+$app
+    ->get('/documents/{id}', 'Propilex\Controller\DocumentController::getAction')
+    ->assert('id', '\d+')
+    ->bind('document_get');
+
+$app
+    ->post('/documents', 'Propilex\Controller\DocumentController::postAction')
+    ->bind('document_post');
+
+$app
+    ->put('/documents/{id}', 'Propilex\Controller\DocumentController::putAction')
+    ->assert('id', '\d+')
+    ->bind('document_put');
+
+$app
+    ->delete('/documents/{id}', 'Propilex\Controller\DocumentController::deleteAction')
+    ->assert('id', '\d+')
+    ->bind('document_delete');
 
 return $app;

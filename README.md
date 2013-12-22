@@ -17,6 +17,13 @@ A [Silex](http://silex.sensiolabs.org) application which uses
 * [Backbone.Forms](https://github.com/powmedia/backbone-forms);
 * [Keymaster](https://github.com/madrobby/keymaster).
 
+And:
+
+* [Hateoas](https://github.com/willdurand/Hateoas);
+* [Negotiation](https://github.com/willdurand/Negotiation);
+* [StackNegotiation](https://github.com/willdurand/StackNegotiation);
+* [Stack](http://stackphp.com).
+
 
 Installation
 ------------
@@ -60,48 +67,50 @@ Getting all documents in JSON:
     HTTP/1.1 200 OK
     Content-Type: application/json
 
-    {
-        "_links": {
-            "first": {
-                "href": "http://localhost:4000/documents?page=1&limit=10"
-            },
-            "last": {
-                "href": "http://localhost:4000/documents?page=1&limit=10"
-            },
-            "self": {
-                "href": "http://localhost:4000/documents?page=1&limit=10"
-            }
+```json
+{
+    "_links": {
+        "first": {
+            "href": "http://localhost:4000/documents?page=1&limit=10"
         },
-        "documents": [
-            {
-                "_links": {
-                    "self": {
-                        "href": "http://localhost:4000/documents/1"
-                    }
-                },
-                "body": "Hello, World!",
-                "created_at": "2013-12-22 17:55:18",
-                "id": 1,
-                "title": "Hello!",
-                "updated_at": "2013-12-22 17:55:18"
+        "last": {
+            "href": "http://localhost:4000/documents?page=1&limit=10"
+        },
+        "self": {
+            "href": "http://localhost:4000/documents?page=1&limit=10"
+        }
+    },
+    "documents": [
+        {
+            "_links": {
+                "self": {
+                    "href": "http://localhost:4000/documents/1"
+                }
             },
-            {
-                "_links": {
-                    "self": {
-                        "href": "http://localhost:4000/documents/2"
-                    }
-                },
-                "body": "This is a body",
-                "created_at": "2013-12-22 17:55:22",
-                "id": 2,
-                "title": "This is a title",
-                "updated_at": "2013-12-22 22:09:37"
-            }
-        ],
-        "limit": 10,
-        "page": 1,
-        "pages": 1
-    }
+            "body": "Hello, World!",
+            "created_at": "2013-12-22 17:55:18",
+            "id": 1,
+            "title": "Hello!",
+            "updated_at": "2013-12-22 17:55:18"
+        },
+        {
+            "_links": {
+                "self": {
+                    "href": "http://localhost:4000/documents/2"
+                }
+            },
+            "body": "This is a body",
+            "created_at": "2013-12-22 17:55:22",
+            "id": 2,
+            "title": "This is a title",
+            "updated_at": "2013-12-22 22:09:37"
+        }
+    ],
+    "limit": 10,
+    "page": 1,
+    "pages": 1
+}
+```
 
 Getting all documents in XML:
 
@@ -109,30 +118,32 @@ Getting all documents in XML:
     HTTP/1.1 200 OK
     Content-Type: application/xml
 
-    <?xml version="1.0" encoding="UTF-8"?>
-    <collection limit="10" page="1" pages="1">
-        <documents>
-            <document>
-                <id>1</id>
-                <title>Hello!</title>
-                <body>Hello, World!</body>
-                <created_at><![CDATA[2013-12-22 17:55:18]]></created_at>
-                <updated_at><![CDATA[2013-12-22 17:55:18]]></updated_at>
-                <link href="http://localhost:4000/documents/1" rel="self"></link>
-            </document>
-            <document>
-                <id>2</id>
-                <title>This is a title</title>
-                <body>This is a body</body>
-                <created_at><![CDATA[2013-12-22 17:55:22]]></created_at>
-                <updated_at><![CDATA[2013-12-22 22:09:37]]></updated_at>
-                <link href="http://localhost:4000/documents/2" rel="self"></link>
-            </document>
-        </documents>
-        <link href="http://localhost:4000/documents?page=1&limit=10" rel="self"></link>
-        <link href="http://localhost:4000/documents?page=1&limit=10" rel="first"></link>
-        <link href="http://localhost:4000/documents?page=1&limit=10" rel="last"></link>
-    </collection>
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<collection limit="10" page="1" pages="1">
+    <documents>
+        <document>
+            <id>1</id>
+            <title>Hello!</title>
+            <body>Hello, World!</body>
+            <created_at><![CDATA[2013-12-22 17:55:18]]></created_at>
+            <updated_at><![CDATA[2013-12-22 17:55:18]]></updated_at>
+            <link href="http://localhost:4000/documents/1" rel="self"></link>
+        </document>
+        <document>
+            <id>2</id>
+            <title>This is a title</title>
+            <body>This is a body</body>
+            <created_at><![CDATA[2013-12-22 17:55:22]]></created_at>
+            <updated_at><![CDATA[2013-12-22 22:09:37]]></updated_at>
+            <link href="http://localhost:4000/documents/2" rel="self"></link>
+        </document>
+    </documents>
+    <link href="http://localhost:4000/documents?page=1&limit=10" rel="self"></link>
+    <link href="http://localhost:4000/documents?page=1&limit=10" rel="first"></link>
+    <link href="http://localhost:4000/documents?page=1&limit=10" rel="last"></link>
+</collection>
+```
 
 Getting a single document in JSON:
 
@@ -142,18 +153,20 @@ Getting a single document in JSON:
     Content-Type: application/json
     Last-Modified: Sun, 22 Dec 2013 21:41:55 GMT
 
-    {
-        "_links": {
-            "self": {
-                "href": "http://localhost:4000/documents/1"
-            }
-        },
-        "body": "Hello, World!",
-        "created_at": "2013-12-22 17:55:18",
-        "id": 1,
-        "title": "Hello!",
-        "updated_at": "2013-12-22 22:41:55"
-    }
+```json
+{
+    "_links": {
+        "self": {
+            "href": "http://localhost:4000/documents/1"
+        }
+    },
+    "body": "Hello, World!",
+    "created_at": "2013-12-22 17:55:18",
+    "id": 1,
+    "title": "Hello!",
+    "updated_at": "2013-12-22 22:41:55"
+}
+```
 
 Getting a single document in XML:
 
@@ -163,15 +176,17 @@ Getting a single document in XML:
     Content-Type: application/xml
     Last-Modified: Sun, 22 Dec 2013 21:41:55 GMT
 
-    <?xml version="1.0" ?>
-    <document>
-        <id>1</id>
-        <title><![CDATA[Hello!]]></title>
-        <body><![CDATA[Hello, World!]]></body>
-        <created_at><![CDATA[2013-12-22 17:55:18]]></created_at>
-        <updated_at><![CDATA[2013-12-22 22:41:55]]></updated_at>
-        <link href="http://localhost:4000/documents/1" rel="self"/>
-    </document>
+```xml
+<?xml version="1.0" ?>
+<document>
+    <id>1</id>
+    <title><![CDATA[Hello!]]></title>
+    <body><![CDATA[Hello, World!]]></body>
+    <created_at><![CDATA[2013-12-22 17:55:18]]></created_at>
+    <updated_at><![CDATA[2013-12-22 22:41:55]]></updated_at>
+    <link href="http://localhost:4000/documents/1" rel="self"/>
+</document>
+```
 
 ### POST
 
@@ -181,22 +196,24 @@ Creating a new document by sending JSON data:
         -d '{"title": "Hello!", "body": "JSON"}' \
         http://localhost:4000/documents
 
-    HTTP/1.1 200 OK
+    HTTP/1.1 201 Created
     Content-Type: application/json
     Location: http://localhost:4000/documents/7"
 
-    {
-        "id": 7,
-        "title": "Hello!",
-        "body": "JSON",
-        "created_at": "2013-12-22 22:48:46",
-        "updated_at": "2013-12-22 22:48:46",
-        "_links": {
-            "self": {
-                "href": "http://localhost:4000/documents/7"
-            }
+```json
+{
+    "id": 7,
+    "title": "Hello!",
+    "body": "JSON",
+    "created_at": "2013-12-22 22:48:46",
+    "updated_at": "2013-12-22 22:48:46",
+    "_links": {
+        "self": {
+            "href": "http://localhost:4000/documents/7"
         }
     }
+}
+```
 
 Creating a new document by sending XML data:
 
@@ -204,22 +221,24 @@ Creating a new document by sending XML data:
         -d '<document><title>Hello!</title><body>XML</body></document>' \
         http://localhost:4000/documents
 
-    HTTP/1.1 200 OK
+    HTTP/1.1 201 Created
     Content-Type: application/json
     Location: http://localhost:4000/documents/8"
 
-    {
-        "id": 8,
-        "title": "Hello!",
-        "body": "XML",
-        "created_at": "2013-12-22 22:50:46",
-        "updated_at": "2013-12-22 22:50:46",
-        "_links": {
-            "self": {
-                "href": "http://localhost:4000/documents/8"
-            }
+```json
+{
+    "id": 8,
+    "title": "Hello!",
+    "body": "XML",
+    "created_at": "2013-12-22 22:50:46",
+    "updated_at": "2013-12-22 22:50:46",
+    "_links": {
+        "self": {
+            "href": "http://localhost:4000/documents/8"
         }
     }
+}
+```
 
 XML response for a validation error:
 
@@ -230,12 +249,14 @@ XML response for a validation error:
     HTTP/1.1 400 Bad Request
     Content-Type: application/xml
 
-    <?xml version="1.0" encoding="UTF-8"?>
-    <errors>
-        <error field="body">
-            <message><![CDATA[This value should not be blank.]]></message>
-        </error>
-    </errors>
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<errors>
+    <error field="body">
+        <message><![CDATA[This value should not be blank.]]></message>
+    </error>
+</errors>
+```
 
 JSON response for a validation error:
 
@@ -246,14 +267,16 @@ JSON response for a validation error:
     HTTP/1.1 400 Bad Request
     Content-Type: application/json
 
-    {
-        "errors": [
-            {
-                "field": "body",
-                "message": "This value should not be blank."
-            }
-        ]
-    }
+```json
+{
+    "errors": [
+        {
+            "field": "body",
+            "message": "This value should not be blank."
+        }
+    ]
+}
+```
 
 ### DELETE
 
@@ -265,19 +288,23 @@ JSON response for an error:
     $ http DELETE http://localhost:4000/documents/70 Accept:application/json
     HTTP/1.1 404 Not Found
 
-    {
-        "message": "Document with id = 7 does not exist."
-    }
+```json
+{
+    "message": "Document with id = 7 does not exist."
+}
+```
 
 XML response for an error:
 
     $ http DELETE http://localhost:4000/documents/70 Accept:application/xml
     HTTP/1.1 404 Not Found
 
-    <?xml version="1.0" ?>
-    <error>
-        <message><![CDATA[Document with id = 70 does not exist.]]></message>
-    </error>
+```xml
+<?xml version="1.0" ?>
+<error>
+    <message><![CDATA[Document with id = 70 does not exist.]]></message>
+</error>
+```
 
 
 Configuration

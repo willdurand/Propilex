@@ -52,7 +52,7 @@ define(
 
             getCreatedAt: function () {
                 if (undefined !== this.get('created_at')) {
-                    return moment(this.get('created_at').date, this.dateFormat);
+                    return moment(this.get('created_at'), this.dateFormat);
                 }
 
                 return null;

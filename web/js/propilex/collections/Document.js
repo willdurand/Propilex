@@ -12,7 +12,7 @@ define(
         return Backbone.Collection.extend({
             model: DocumentModel,
             page:  1,
-            total: 0,
+            pages: 0,
             limit: 0,
 
             url: function () {
@@ -25,7 +25,7 @@ define(
 
             parse: function (responseObject) {
                 this.page  = responseObject.page;
-                this.total = responseObject.pages;
+                this.pages = responseObject.pages;
                 this.limit = responseObject.limit;
 
                 return responseObject.documents;
@@ -48,9 +48,7 @@ define(
             },
 
             nextPage: function () {
-                var max = Math.ceil(this.total / this.limit);
-
-                if (this.page < max) {
+                if (this.page < this.pages) {
                     this.page = this.page + 1;
                 }
             }

@@ -271,9 +271,13 @@ XML response for an error:
 ### Translations & Errors
 
 All messages are translated depending on the `Accept-Language` header, either
-error messages or application's messages:
+error messages or application's messages. In order to implement this, you need
+to use the [StackNegotiation](https//github.com/willdurand/StackNegotiation)
+middleware, and a [Silex application's **before**
+middleware](https://github.com/willdurand/Propilex/blob/master/app/config/config.php#L50-L67).
 
     $ http GET http://localhost:4000/documents/123 Accept:application/json Accept-Language:en
+
     HTTP/1.1 404 Not Found
 
 ```json
@@ -283,6 +287,7 @@ error messages or application's messages:
 ```
 
     $ http GET http://localhost:4000/documents/123 Accept:application/xml Accept-Language:fr
+
     HTTP/1.1 404 Not Found
 
 ```xml
@@ -293,6 +298,7 @@ error messages or application's messages:
 ```
 
     $ http POST http://localhost:4000/documents Accept-Language:fr
+
     HTTP/1.1 400 Bad Request
 
 ```json

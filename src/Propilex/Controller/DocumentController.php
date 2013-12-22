@@ -80,9 +80,10 @@ class DocumentController
     private function findDocument(Application $app, $id)
     {
         if (null === $document = $app['document_repository']->find($id)) {
-            throw new NotFoundHttpException(
-                sprintf('Document with id = %d does not exist.', $id)
-            );
+            throw new NotFoundHttpException($app['translator']->trans(
+                'document_not_found',
+                [ '%id%' => $id, ]
+            ));
         }
 
         return $document;

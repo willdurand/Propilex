@@ -45,17 +45,25 @@ $app['hateoas.pagerfanta_factory'] = $app->share(function () use ($app) {
 });
 
 // Translation
-$app->register(new Silex\Provider\TranslationServiceProvider(), array(
-    'translator.domains' => array(),
-));
+$app->register(new Silex\Provider\TranslationServiceProvider());
 
 $app->before(function (Request $request) use ($app) {
     $validatorFile = __DIR__ . '/../../vendor/symfony/validator/Symfony/Component/Validator/Resources/translations/validators.%s.xlf';
     $locale        = $request->attributes->get('_language', 'en');
 
+    $app['translator']->setLocale($locale);
+
     $app['translator']->addLoader('xlf', new Symfony\Component\Translation\Loader\XliffFileLoader());
     $app['translator']->addResource('xlf', sprintf($validatorFile, $locale), $locale, 'validators');
-    $app['translator']->setLocale($locale);
+
+    $messagesLocale = $locale;
+    if (!is_file($messagesFile = __DIR__ . '/messages.' . $messagesLocale . '.yml')) {
+        $messagesFile   = __DIR__ . '/messages.en.yml';
+        $messagesLocale = 'en';
+    }
+
+    $app['translator']->addLoader('yml', new Symfony\Component\Translation\Loader\YamlFileLoader());
+    $app['translator']->addResource('yml', $messagesFile, $messagesLocale);
 });
 
 return $app;

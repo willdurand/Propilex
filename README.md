@@ -240,6 +240,76 @@ Creating a new document by sending XML data:
 }
 ```
 
+### DELETE
+
+    $ http DELETE http://localhost:4000/documents/1
+    HTTP/1.1 204 No Content
+
+JSON response for an error:
+
+    $ http DELETE http://localhost:4000/documents/70 Accept:application/json
+    HTTP/1.1 404 Not Found
+
+```json
+{
+    "message": "Document with id = 7 does not exist."
+}
+```
+
+XML response for an error:
+
+    $ http DELETE http://localhost:4000/documents/70 Accept:application/xml
+    HTTP/1.1 404 Not Found
+
+```xml
+<?xml version="1.0" ?>
+<error>
+    <message><![CDATA[Document with id = 70 does not exist.]]></message>
+</error>
+```
+
+### Translations & Errors
+
+All messages are translated depending on the `Accept-Language` header, either
+error messages or application's messages:
+
+    $ http GET http://localhost:9000/documents/123 Accept:application/json Accept-Language:en
+    HTTP/1.1 404 Not Found
+
+```json
+{
+    "message": "Document with id = \"%id\" does not exist."
+}
+```
+
+    $ http GET http://localhost:9000/documents/123 Accept:application/xml Accept-Language:fr
+    HTTP/1.1 404 Not Found
+
+```xml
+<?xml version="1.0" ?>
+<error>
+    <message><![CDATA[Le document avec id = "123" n'existe pas.]]></message>
+</error>
+```
+
+    $ http POST http://localhost:9000/documents Accept-Language:fr
+    HTTP/1.1 400 Bad Request
+
+```json
+{
+    "errors": [
+        {
+            "field": "title",
+            "message": "Cette valeur ne doit pas être vide."
+        },
+        {
+            "field": "body",
+            "message": "Cette valeur ne doit pas être vide."
+        }
+    ]
+}
+```
+
 XML response for a validation error:
 
     $ curl -H 'Accept: application/xml' -H 'Content-Type: application/json' \
@@ -276,34 +346,6 @@ JSON response for a validation error:
         }
     ]
 }
-```
-
-### DELETE
-
-    $ http DELETE http://localhost:4000/documents/1
-    HTTP/1.1 204 No Content
-
-JSON response for an error:
-
-    $ http DELETE http://localhost:4000/documents/70 Accept:application/json
-    HTTP/1.1 404 Not Found
-
-```json
-{
-    "message": "Document with id = 7 does not exist."
-}
-```
-
-XML response for an error:
-
-    $ http DELETE http://localhost:4000/documents/70 Accept:application/xml
-    HTTP/1.1 404 Not Found
-
-```xml
-<?xml version="1.0" ?>
-<error>
-    <message><![CDATA[Document with id = 70 does not exist.]]></message>
-</error>
 ```
 
 

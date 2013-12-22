@@ -4,6 +4,7 @@ namespace Propilex\Controller;
 
 use Propilex\Model\Document;
 use Propilex\Model\DocumentCollection;
+use Propilex\Response\NoContentResponse;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -29,7 +30,7 @@ class DocumentController
         return $app['view_handler']->handle($documents);
     }
 
-    public function getAction(Request $request, Application $app, $id)
+    public function getAction(Application $app, $id)
     {
         $document = $this->findDocument($app, $id);
         $response = $app['view_handler']->handle($document);
@@ -68,13 +69,13 @@ class DocumentController
         return $app['view_handler']->handle($document);
     }
 
-    public function deleteAction(Request $request, Application $app, $id)
+    public function deleteAction(Application $app, $id)
     {
         $document = $this->findDocument($app, $id);
 
         $app['document_repository']->remove($document);
 
-        return new Response(null, 204);
+        return new NoContentResponse();
     }
 
     private function findDocument(Application $app, $id)

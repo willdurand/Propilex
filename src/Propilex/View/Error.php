@@ -2,7 +2,7 @@
 
 namespace Propilex\View;
 
-final class Error
+class Error
 {
     private $message;
 

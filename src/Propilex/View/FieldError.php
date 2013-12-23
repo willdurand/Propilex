@@ -2,15 +2,14 @@
 
 namespace Propilex\View;
 
-final class FieldError
+class FieldError extends Error
 {
     private $field;
 
-    private $message;
-
     public function __construct($field, $message)
     {
-        $this->field   = $field;
-        $this->message = $message;
+        parent::__construct($message);
+
+        $this->field = $field;
     }
 }

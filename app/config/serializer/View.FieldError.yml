@@ -5,5 +5,3 @@ Propilex\View\FieldError:
         field:
             expose: true
             xml_attribute: true
-        message:
-            expose: true

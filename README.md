@@ -252,7 +252,7 @@ JSON response for an error:
 
 ```json
 {
-    "message": "Document with id = 7 does not exist."
+    "message": "Document with id = 70 does not exist."
 }
 ```
 

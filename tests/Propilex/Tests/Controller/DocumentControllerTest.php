@@ -51,6 +51,12 @@ class DocumentRestControllerTest extends WebTestCase
         foreach ($documents as $item) {
             $this->assertValidDocument($item);
         }
+
+        // cache
+        $this->assertTrue($response->isValidateable());
+        $this->assertTrue($response->headers->hasCacheControlDirective('public'));
+        $this->assertFalse($response->headers->has('Last-Modified'));
+        $this->assertTrue($response->headers->has('ETag'));
     }
 
     public function testListDocumentsIsPaginated()

@@ -20,18 +20,24 @@ class DocumentController
             (int) $request->query->get('limit', 10)
         );
 
+        $response = new Response();
+        $results  = (array) $pager->getCurrentPageResults();
+
+        $response->setPublic();
+        $response->setETag($this->computeETag($results));
+
+        if ($response->isNotModified($request)) {
+            return $response;
+        }
+
         $documents = $app['hateoas.pagerfanta_factory']->create(
             $pager,
-            'document_list',
-            [],
-            new CollectionRepresentation(
-                $pager->getCurrentPageResults(),
-                'documents'
-            ),
+            'document_list', [],
+            new CollectionRepresentation($results, 'documents'),
             true
         );
 
-        return $app['view_handler']->handle($documents);
+        return $app['view_handler']->handle($documents, 200, [], $response);
     }
 
     public function getAction(Request $request, Application $app, $id)
@@ -110,5 +116,12 @@ class DocumentController
             $request->request->all(),
             array_flip([ 'title', 'body' ])
         );
+    }
+
+    private function computeETag($documents)
+    {
+        return md5(implode('-', array_map(function ($document) {
+            return $document->getId();
+        }, $documents)));
     }
 }

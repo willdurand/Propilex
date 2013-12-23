@@ -65,7 +65,9 @@ Getting all documents in JSON:
 
     $ http http://localhost:4000/documents Accept:application/json
     HTTP/1.1 200 OK
+    Cache-Control: public
     Content-Type: application/json
+    ETag: "c4ca4238a0b923820dcc509a6f75849b"
 
 ```json
 {
@@ -118,7 +120,9 @@ Getting all documents in XML:
 
     $ http http://localhost:4000/documents Accept:application/xml
     HTTP/1.1 200 OK
+    Cache-Control: public
     Content-Type: application/xml
+    ETag: "c4ca4238a0b923820dcc509a6f75849b"
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -191,7 +195,6 @@ Creating a new document by sending JSON data:
     $ curl -H 'Accept: application/json' -H 'Content-Type: application/json' \
         -d '{"title": "Hello!", "body": "JSON"}' \
         http://localhost:4000/documents
-
     HTTP/1.1 201 Created
     Content-Type: application/json
     Location: http://localhost:4000/documents/7"
@@ -216,7 +219,6 @@ Creating a new document by sending XML data:
     $ curl -H 'Accept: application/json' -H 'Content-Type: application/xml' \
         -d '<document><title>Hello!</title><body>XML</body></document>' \
         http://localhost:4000/documents
-
     HTTP/1.1 201 Created
     Content-Type: application/json
     Location: http://localhost:4000/documents/8"
@@ -273,7 +275,6 @@ middleware, and a [Silex application's **before**
 middleware](https://github.com/willdurand/Propilex/blob/master/app/config/config.php#L61-L78).
 
     $ http GET http://localhost:4000/documents/123 Accept:application/json Accept-Language:en
-
     HTTP/1.1 404 Not Found
 
 ```json
@@ -283,7 +284,6 @@ middleware](https://github.com/willdurand/Propilex/blob/master/app/config/config
 ```
 
     $ http GET http://localhost:4000/documents/123 Accept:application/xml Accept-Language:fr
-
     HTTP/1.1 404 Not Found
 
 ```xml
@@ -294,7 +294,6 @@ middleware](https://github.com/willdurand/Propilex/blob/master/app/config/config
 ```
 
     $ http POST http://localhost:4000/documents Accept-Language:fr
-
     HTTP/1.1 400 Bad Request
 
 ```json
@@ -317,7 +316,6 @@ XML response for a validation error:
     $ curl -H 'Accept: application/xml' -H 'Content-Type: application/json' \
         -d '{"title": "Hello!"}' \
         http://localhost:4000/documents
-
     HTTP/1.1 400 Bad Request
     Content-Type: application/xml
 
@@ -335,7 +333,6 @@ JSON response for a validation error:
     $ curl -H 'Accept: application/json' -H 'Content-Type: application/json' \
         -d '{"title": "Hello!"}' \
         http://localhost:4000/documents
-
     HTTP/1.1 400 Bad Request
     Content-Type: application/json
 

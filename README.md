@@ -80,32 +80,34 @@ Getting all documents in JSON:
             "href": "http://localhost:4000/documents?page=1&limit=10"
         }
     },
-    "documents": [
-        {
-            "_links": {
-                "self": {
-                    "href": "http://localhost:4000/documents/1"
-                }
+    "_embedded": {
+        "documents": [
+            {
+                "_links": {
+                    "self": {
+                        "href": "http://localhost:4000/documents/1"
+                    }
+                },
+                "body": "Hello, World!",
+                "created_at": "2013-12-22 17:55:18",
+                "id": 1,
+                "title": "Hello!",
+                "updated_at": "2013-12-22 17:55:18"
             },
-            "body": "Hello, World!",
-            "created_at": "2013-12-22 17:55:18",
-            "id": 1,
-            "title": "Hello!",
-            "updated_at": "2013-12-22 17:55:18"
-        },
-        {
-            "_links": {
-                "self": {
-                    "href": "http://localhost:4000/documents/2"
-                }
-            },
-            "body": "This is a body",
-            "created_at": "2013-12-22 17:55:22",
-            "id": 2,
-            "title": "This is a title",
-            "updated_at": "2013-12-22 22:09:37"
-        }
-    ],
+            {
+                "_links": {
+                    "self": {
+                        "href": "http://localhost:4000/documents/2"
+                    }
+                },
+                "body": "This is a body",
+                "created_at": "2013-12-22 17:55:22",
+                "id": 2,
+                "title": "This is a title",
+                "updated_at": "2013-12-22 22:09:37"
+            }
+        ]
+    },
     "limit": 10,
     "page": 1,
     "pages": 1
@@ -120,26 +122,21 @@ Getting all documents in XML:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
-<collection limit="10" page="1" pages="1">
-    <documents>
-        <document>
-            <id>1</id>
-            <title>Hello!</title>
-            <body>Hello, World!</body>
-            <created_at><![CDATA[2013-12-22 17:55:18]]></created_at>
-            <updated_at><![CDATA[2013-12-22 17:55:18]]></updated_at>
-            <link href="http://localhost:4000/documents/1" rel="self"></link>
-        </document>
-        <document>
-            <id>2</id>
-            <title>This is a title</title>
-            <body>This is a body</body>
-            <created_at><![CDATA[2013-12-22 17:55:22]]></created_at>
-            <updated_at><![CDATA[2013-12-22 22:09:37]]></updated_at>
-            <link href="http://localhost:4000/documents/2" rel="self"></link>
-        </document>
-    </documents>
-    <link href="http://localhost:4000/documents?page=1&limit=10" rel="self"></link>
+<collection href="http://localhost:4000/documents?page=1&amp;limit=10" limit="10" page="1" pages="1">
+    <resource href="http://localhost:4000/documents/1" rel="documents">
+        <id>1</id>
+        <title>Hello!</title>
+        <body>Hello, World!</body>
+        <created_at><![CDATA[2013-12-22 17:55:18]]></created_at>
+        <updated_at><![CDATA[2013-12-22 17:55:18]]></updated_at>
+    </resource>
+    <resource href="http://localhost:4000/documents/2" rel="documents">
+        <id>2</id>
+        <title>This is a title</title>
+        <body>This is a body</body>
+        <created_at><![CDATA[2013-12-22 17:55:22]]></created_at>
+        <updated_at><![CDATA[2013-12-22 22:09:37]]></updated_at>
+    </resource>
     <link href="http://localhost:4000/documents?page=1&limit=10" rel="first"></link>
     <link href="http://localhost:4000/documents?page=1&limit=10" rel="last"></link>
 </collection>
@@ -149,7 +146,7 @@ Getting a single document in JSON:
 
     $ http http://localhost:4000/documents/1 Accept:application/json
     HTTP/1.1 200 OK
-    Cache-Control: private, must-revalidate
+    Cache-Control: public
     Content-Type: application/json
     Last-Modified: Sun, 22 Dec 2013 21:41:55 GMT
 
@@ -172,19 +169,18 @@ Getting a single document in XML:
 
     $ http http://localhost:4000/documents/1 Accept:application/xml
     HTTP/1.1 200 OK
-    Cache-Control: private, must-revalidate
+    Cache-Control: public
     Content-Type: application/xml
     Last-Modified: Sun, 22 Dec 2013 21:41:55 GMT
 
 ```xml
 <?xml version="1.0" ?>
-<document>
+<document href="http://localhost:4000/documents/1">
     <id>1</id>
     <title><![CDATA[Hello!]]></title>
     <body><![CDATA[Hello, World!]]></body>
     <created_at><![CDATA[2013-12-22 17:55:18]]></created_at>
     <updated_at><![CDATA[2013-12-22 22:41:55]]></updated_at>
-    <link href="http://localhost:4000/documents/1" rel="self"/>
 </document>
 ```
 
@@ -274,7 +270,7 @@ All messages are translated depending on the `Accept-Language` header, either
 error messages or application's messages. In order to implement this, you need
 to use the [StackNegotiation](https//github.com/willdurand/StackNegotiation)
 middleware, and a [Silex application's **before**
-middleware](https://github.com/willdurand/Propilex/blob/master/app/config/config.php#L59-L76).
+middleware](https://github.com/willdurand/Propilex/blob/master/app/config/config.php#L61-L78).
 
     $ http GET http://localhost:4000/documents/123 Accept:application/json Accept-Language:en
 
@@ -282,7 +278,7 @@ middleware](https://github.com/willdurand/Propilex/blob/master/app/config/config
 
 ```json
 {
-    "message": "Document with id = \"%id\" does not exist."
+    "message": "Document with id = \"123\" does not exist."
 }
 ```
 

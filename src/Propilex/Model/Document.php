@@ -9,4 +9,11 @@ use Propilex\Model\om\BaseDocument;
  */
 class Document extends BaseDocument
 {
+    /**
+     * @return boolean
+     */
+    public function isEqualTo(Document $document)
+    {
+        return $this->getId() === $document->getId();
+    }
 }

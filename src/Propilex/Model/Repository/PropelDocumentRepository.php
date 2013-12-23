@@ -1,9 +1,10 @@
 <?php
 
-namespace Propilex\Model;
+namespace Propilex\Model\Repository;
 
 use Pagerfanta\Adapter\PropelAdapter;
 use Pagerfanta\Pagerfanta;
+use Propilex\Model\Document;
 
 /**
  * @author William Durand <william.durand1@gmail.com>

@@ -18,7 +18,7 @@ class ViewHandler
         $this->request    = $request;
     }
 
-    public function handle($data, $statusCode = 200, array $headers = [])
+    public function handle($data, $statusCode = 200, array $headers = [], Response $response = null)
     {
         $format   = $this->request->attributes->get('_format');
         $mimeType = $this->request->attributes->get('_mime_type');
@@ -28,10 +28,17 @@ class ViewHandler
             $mimeType = 'application/json';
         }
 
-        return new Response(
-            $this->serializer->serialize($data, $format),
-            $statusCode,
-            array_merge([ 'Content-Type' => $mimeType ], $headers)
-        );
+        if (null === $response) {
+            $response = new Response();
+        }
+
+        $response->setContent($this->serializer->serialize($data, $format));
+        $response->setStatusCode($statusCode);
+        $response->headers->add(array_merge(
+            [ 'Content-Type' => $mimeType ],
+            $headers
+        ));
+
+        return $response;
     }
 }

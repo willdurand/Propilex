@@ -1,1 +1,1 @@
-document_not_found: "Document with id = \"%id\" does not exist."
+document_not_found: "Document with id = \"%id%\" does not exist."

@@ -1,6 +1,8 @@
 <?php
 
-namespace Propilex\Model;
+namespace Propilex\Model\Repository;
+
+use Propilex\Model\Document;
 
 interface DocumentRepositoryInterface
 {

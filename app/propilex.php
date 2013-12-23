@@ -2,12 +2,12 @@
 
 use Propilex\Model\Document;
 use Propilex\Model\DocumentQuery;
-use Propilex\Model\PropelDocumentRepository;
+use Propilex\Model\Repository\PropelDocumentRepository;
 use Propilex\View\Error;
 use Propilex\View\FormErrors;
 use Propilex\View\ViewHandler;
 
-$app = require_once __DIR__ . '/config/config.php';
+$app = require __DIR__ . '/config/config.php';
 
 // Error
 $app->error(function (\Exception $e, $code) use ($app) {

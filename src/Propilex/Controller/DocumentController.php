@@ -30,18 +30,26 @@ class DocumentController
         return $app['view_handler']->handle($documents);
     }
 
-    public function getAction(Application $app, $id)
+    public function getAction(Request $request, Application $app, $id)
     {
+        $response = new Response();
         $document = $this->findDocument($app, $id);
-        $response = $app['view_handler']->handle($document);
+
+        $response->setPublic();
         $response->setLastModified($document->getUpdatedAt());
 
-        return $response;
+        if ($response->isNotModified($request)) {
+            return $response;
+        }
+
+        return $app['view_handler']->handle($document, 200, [], $response);
     }
 
     public function postAction(Request $request, Application $app)
     {
         $document = new Document();
+        $values   = $this->filterValues($request);
+
         $document->fromArray($request->request->all(), \BasePeer::TYPE_FIELDNAME);
 
         if (true !== $errors = $app['document_validator']($document)) {
@@ -58,7 +66,9 @@ class DocumentController
     public function putAction(Request $request, Application $app, $id)
     {
         $document = $this->findDocument($app, $id);
-        $document->fromArray($request->request->all(), \BasePeer::TYPE_FIELDNAME);
+        $values   = $this->filterValues($request);
+
+        $document->fromArray($values, \BasePeer::TYPE_FIELDNAME);
 
         if (true !== $errors = $app['document_validator']($document)) {
             return $app['view_handler']->handle($errors, 400);
@@ -88,5 +98,13 @@ class DocumentController
         }
 
         return $document;
+    }
+
+    private function filterValues(Request $request)
+    {
+        return array_intersect_key(
+            $request->request->all(),
+            array_flip([ 'title', 'body' ])
+        );
     }
 }

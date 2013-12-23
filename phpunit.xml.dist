@@ -18,6 +18,10 @@
     <filter>
         <whitelist>
             <directory>./src/Propilex/</directory>
+            <exclude>
+                <directory>src/Propilex/Model/om/</directory>
+                <directory>src/Propilex/Model/map/</directory>
+            </exclude>
         </whitelist>
     </filter>
 </phpunit>

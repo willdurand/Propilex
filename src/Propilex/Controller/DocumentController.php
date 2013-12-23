@@ -2,6 +2,7 @@
 
 namespace Propilex\Controller;
 
+use Hateoas\Representation\CollectionRepresentation;
 use Propilex\Model\Document;
 use Propilex\Model\DocumentCollection;
 use Propilex\Response\NoContentResponse;
@@ -23,7 +24,10 @@ class DocumentController
             $pager,
             'document_list',
             [],
-            new DocumentCollection($pager->getCurrentPageResults()),
+            new CollectionRepresentation(
+                $pager->getCurrentPageResults(),
+                'documents'
+            ),
             true
         );
 

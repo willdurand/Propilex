@@ -3,6 +3,7 @@
 require_once __DIR__.'/../../vendor/autoload.php';
 Doctrine\Common\Annotations\AnnotationRegistry::registerLoader('class_exists');
 
+use Hateoas\Serializer\XmlHalSerializer;
 use Hateoas\Representation\Factory\PagerfantaFactory;
 use Hateoas\UrlGenerator\SymfonyUrlGenerator;
 use Symfony\Component\HttpFoundation\Request;
@@ -46,6 +47,7 @@ $app['serializer'] = $app->share(function () use ($app) {
         ->setDebug($app['debug'])
         ->setCacheDir(__DIR__ . '/../cache/hateoas')
         ->setUrlGenerator(null, new SymfonyUrlGenerator($app['url_generator']))
+        ->setXmlSerializer(new XmlHalSerializer())
         ->build();
 });
 

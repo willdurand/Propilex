@@ -28,7 +28,7 @@ define(
                 this.pages = responseObject.pages;
                 this.limit = responseObject.limit;
 
-                return responseObject.documents;
+                return responseObject._embedded.documents;
             },
 
             presenter: function () {

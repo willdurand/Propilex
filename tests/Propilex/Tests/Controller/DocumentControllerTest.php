@@ -34,18 +34,21 @@ class DocumentRestControllerTest extends WebTestCase
 
         $data = json_decode($response->getContent(), true);
 
-        $this->assertArrayHasKey('documents', $data);
+        $this->assertArrayHasKey('_embedded', $data);
         $this->assertArrayHasKey('_links', $data);
         $this->assertArrayHasKey('page', $data);
         $this->assertArrayHasKey('pages', $data);
         $this->assertArrayHasKey('limit', $data);
 
-        $this->assertCount(3, $data['documents']);
+        $this->assertArrayHasKey('documents', $data['_embedded']);
+        $documents = $data['_embedded']['documents'];
+
+        $this->assertCount(3, $documents);
         $this->assertEquals(1, $data['page']);
         $this->assertEquals(1, $data['pages']);
         $this->assertEquals(10, $data['limit']);
 
-        foreach ($data['documents'] as $item) {
+        foreach ($documents as $item) {
             $this->assertValidDocument($item);
         }
     }
@@ -60,17 +63,20 @@ class DocumentRestControllerTest extends WebTestCase
 
         $data = json_decode($response->getContent(), true);
 
-        $this->assertArrayHasKey('documents', $data);
+        $this->assertArrayHasKey('_embedded', $data);
         $this->assertArrayHasKey('page', $data);
         $this->assertArrayHasKey('pages', $data);
         $this->assertArrayHasKey('limit', $data);
 
-        $this->assertCount(1, $data['documents']);
+        $this->assertArrayHasKey('documents', $data['_embedded']);
+        $documents = $data['_embedded']['documents'];
+
+        $this->assertCount(1, $documents);
         $this->assertEquals(1, $data['page']);
         $this->assertEquals(3, $data['pages']);
         $this->assertEquals(1, $data['limit']);
 
-        $this->assertValidDocument(current($data['documents']));
+        $this->assertValidDocument(current($documents));
     }
 
     public function testGetDocument()

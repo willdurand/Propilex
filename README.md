@@ -274,7 +274,7 @@ All messages are translated depending on the `Accept-Language` header, either
 error messages or application's messages. In order to implement this, you need
 to use the [StackNegotiation](https//github.com/willdurand/StackNegotiation)
 middleware, and a [Silex application's **before**
-middleware](https://github.com/willdurand/Propilex/blob/master/app/config/config.php#L50-L67).
+middleware](https://github.com/willdurand/Propilex/blob/master/app/config/config.php#L59-L76).
 
     $ http GET http://localhost:4000/documents/123 Accept:application/json Accept-Language:en
 

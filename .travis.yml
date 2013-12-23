@@ -11,9 +11,9 @@ before_script:
     - cp app/config/propel/build.properties.dist app/config/propel/build.properties
     - bin/bootstrap
 
-    - npm install -g bower
-    - cd web && bower install && cd ..
+#    - npm install -g bower
+#    - cd web && bower install && cd ..
 
 script:
     - phpunit --coverage-text
-    - phantomjs web/js/tests/run-qunit.js file://`pwd`/web/js/tests/index.html
+#    - phantomjs web/js/tests/run-qunit.js file://`pwd`/web/js/tests/index.html

@@ -29,13 +29,22 @@ $app['validator.mapping.class_metadata_factory'] = new ClassMetadataFactory(
 
 // Configure Hateoas serializer
 $app['serializer'] = $app->share(function () use ($app) {
-    return Hateoas\HateoasBuilder::create()
+    $jmsSerializerBuilder = JMS\Serializer\SerializerBuilder::create()
         ->setMetadataDirs(array(
             ''           => __DIR__ . '/serializer',
             'Propilex'   => __DIR__ . '/serializer',
         ))
         ->setDebug($app['debug'])
-        ->setCacheDir(__DIR__ . '/../cache')
+        ->setCacheDir(__DIR__ . '/../cache/serializer')
+    ;
+
+    return Hateoas\HateoasBuilder::create($jmsSerializerBuilder)
+        ->setMetadataDirs(array(
+            ''           => __DIR__ . '/serializer',
+            'Propilex'   => __DIR__ . '/serializer',
+        ))
+        ->setDebug($app['debug'])
+        ->setCacheDir(__DIR__ . '/../cache/hateoas')
         ->setUrlGenerator(null, new SymfonyUrlGenerator($app['url_generator']))
         ->build();
 });

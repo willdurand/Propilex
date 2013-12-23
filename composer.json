@@ -14,7 +14,7 @@
         "propel/propel1": "~1.7",
         "silex/silex": "~1.0",
         "symfony/validator": "~2.4",
-        "willdurand/hateoas": "dev-fix-builder",
+        "willdurand/hateoas": "2.0@dev",
         "symfony/property-access": "~2.4",
         "symfony/yaml": "~2.4",
         "willdurand/stack-negotiation": "0.0.*",

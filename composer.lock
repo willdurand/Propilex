@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "9d19416615591f1c6d743cf4f298c2aa",
+    "hash": "0de1741880f237090fa7d25ec23aab8e",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1872,16 +1872,16 @@
         },
         {
             "name": "willdurand/hateoas",
-            "version": "dev-fix-builder",
+            "version": "v2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/willdurand/Hateoas.git",
-                "reference": "6304c9e29109975ad3dd92b66f2c53205535ee4f"
+                "reference": "493b163ac4f9f3ca43bd1a468f46bae0c182c2f9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/willdurand/Hateoas/zipball/6304c9e29109975ad3dd92b66f2c53205535ee4f",
-                "reference": "6304c9e29109975ad3dd92b66f2c53205535ee4f",
+                "url": "https://api.github.com/repos/willdurand/Hateoas/zipball/493b163ac4f9f3ca43bd1a468f46bae0c182c2f9",
+                "reference": "493b163ac4f9f3ca43bd1a468f46bae0c182c2f9",
                 "shasum": ""
             },
             "require": {
@@ -1931,7 +1931,7 @@
                 }
             ],
             "description": "A PHP library to support implementing representations for HATEOAS REST web services",
-            "time": "2013-12-22 21:18:38"
+            "time": "2013-12-18 22:33:16"
         },
         {
             "name": "willdurand/negotiation",

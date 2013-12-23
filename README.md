@@ -39,7 +39,7 @@ And browser dependencies using [Bower](http://twitter.github.com/bower/):
     cd ..
 
 
-Build Model classes, SQL, and the configuration:
+Build Model classes, SQL, and Propel's configuration:
 
     cp app/config/propel/runtime-conf.xml.dist app/config/propel/runtime-conf.xml
     cp app/config/propel/build.properties.dist app/config/propel/build.properties
@@ -56,10 +56,19 @@ Open `http://localhost:4000/` in your browser to see Propilex running.
 Usage
 -----
 
-You can use the web interface, or the command line and tools surch as
+This application is a **truely RESTful API** with hypermedia links, content
+negotiation (format and language) but also cache on safe methods. The API is
+[HAL](http://stateless.co/hal_specification.html) compliant, and serves content
+in either XML or JSON format, using the most appropriate language (English,
+French, etc.) based on clients' preferences.
+
+You can use the web interface, or the command line and tools such as
 [HTTPie](https://github.com/jkbr/httpie) or [cURL](http://curl.haxx.se/).
 
 ### GET
+
+You can get either a set of documents, or a single document. The responses for
+these data are cacheable, using the `Last-Modified` and `ETag` headers.
 
 Getting all documents in JSON:
 
@@ -190,7 +199,7 @@ Getting a single document in XML:
 
 ### POST
 
-Creating a new document by sending JSON data:
+You can create a new document by sending JSON data:
 
     $ curl -H 'Accept: application/json' -H 'Content-Type: application/json' \
         -d '{"title": "Hello!", "body": "JSON"}' \
@@ -214,7 +223,7 @@ Creating a new document by sending JSON data:
 }
 ```
 
-Creating a new document by sending XML data:
+Creating a new document is also doable by sending XML data:
 
     $ curl -H 'Accept: application/json' -H 'Content-Type: application/xml' \
         -d '<document><title>Hello!</title><body>XML</body></document>' \
@@ -243,7 +252,7 @@ Creating a new document by sending XML data:
     $ http DELETE http://localhost:4000/documents/1
     HTTP/1.1 204 No Content
 
-JSON response for an error:
+If the document you are trying to delete does not exist, you will get an error:
 
     $ http DELETE http://localhost:4000/documents/70 Accept:application/json
     HTTP/1.1 404 Not Found
@@ -254,7 +263,7 @@ JSON response for an error:
 }
 ```
 
-XML response for an error:
+XML response for this error:
 
     $ http DELETE http://localhost:4000/documents/70 Accept:application/xml
     HTTP/1.1 404 Not Found
@@ -266,13 +275,15 @@ XML response for an error:
 </error>
 ```
 
-### Translations & Errors
+### Translations & Error Messages
 
-All messages are translated depending on the `Accept-Language` header, either
-error messages or application's messages. In order to implement this, you need
-to use the [StackNegotiation](https//github.com/willdurand/StackNegotiation)
-middleware, and a [Silex application's **before**
+Both error messages or application's messages are translated depending on the
+`Accept-Language` header. In order to implement this, you need to use the
+[StackNegotiation](https//github.com/willdurand/StackNegotiation) middleware,
+and a [Silex application's **before**
 middleware](https://github.com/willdurand/Propilex/blob/master/app/config/config.php#L61-L78).
+
+You will get an error message if you try to get an unknown document:
 
     $ http GET http://localhost:4000/documents/123 Accept:application/json Accept-Language:en
     HTTP/1.1 404 Not Found
@@ -283,6 +294,8 @@ middleware](https://github.com/willdurand/Propilex/blob/master/app/config/config
 }
 ```
 
+XML response for this error:
+
     $ http GET http://localhost:4000/documents/123 Accept:application/xml Accept-Language:fr
     HTTP/1.1 404 Not Found
 
@@ -292,6 +305,9 @@ middleware](https://github.com/willdurand/Propilex/blob/master/app/config/config
     <message><![CDATA[Le document avec id = "123" n'existe pas.]]></message>
 </error>
 ```
+
+You will get an error message if you submit invalid data in order to create or
+update documents:
 
     $ http POST http://localhost:4000/documents Accept-Language:fr
     HTTP/1.1 400 Bad Request
@@ -311,7 +327,7 @@ middleware](https://github.com/willdurand/Propilex/blob/master/app/config/config
 }
 ```
 
-XML response for a validation error:
+XML response for this error:
 
     $ curl -H 'Accept: application/xml' -H 'Content-Type: application/json' \
         -d '{"title": "Hello!"}' \
@@ -328,30 +344,11 @@ XML response for a validation error:
 </errors>
 ```
 
-JSON response for a validation error:
-
-    $ curl -H 'Accept: application/json' -H 'Content-Type: application/json' \
-        -d '{"title": "Hello!"}' \
-        http://localhost:4000/documents
-    HTTP/1.1 400 Bad Request
-    Content-Type: application/json
-
-```json
-{
-    "errors": [
-        {
-            "field": "body",
-            "message": "This value should not be blank."
-        }
-    ]
-}
-```
-
 
 Configuration
 -------------
 
-All configuration files is located in the `app/config/` directory.
+All configuration files are located in the `app/config/` directory.
 
 * `propel/runtime-conf.xml` and `propel/build.properties` contain the database
   configuration, if you modify it, don't forget to rebuild things by using the
@@ -359,6 +356,7 @@ All configuration files is located in the `app/config/` directory.
 * `serializer/*` contains the Serializer and Hateoas configuration;
 * `config.php` you should **not** edit this file, except to turn on/off
   debugging stuff;
+* `messages.*.yml` contain the translations;
 * `validation.yml` contains the Validation configuration.
 
 

@@ -10,14 +10,14 @@ define(function (require) {
     });
 
     QUnit.test('getCreatedAt() returns an instance of Moment', function () {
-        var doc = new DocumentModel({ created_at: {"date":"2012-12-06 03:00:07" }});
+        var doc = new DocumentModel({ created_at: "2012-12-06 03:00:07" });
 
         QUnit.strictEqual(typeof doc.getCreatedAt(), 'object');
         QUnit.ok(doc.getCreatedAt().isValid());
     });
 
     QUnit.test('presenter() adds humanized_date', function () {
-        var doc = new DocumentModel({ id: 123, created_at: {"date":"2012-12-06 03:00:07" }}),
+        var doc = new DocumentModel({ id: 123, created_at: "2012-12-06 03:00:07" }),
             data;
 
         data = doc.presenter();

@@ -402,6 +402,17 @@ XML response for this error:
 </errors>
 ```
 
+If you send an `Accept` header with an unsupported mime type, you will get a
+`406` error:
+
+    $ http GET http://propilex.herokuapp.com/documents Accept:application/json
+    HTTP/1.1 406 Not Acceptable
+    Content-Type: text/plain
+
+    Mime type "application/json" is not supported. Supported mime types are:
+    application/hal+xml, application/hal+json.
+
+
 
 Configuration
 -------------
@@ -412,10 +423,10 @@ All configuration files are located in the `app/config/` directory.
   configuration, if you modify it, don't forget to rebuild things by using the
   previous command;
 * `serializer/*` contains the Serializer and Hateoas configuration;
-* `config.php` you should **not** edit this file, except to turn on/off
-  debugging stuff;
 * `messages.*.yml` contain the translations;
 * `validation.yml` contains the Validation configuration.
+
+You can also find a few parameters in `app/propilex.php`.
 
 
 Screenshots

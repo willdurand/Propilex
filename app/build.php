@@ -15,6 +15,7 @@ use Propilex\Hateoas\CuriesConfigurationExtension;
 use Propilex\Hateoas\VndErrorRepresentation;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotAcceptableHttpException;
 use Symfony\Component\Validator\Mapping\ClassMetadataFactory;
 use Symfony\Component\Validator\Mapping\Loader\YamlFileLoader;
 
@@ -120,7 +121,9 @@ $app['view_handler'] = $app->share(function () use ($app) {
 // Error handler
 $app->error(function (\Exception $e, $code) use ($app) {
     if (406 === $code) {
-        return new Response($e->getMessage());
+        return new Response($e->getMessage(), 406, [
+            'Content-Type' => 'text/plain'
+        ]);
     }
 
     return $app['view_handler']->handle(

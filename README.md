@@ -22,7 +22,8 @@ And:
 * [Hateoas](https://github.com/willdurand/Hateoas);
 * [Negotiation](https://github.com/willdurand/Negotiation);
 * [StackNegotiation](https://github.com/willdurand/StackNegotiation);
-* [Stack](http://stackphp.com).
+* [Stack](http://stackphp.com);
+* [TemplatedUriRouter](https://github.com/hautelook/TemplatedUriRouter).
 
 
 Installation
@@ -81,6 +82,16 @@ Getting all documents in JSON:
 ```json
 {
     "_links": {
+        "curies": [
+            {
+                "href": "http://localhost:4000/rels/{rel}",
+                "name": "p",
+                "templated": true
+            }
+        ],
+        "p:documents": {
+            "href": "http://localhost:4000/documents"
+        },
         "first": {
             "href": "http://localhost:4000/documents?page=1&limit=10"
         },
@@ -97,7 +108,14 @@ Getting all documents in JSON:
                 "_links": {
                     "self": {
                         "href": "http://localhost:4000/documents/1"
-                    }
+                    },
+                    "curies": [
+                        {
+                            "href": "http://localhost:4000/rels/{rel}",
+                            "name": "p",
+                            "templated": true
+                        }
+                    ]
                 },
                 "body": "Hello, World!",
                 "created_at": "2013-12-22 17:55:18",
@@ -109,7 +127,14 @@ Getting all documents in JSON:
                 "_links": {
                     "self": {
                         "href": "http://localhost:4000/documents/2"
-                    }
+                    },
+                    "curies": [
+                        {
+                            "href": "http://localhost:4000/rels/{rel}",
+                            "name": "p",
+                            "templated": true
+                        }
+                    ]
                 },
                 "body": "This is a body",
                 "created_at": "2013-12-22 17:55:22",
@@ -142,6 +167,7 @@ Getting all documents in XML:
         <body>Hello, World!</body>
         <created_at><![CDATA[2013-12-22 17:55:18]]></created_at>
         <updated_at><![CDATA[2013-12-22 17:55:18]]></updated_at>
+        <link href="http://localhost:4000/rels/{rel}" name="p" rel="curies" templated="1"/>
     </resource>
     <resource href="http://localhost:4000/documents/2" rel="documents">
         <id>2</id>
@@ -149,9 +175,13 @@ Getting all documents in XML:
         <body>This is a body</body>
         <created_at><![CDATA[2013-12-22 17:55:22]]></created_at>
         <updated_at><![CDATA[2013-12-22 22:09:37]]></updated_at>
+        <link href="http://localhost:4000/rels/{rel}" name="p" rel="curies" templated="1"/>
     </resource>
     <link href="http://localhost:4000/documents?page=1&limit=10" rel="first"></link>
     <link href="http://localhost:4000/documents?page=1&limit=10" rel="last"></link>
+
+    <link href="http://localhost:4000/rels/{rel}" name="p" rel="curies" templated="1"/>
+    <link href="http://localhost:4000/documents" rel="p:documents"/>
 </collection>
 ```
 
@@ -168,7 +198,14 @@ Getting a single document in JSON:
     "_links": {
         "self": {
             "href": "http://localhost:4000/documents/1"
-        }
+        },
+        "curies": [
+            {
+                "href": "http://localhost:4000/rels/{rel}",
+                "name": "p",
+                "templated": true
+            }
+        ]
     },
     "body": "Hello, World!",
     "created_at": "2013-12-22 17:55:18",
@@ -194,6 +231,7 @@ Getting a single document in XML:
     <body><![CDATA[Hello, World!]]></body>
     <created_at><![CDATA[2013-12-22 17:55:18]]></created_at>
     <updated_at><![CDATA[2013-12-22 22:41:55]]></updated_at>
+    <link href="http://localhost:4000/rels/{rel}" name="p" rel="curies" templated="1"/>
 </document>
 ```
 
@@ -218,7 +256,14 @@ You can create a new document by sending JSON data:
     "_links": {
         "self": {
             "href": "http://localhost:4000/documents/7"
-        }
+        },
+        "curies": [
+            {
+                "href": "http://localhost:4000/rels/{rel}",
+                "name": "p",
+                "templated": true
+            }
+        ]
     }
 }
 ```
@@ -242,7 +287,14 @@ Creating a new document is also doable by sending XML data:
     "_links": {
         "self": {
             "href": "http://localhost:4000/documents/8"
-        }
+        },
+        "curies": [
+            {
+                "href": "http://localhost:4000/rels/{rel}",
+                "name": "p",
+                "templated": true
+            }
+        ]
     }
 }
 ```
@@ -283,7 +335,7 @@ Both error messages or application's messages are translated depending on the
 `Accept-Language` header. In order to implement this, you need to use the
 [StackNegotiation](https//github.com/willdurand/StackNegotiation) middleware,
 and a [Silex application's **before**
-middleware](https://github.com/willdurand/Propilex/blob/master/app/config/config.php#L61-L78).
+middleware](https://github.com/willdurand/Propilex/blob/master/app/config/config.php#L69-L86).
 
 A response with a status code equals to either `404` or `500` follows the
 [vnd.error](https://github.com/blongden/vnd.error) specification.

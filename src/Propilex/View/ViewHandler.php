@@ -50,6 +50,17 @@ class ViewHandler
             }
         }
 
+        if (400 === $statusCode) {
+            switch ($format) {
+                case 'xml':
+                    $mimeType = 'application/xml';
+                    break;
+
+                default:
+                    $mimeType = 'application/json';
+            }
+        }
+
         $response->setContent($this->serializer->serialize($data, $format));
         $response->setStatusCode($statusCode);
         $response->headers->add(array_merge(

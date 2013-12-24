@@ -24,7 +24,7 @@
         "pagerfanta/pagerfanta": "~1.0",
         "hautelook/templated-uri-router": "~1.0",
         "nicl/silex-markdown": "~1.1",
-        "kphoen/negotiation-service-provider": "~1.0"
+        "kphoen/negotiation-service-provider": "dev-override-formats"
     },
     "require-dev": {
         "symfony/browser-kit": "~2.4",
@@ -49,5 +49,11 @@
                 "./node_modules/.bin/bower install"
             ]
         }
-    }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/willdurand/NegotiationServiceProvider"
+        }
+    ]
 }

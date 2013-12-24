@@ -10,7 +10,7 @@ A [Silex](http://silex.sensiolabs.org) application which uses
 
 * [Bower](http://twitter.github.com/bower/) as browser package manager;
 * [RequireJS](http://requirejs.org/);
-* [Garlic.js](garlicjs.org);
+* [Garlic.js](http://garlicjs.org);
 * [Moment.js](http://momentjs.com/);
 * [Twitter Bootstrap](http://twitter.github.com/bootstrap/);
 * [Less CSS](http://lesscss.org/);

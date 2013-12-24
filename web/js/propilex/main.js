@@ -79,6 +79,9 @@ require(
                     ventilator.trigger('canvas:message:error', t('error.internal_server_error'));
                     $('.main').removeClass('loading');
                 }
+            },
+            headers: {
+                'Accept-Language': requirejs.s.contexts._.config.config.i18n.locale.substr(0, 2)
             }
         });
 

@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "5991f9c3b9aceda89e8d3f4db1d6b2f4",
+    "hash": "1338531f61076224f07007eb9c0938fc",
     "packages": [
         {
             "name": "dflydev/markdown",
@@ -684,16 +684,16 @@
         },
         {
             "name": "kphoen/negotiation-service-provider",
-            "version": "dev-override-formats",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
-                "url": "https://github.com/willdurand/NegotiationServiceProvider.git",
-                "reference": "aae74a94de24712a25f4268fd85884c988d7bf66"
+                "url": "https://github.com/K-Phoen/NegotiationServiceProvider.git",
+                "reference": "8a9f5929661a05629f74f745eed26bde26594ee7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/willdurand/NegotiationServiceProvider/zipball/aae74a94de24712a25f4268fd85884c988d7bf66",
-                "reference": "aae74a94de24712a25f4268fd85884c988d7bf66",
+                "url": "https://api.github.com/repos/K-Phoen/NegotiationServiceProvider/zipball/8a9f5929661a05629f74f745eed26bde26594ee7",
+                "reference": "8a9f5929661a05629f74f745eed26bde26594ee7",
                 "shasum": ""
             },
             "require": {
@@ -710,6 +710,7 @@
                     "KPhoen": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -721,10 +722,7 @@
                 }
             ],
             "description": "Negotiation Service Provider for Silex",
-            "support": {
-                "source": "https://github.com/willdurand/NegotiationServiceProvider/tree/override-formats"
-            },
-            "time": "2013-12-24 23:06:38"
+            "time": "2013-12-24 23:12:14"
         },
         {
             "name": "nicl/silex-markdown",
@@ -2724,8 +2722,7 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "propel/propel-service-provider": 20,
-        "willdurand/hateoas": 20,
-        "kphoen/negotiation-service-provider": 20
+        "willdurand/hateoas": 20
     },
     "platform": {
         "php": ">=5.5.0"

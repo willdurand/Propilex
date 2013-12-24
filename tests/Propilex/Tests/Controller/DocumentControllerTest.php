@@ -235,7 +235,7 @@ XML
 
         $response = $client->getResponse();
 
-        $this->assertHalJsonResponse($response, 400);
+        $this->assertJsonResponse($response, 400);
 
         $data = json_decode($response->getContent(), true);
 

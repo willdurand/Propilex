@@ -57,6 +57,18 @@ class DocumentRestControllerTest extends WebTestCase
         $this->assertTrue($response->headers->hasCacheControlDirective('public'));
         $this->assertFalse($response->headers->has('Last-Modified'));
         $this->assertTrue($response->headers->has('ETag'));
+
+        // links
+        $links = $data['_links'];
+        $this->assertArrayHasKey('self', $links);
+        $this->assertArrayHasKey('curies', $links);
+        $this->assertArrayHasKey('first', $links);
+        $this->assertArrayHasKey('last', $links);
+        $this->assertArrayNotHasKey('next', $links);
+        $this->assertArrayNotHasKey('previous', $links);
+
+        $this->assertEquals('p', $links['curies'][0]['name']);
+        $this->assertEquals('http://localhost/rels/{rel}', $links['curies'][0]['href']);
     }
 
     public function testListDocumentsIsPaginated()
@@ -83,6 +95,18 @@ class DocumentRestControllerTest extends WebTestCase
         $this->assertEquals(1, $data['limit']);
 
         $this->assertValidDocument(current($documents));
+
+        // links
+        $links = $data['_links'];
+        $this->assertArrayHasKey('self', $links);
+        $this->assertArrayHasKey('curies', $links);
+        $this->assertArrayHasKey('first', $links);
+        $this->assertArrayHasKey('last', $links);
+        $this->assertArrayHasKey('next', $links);
+        $this->assertArrayNotHasKey('previous', $links);
+
+        $this->assertEquals('p', $links['curies'][0]['name']);
+        $this->assertEquals('http://localhost/rels/{rel}', $links['curies'][0]['href']);
     }
 
     public function testGetDocument()

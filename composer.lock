@@ -3,8 +3,67 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "3f6cacf6f3b7ff83d5f111e0f942d53b",
+    "hash": "8042fbab21fd766b9679c669e4b917e6",
     "packages": [
+        {
+            "name": "dflydev/markdown",
+            "version": "v1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dflydev/dflydev-markdown.git",
+                "reference": "6baed9b50f29c980795b6656d43722aadb126f7e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dflydev/dflydev-markdown/zipball/6baed9b50f29c980795b6656d43722aadb126f7e",
+                "reference": "6baed9b50f29c980795b6656d43722aadb126f7e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "dflydev\\markdown": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Dragonfly Development Inc.",
+                    "email": "info@dflydev.com",
+                    "homepage": "http://dflydev.com"
+                },
+                {
+                    "name": "Beau Simensen",
+                    "email": "beau@dflydev.com",
+                    "homepage": "http://beausimensen.com"
+                },
+                {
+                    "name": "Michel Fortin",
+                    "homepage": "http://michelf.com"
+                },
+                {
+                    "name": "John Gruber",
+                    "homepage": "http://daringfireball.net"
+                }
+            ],
+            "description": "PHP Markdown & Extra",
+            "homepage": "http://github.com/dflydev/dflydev-markdown",
+            "keywords": [
+                "markdown"
+            ],
+            "time": "2013-09-23 12:00:18"
+        },
         {
             "name": "doctrine/annotations",
             "version": "v1.1.2",
@@ -410,6 +469,63 @@
             "time": "2013-01-12 18:59:04"
         },
         {
+            "name": "hautelook/templated-uri-router",
+            "version": "1.0.0",
+            "target-dir": "Hautelook/TemplatedUriRouter",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hautelook/TemplatedUriRouter.git",
+                "reference": "a455b924a71da5f3564a6502a55a0a409d3a19f3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hautelook/TemplatedUriRouter/zipball/a455b924a71da5f3564a6502a55a0a409d3a19f3",
+                "reference": "a455b924a71da5f3564a6502a55a0a409d3a19f3",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0",
+                "symfony/routing": "~2.1"
+            },
+            "require-dev": {
+                "symfony/framework-bundle": "~2.1"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Hautelook\\TemplatedUriRouter": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Baldur Rensch",
+                    "email": "brensch@gmail.com"
+                }
+            ],
+            "description": "Symfony2 RFC-6570 compatible router and URL Generator",
+            "homepage": "http://www.hautelooktech.com/",
+            "keywords": [
+                "HATEOAS",
+                "RFC 6570",
+                "Symfony2",
+                "json",
+                "router",
+                "uri",
+                "url",
+                "xml"
+            ],
+            "time": "2013-12-05 17:55:28"
+        },
+        {
             "name": "jms/metadata",
             "version": "1.5.0",
             "source": {
@@ -565,6 +681,55 @@
                 "xml"
             ],
             "time": "2013-12-04 16:46:05"
+        },
+        {
+            "name": "nicl/silex-markdown",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nicl/Silex-Markdown.git",
+                "reference": "36ae0506f7a72a37a30ddce5f2acb28c528170e4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nicl/Silex-Markdown/zipball/36ae0506f7a72a37a30ddce5f2acb28c528170e4",
+                "reference": "36ae0506f7a72a37a30ddce5f2acb28c528170e4",
+                "shasum": ""
+            },
+            "require": {
+                "dflydev/markdown": "1.0.*",
+                "silex/silex": "1.*"
+            },
+            "suggest": {
+                "twig/twig": "enables parsing markdown right from the template using simple filter"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Nicl": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Long",
+                    "email": "nicolaslong@gmail.com"
+                }
+            ],
+            "description": "Simple Silex wrapper for the Dragonfly markdown library",
+            "homepage": "http://github.com/nicl/silex-markdown",
+            "keywords": [
+                "markdown"
+            ],
+            "time": "2013-08-05 20:33:16"
         },
         {
             "name": "pagerfanta/pagerfanta",
@@ -1876,12 +2041,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/willdurand/Hateoas.git",
-                "reference": "a9ba910a556c135b45ff82312f0f708400e6bbdd"
+                "reference": "3bde391474591bf216a81ef04d7eb37b91582255"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/willdurand/Hateoas/zipball/a9ba910a556c135b45ff82312f0f708400e6bbdd",
-                "reference": "a9ba910a556c135b45ff82312f0f708400e6bbdd",
+                "url": "https://api.github.com/repos/willdurand/Hateoas/zipball/3bde391474591bf216a81ef04d7eb37b91582255",
+                "reference": "3bde391474591bf216a81ef04d7eb37b91582255",
                 "shasum": ""
             },
             "require": {
@@ -1931,7 +2096,7 @@
                 }
             ],
             "description": "A PHP library to support implementing representations for HATEOAS REST web services",
-            "time": "2013-12-22 21:18:22"
+            "time": "2013-12-24 10:37:43"
         },
         {
             "name": "willdurand/negotiation",

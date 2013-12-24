@@ -1,0 +1,7 @@
+{
+    "name": "Propilex",
+    "author": "William Durand",
+    "dependencies": {
+        "bower": "1.2.*"
+    }
+}

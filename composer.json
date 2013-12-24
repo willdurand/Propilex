@@ -34,5 +34,19 @@
     },
     "config": {
         "bin-dir": "bin/"
+    },
+    "extra": {
+        "heroku": {
+            "framework": "silex",
+            "document-root": "web",
+            "index-document": "index.php",
+            "compile": [
+                "cp app/config/propel/runtime-conf.xml.dist app/config/propel/runtime-conf.xml",
+                "cp app/config/propel/build.properties.dist app/config/propel/build.properties",
+                "chmod +x vendor/propel/propel1/generator/bin/phing.php",
+                "bin/bootstrap",
+                "./node_modules/.bin/bower install"
+            ]
+        }
     }
 }

@@ -10,7 +10,7 @@ require({
         'backbone': '/components/backbone/backbone-min',
         'backbone-forms-core': '/components/backbone-forms/distribution/backbone-forms.min',
         'backbone-forms': '/components/backbone-forms/distribution/templates/bootstrap',
-        'jquery': '/components/jquery/jquery',
+        'jquery': '/components/jquery/jquery.min',
         'underscore': '/components/lodash/lodash.min',
         'garlicjs': '/components/garlicjs/garlic',
         'bootstrap': '/components/bootstrap.css/js/bootstrap.min',
@@ -18,7 +18,7 @@ require({
         'moment': '/components/moment/lang/fr',
         'less': '/components/less.js/dist/less-1.3.1.min',
         'i18n': '/components/requirejs-i18n/i18n',
-        'key': '/components/keymaster/keymaster.min'
+        'key': '/components/keymaster/keymaster'
     },
 
     shim: {

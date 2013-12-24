@@ -8,7 +8,7 @@ A [Silex](http://silex.sensiolabs.org) application which uses
 [Propel](http://propelorm.org),
 [Backbone.JS](http://backbonejs.org/), but also:
 
-* [Bower](http://twitter.github.com/bower/) as browser package manager;
+* [Bower](http://bower.io/) as browser package manager;
 * [RequireJS](http://requirejs.org/);
 * [Garlic.js](http://garlicjs.org);
 * [Moment.js](http://momentjs.com/);
@@ -34,11 +34,9 @@ Install PHP dependencies:
     composer install
 
 
-And browser dependencies using [Bower](http://twitter.github.com/bower/):
+And browser dependencies using [Bower](http://bower.io/):
 
-    cd web && bower install
-    cd ..
-
+    bower install
 
 Build Model classes, SQL, and Propel's configuration:
 
@@ -425,6 +423,18 @@ Screenshots
 ![](https://raw.github.com/willdurand/Propilex/master/doc/screenshot_1.png)
 
 ![](https://raw.github.com/willdurand/Propilex/master/doc/screenshot_2.png)
+
+
+Deploy on Heroku
+----------------
+
+Create a new Heroku application:
+
+    heroku create --buildpack https://github.com/CHH/heroku-buildpack-php myapp
+
+Deploy it!
+
+    git push heroku master
 
 
 Unit Tests

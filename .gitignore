@@ -9,3 +9,4 @@ vendor
 web/components/
 bin/phpunit
 bin/propel*
+node_modules/

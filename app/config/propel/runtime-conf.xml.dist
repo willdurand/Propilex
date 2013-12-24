@@ -5,7 +5,7 @@
             <datasource id="propilex">
                 <adapter>sqlite</adapter>
                 <connection>
-                    <dsn>sqlite:/tmp/database.db</dsn>
+                    <dsn>sqlite:%CACHE_DIR%/database.db</dsn>
                     <user></user>
                     <password></password>
                 </connection>

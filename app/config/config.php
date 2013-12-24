@@ -21,7 +21,7 @@ $app['debug'] = 'dev' === getenv('APPLICATION_ENV');
 $app->register(new Silex\Provider\ValidatorServiceProvider());
 $app->register(new Silex\Provider\UrlGeneratorServiceProvider());
 $app->register(new Propel\Silex\PropelServiceProvider(), array(
-    'propel.config_file' => __DIR__ . '/propel/conf/Propilex-conf.php',
+    'propel.config_file' => __DIR__ . '/propel/propilex.php',
     'propel.model_path'  => __DIR__ . '/../../src/Propilex/Model',
 ));
 

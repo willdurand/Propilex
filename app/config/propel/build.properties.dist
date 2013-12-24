@@ -7,7 +7,7 @@ propel.namespace.autoPackage = true
 propel.packageObjectModel    = true
 
 propel.database     = sqlite
-propel.database.url = sqlite:/tmp/database.db
+propel.database.url = sqlite:${propel.project.dir}/../../cache/database.db
 
 # Enable full use of the DateTime class.
 # Setting this to true means that getter methods for date/time/timestamp

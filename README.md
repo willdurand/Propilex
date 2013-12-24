@@ -383,7 +383,7 @@ First, install the application as described in section
 
 ### Backend
 
-Install dev depedencies:
+Install dev dependencies:
 
     composer install --dev
 

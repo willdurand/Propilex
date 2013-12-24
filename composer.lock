@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "8042fbab21fd766b9679c669e4b917e6",
+    "hash": "1338531f61076224f07007eb9c0938fc",
     "packages": [
         {
             "name": "dflydev/markdown",
@@ -681,6 +681,48 @@
                 "xml"
             ],
             "time": "2013-12-04 16:46:05"
+        },
+        {
+            "name": "kphoen/negotiation-service-provider",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/K-Phoen/NegotiationServiceProvider.git",
+                "reference": "d662f6e40179e4b925e3c372f61e65da1cdec0a5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/K-Phoen/NegotiationServiceProvider/zipball/d662f6e40179e4b925e3c372f61e65da1cdec0a5",
+                "reference": "d662f6e40179e4b925e3c372f61e65da1cdec0a5",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0",
+                "willdurand/negotiation": "~1.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~3.7",
+                "silex/silex": "~1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "KPhoen": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kévin Gomez",
+                    "email": "contact@kevingomez.fr",
+                    "homepage": "http://www.kevingomez.fr/"
+                }
+            ],
+            "description": "Negotiation Service Provider for Silex",
+            "time": "2013-11-21 10:43:06"
         },
         {
             "name": "nicl/silex-markdown",

@@ -23,7 +23,8 @@
         "symfony/config": "~2.4",
         "pagerfanta/pagerfanta": "~1.0",
         "hautelook/templated-uri-router": "~1.0",
-        "nicl/silex-markdown": "~1.1"
+        "nicl/silex-markdown": "~1.1",
+        "kphoen/negotiation-service-provider": "~1.0"
     },
     "require-dev": {
         "symfony/browser-kit": "~2.4",

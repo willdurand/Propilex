@@ -24,6 +24,11 @@ abstract class WebTestCase extends BaseWebTestCase
         $this->assertJsonResponse($response, $statusCode, 'application/vnd.error+json');
     }
 
+    protected function assertHalJsonResponse(Response $response, $statusCode = 200)
+    {
+        $this->assertJsonResponse($response, $statusCode, 'application/hal+json');
+    }
+
     protected function assertValidDocument(array $document)
     {
         $this->assertArrayHasKey('id', $document);

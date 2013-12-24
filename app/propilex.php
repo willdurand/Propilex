@@ -1,42 +1,18 @@
 <?php
 
-use Propilex\Model\Document;
 use Propilex\Model\DocumentQuery;
 use Propilex\Model\Repository\PropelDocumentRepository;
-use Propilex\View\Error;
-use Propilex\View\FormErrors;
-use Propilex\View\ViewHandler;
-use Propilex\Hateoas\VndErrorRepresentation;
 
-$app = require __DIR__ . '/config/config.php';
+$app = require __DIR__ . '/build.php';
 
-// Error
-$app->error(function (\Exception $e, $code) use ($app) {
-    return $app['view_handler']->handle(
-        new VndErrorRepresentation($e->getMessage()),
-        $code
-    );
-});
+// Config
+$app['debug']                 = 'dev' === getenv('APPLICATION_ENV');
+$app['translation.fallback']  = 'en';
+$app['acceptable_mime_types'] = [ 'application/hal+xml', 'application/hal+json' ];
 
-// Validator
-$app['document_validator'] = $app->protect(function (Document $document) use ($app) {
-    $errors = $app['validator']->validate($document);
-
-    if (0 < count($errors)) {
-        return new FormErrors($errors);
-    }
-
-    return true;
-});
-
-// Model
+// Model Layer
 $app['document_repository'] = $app->share(function () {
     return new PropelDocumentRepository(DocumentQuery::create());
-});
-
-// View
-$app['view_handler'] = $app->share(function () use ($app) {
-    return new ViewHandler($app['serializer'], $app['request']);
 });
 
 /**

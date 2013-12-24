@@ -81,6 +81,7 @@ require(
                 }
             },
             headers: {
+                'Accept': 'application/hal+json',
                 'Accept-Language': requirejs.s.contexts._.config.config.i18n.locale.substr(0, 2)
             }
         });

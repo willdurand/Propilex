@@ -27,10 +27,12 @@ class DocumentRestControllerTest extends WebTestCase
     public function testListDocuments()
     {
         $client   = static::createClient();
-        $crawler  = $client->request('GET', '/documents');
+        $crawler  = $client->request('GET', '/documents', [], [], [
+            'HTTP_Accept' => 'application/hal+json',
+        ]);
         $response = $client->getResponse();
 
-        $this->assertJsonResponse($response);
+        $this->assertHalJsonResponse($response);
 
         $data = json_decode($response->getContent(), true);
 
@@ -74,10 +76,12 @@ class DocumentRestControllerTest extends WebTestCase
     public function testListDocumentsIsPaginated()
     {
         $client   = static::createClient();
-        $crawler  = $client->request('GET', '/documents?limit=1');
+        $crawler  = $client->request('GET', '/documents?limit=1', [], [], [
+            'HTTP_Accept' => 'application/hal+json',
+        ]);
         $response = $client->getResponse();
 
-        $this->assertJsonResponse($response);
+        $this->assertHalJsonResponse($response);
 
         $data = json_decode($response->getContent(), true);
 
@@ -112,10 +116,12 @@ class DocumentRestControllerTest extends WebTestCase
     public function testGetDocument()
     {
         $client   = static::createClient();
-        $crawler  = $client->request('GET', '/documents/1');
+        $crawler  = $client->request('GET', '/documents/1', [], [], [
+            'HTTP_Accept' => 'application/hal+json',
+        ]);
         $response = $client->getResponse();
 
-        $this->assertJsonResponse($response);
+        $this->assertHalJsonResponse($response);
 
         $data = json_decode($response->getContent(), true);
 
@@ -130,7 +136,9 @@ class DocumentRestControllerTest extends WebTestCase
     public function testGetUnknownDocumentReturns404()
     {
         $client   = static::createClient();
-        $crawler  = $client->request('GET', '/documents/123');
+        $crawler  = $client->request('GET', '/documents/123', [], [], [
+            'HTTP_Accept' => 'application/hal+json',
+        ]);
         $response = $client->getResponse();
 
         $this->assertJsonErrorResponse($response, 404);
@@ -146,7 +154,8 @@ class DocumentRestControllerTest extends WebTestCase
         $client   = static::createClient();
         $crawler  = $client->request('GET', '/documents/123', [], [], [
             'HTTP_Accept-Language' => 'fr',
-            ]);
+            'HTTP_Accept'          => 'application/hal+json',
+        ]);
         $response = $client->getResponse();
 
         $this->assertJsonErrorResponse($response, 404);
@@ -162,6 +171,7 @@ class DocumentRestControllerTest extends WebTestCase
         $client   = static::createClient();
         $crawler  = $client->request('POST', '/documents', [], [], [
             'CONTENT_TYPE' => 'application/json',
+            'HTTP_Accept'  => 'application/hal+json',
         ], <<<JSON
 {
     "title": "Hello, World",
@@ -172,7 +182,7 @@ JSON
 
         $response = $client->getResponse();
 
-        $this->assertJsonResponse($response, 201);
+        $this->assertHalJsonResponse($response, 201);
         $this->assertTrue($response->headers->has('Location'));
 
         $document = json_decode($response->getContent(), true);
@@ -185,6 +195,7 @@ JSON
         $client   = static::createClient();
         $crawler  = $client->request('POST', '/documents', [], [], [
             'CONTENT_TYPE' => 'application/xml',
+            'HTTP_Accept'  => 'application/hal+json',
         ], <<<XML
 <document>
     <title>Hello, You</title>
@@ -195,7 +206,7 @@ XML
 
         $response = $client->getResponse();
 
-        $this->assertJsonResponse($response, 201);
+        $this->assertHalJsonResponse($response, 201);
 
         $document = json_decode($response->getContent(), true);
 
@@ -214,6 +225,7 @@ XML
         $client   = static::createClient();
         $crawler  = $client->request('POST', '/documents', [], [], [
             'CONTENT_TYPE' => 'application/xml',
+            'HTTP_Accept'  => 'application/hal+json',
         ], <<<XML
 <document>
     <title>Hello, You</title>
@@ -223,7 +235,7 @@ XML
 
         $response = $client->getResponse();
 
-        $this->assertJsonResponse($response, 400);
+        $this->assertHalJsonResponse($response, 400);
 
         $data = json_decode($response->getContent(), true);
 
@@ -239,7 +251,7 @@ XML
         $client   = static::createClient();
         $crawler  = $client->request('POST', '/documents', [], [], [
             'CONTENT_TYPE' => 'application/json',
-            'HTTP_Accept'  => 'application/xml',
+            'HTTP_Accept'  => 'application/hal+xml',
             ], <<<JSON
 {
     "body": "foo"
@@ -267,6 +279,7 @@ XML
         $client   = static::createClient();
         $crawler  = $client->request('PUT', '/documents/1', [], [], [
             'CONTENT_TYPE' => 'application/xml',
+            'HTTP_Accept'  => 'application/hal+json',
         ], <<<XML
 <document>
     <title>foo</title>
@@ -277,7 +290,7 @@ XML
 
         $response = $client->getResponse();
 
-        $this->assertJsonResponse($response, 200);
+        $this->assertHalJsonResponse($response, 200);
 
         $document = json_decode($response->getContent(), true);
 
@@ -295,7 +308,7 @@ XML
         $client   = static::createClient();
         $crawler  = $client->request('PUT', '/documents/1', [], [], [
             'CONTENT_TYPE' => 'application/json',
-            'HTTP_Accept'  => 'application/xml',
+            'HTTP_Accept'  => 'application/hal+xml',
         ], <<<JSON
 {
     "title": "foo",
@@ -322,7 +335,7 @@ XML
         $client   = static::createClient();
         $crawler  = $client->request('PUT', '/documents/1', [], [], [
             'CONTENT_TYPE' => 'application/json',
-            'HTTP_Accept'  => 'application/xml',
+            'HTTP_Accept'  => 'application/hal+xml',
         ], <<<JSON
 {
     "id": 123,

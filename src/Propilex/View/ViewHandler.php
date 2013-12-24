@@ -5,6 +5,7 @@ namespace Propilex\View;
 use JMS\Serializer\SerializerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotAcceptableHttpException;
 
 class ViewHandler
 {
@@ -12,10 +13,13 @@ class ViewHandler
 
     private $request;
 
-    public function __construct(SerializerInterface $serializer, Request $request)
+    private $acceptableMimeTypes;
+
+    public function __construct(SerializerInterface $serializer, Request $request, array $acceptableMimeTypes)
     {
-        $this->serializer = $serializer;
-        $this->request    = $request;
+        $this->serializer           = $serializer;
+        $this->request              = $request;
+        $this->acceptableMimeTypes  = $acceptableMimeTypes;
     }
 
     public function handle($data, $statusCode = 200, array $headers = [], Response $response = null)
@@ -23,9 +27,12 @@ class ViewHandler
         $format   = $this->request->attributes->get('_format');
         $mimeType = $this->request->attributes->get('_mime_type');
 
-        if (empty($format) || 'html' === $format) {
-            $format   = 'json';
-            $mimeType = 'application/json';
+        if (!in_array($mimeType, $this->acceptableMimeTypes)) {
+            throw new NotAcceptableHttpException(sprintf(
+                'Mime type "%s" is not supported. Supported mime types are: %s.',
+                $mimeType,
+                implode(', ', $this->acceptableMimeTypes)
+            ));
         }
 
         if (null === $response) {

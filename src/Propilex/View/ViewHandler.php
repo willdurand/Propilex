@@ -32,6 +32,17 @@ class ViewHandler
             $response = new Response();
         }
 
+        if (in_array($statusCode, [ 404, 500 ])) {
+            switch ($format) {
+                case 'xml':
+                    $mimeType = 'application/vnd.error+xml';
+                    break;
+
+                default:
+                    $mimeType = 'application/vnd.error+json';
+            }
+        }
+
         $response->setContent($this->serializer->serialize($data, $format));
         $response->setStatusCode($statusCode);
         $response->headers->add(array_merge(

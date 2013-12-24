@@ -6,13 +6,14 @@ use Propilex\Model\Repository\PropelDocumentRepository;
 use Propilex\View\Error;
 use Propilex\View\FormErrors;
 use Propilex\View\ViewHandler;
+use Propilex\Hateoas\VndErrorRepresentation;
 
 $app = require __DIR__ . '/config/config.php';
 
 // Error
 $app->error(function (\Exception $e, $code) use ($app) {
     return $app['view_handler']->handle(
-        new Error($e->getMessage()),
+        new VndErrorRepresentation($e->getMessage()),
         $code
     );
 });

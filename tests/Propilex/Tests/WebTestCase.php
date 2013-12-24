@@ -7,16 +7,21 @@ use Symfony\Component\HttpFoundation\Response;
 
 abstract class WebTestCase extends BaseWebTestCase
 {
-    protected function assertJsonResponse(Response $response, $statusCode = 200)
+    protected function assertJsonResponse(Response $response, $statusCode = 200, $contentType = 'application/json')
     {
         $this->assertEquals(
             $statusCode, $response->getStatusCode(),
             $response->getContent()
         );
         $this->assertTrue(
-            $response->headers->contains('Content-Type', 'application/json'),
+            $response->headers->contains('Content-Type', $contentType),
             $response->headers
         );
+    }
+
+    protected function assertJsonErrorResponse(Response $response, $statusCode = 200)
+    {
+        $this->assertJsonResponse($response, $statusCode, 'application/vnd.error+json');
     }
 
     protected function assertValidDocument(array $document)

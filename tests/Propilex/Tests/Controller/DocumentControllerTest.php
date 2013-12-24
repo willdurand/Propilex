@@ -109,7 +109,7 @@ class DocumentRestControllerTest extends WebTestCase
         $crawler  = $client->request('GET', '/documents/123');
         $response = $client->getResponse();
 
-        $this->assertJsonResponse($response, 404);
+        $this->assertJsonErrorResponse($response, 404);
 
         $data = json_decode($response->getContent(), true);
 
@@ -125,7 +125,7 @@ class DocumentRestControllerTest extends WebTestCase
             ]);
         $response = $client->getResponse();
 
-        $this->assertJsonResponse($response, 404);
+        $this->assertJsonErrorResponse($response, 404);
 
         $data = json_decode($response->getContent(), true);
 

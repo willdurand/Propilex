@@ -256,6 +256,7 @@ If the document you are trying to delete does not exist, you will get an error:
 
     $ http DELETE http://localhost:4000/documents/70 Accept:application/json
     HTTP/1.1 404 Not Found
+    Content-Type: application/vnd.error+json
 
 ```json
 {
@@ -267,12 +268,13 @@ XML response for this error:
 
     $ http DELETE http://localhost:4000/documents/70 Accept:application/xml
     HTTP/1.1 404 Not Found
+    Content-Type: application/vnd.error+xml
 
 ```xml
 <?xml version="1.0" ?>
-<error>
+<resource>
     <message><![CDATA[Document with id = 70 does not exist.]]></message>
-</error>
+</resource>
 ```
 
 ### Translations & Error Messages
@@ -283,10 +285,14 @@ Both error messages or application's messages are translated depending on the
 and a [Silex application's **before**
 middleware](https://github.com/willdurand/Propilex/blob/master/app/config/config.php#L61-L78).
 
+A response with a status code equals to either `404` or `500` follows the
+[vnd.error](https://github.com/blongden/vnd.error) specification.
+
 You will get an error message if you try to get an unknown document:
 
     $ http GET http://localhost:4000/documents/123 Accept:application/json Accept-Language:en
     HTTP/1.1 404 Not Found
+    Content-Type: application/vnd.error+json
 
 ```json
 {
@@ -298,12 +304,13 @@ XML response for this error:
 
     $ http GET http://localhost:4000/documents/123 Accept:application/xml Accept-Language:fr
     HTTP/1.1 404 Not Found
+    Content-Type: application/vnd.error+xml
 
 ```xml
 <?xml version="1.0" ?>
-<error>
+<resource>
     <message><![CDATA[Le document avec id = "123" n'existe pas.]]></message>
-</error>
+</resource>
 ```
 
 You will get an error message if you submit invalid data in order to create or

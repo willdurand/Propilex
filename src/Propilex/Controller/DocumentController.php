@@ -4,7 +4,6 @@ namespace Propilex\Controller;
 
 use Hateoas\Representation\CollectionRepresentation;
 use Propilex\Model\Document;
-use Propilex\Model\DocumentCollection;
 use Propilex\Response\NoContentResponse;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;

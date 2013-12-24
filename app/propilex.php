@@ -1,19 +1,13 @@
 <?php
 
-use Propilex\Model\DocumentQuery;
-use Propilex\Model\Repository\PropelDocumentRepository;
-
 $app = require __DIR__ . '/build.php';
 
 // Config
 $app['debug']                 = 'dev' === getenv('APPLICATION_ENV');
 $app['translation.fallback']  = 'en';
 $app['acceptable_mime_types'] = [ 'application/hal+xml', 'application/hal+json' ];
-
-// Model Layer
-$app['document_repository'] = $app->share(function () {
-    return new PropelDocumentRepository(DocumentQuery::create());
-});
+$app['curies_prefix']         = 'p';
+$app['curies_route_name']     = 'curies_get';
 
 /**
  * Entry point
@@ -51,9 +45,6 @@ $app
 /**
  *  Curies
  */
-$app['curies_prefix']     = 'p';
-$app['curies_route_name'] = 'curies_get';
-
 $app->get('/rels/{rel}', function ($rel) use ($app) {
     if (is_file($file = sprintf(__DIR__ . '/../src/Propilex/Resources/%s.md', $rel))) {
         return $app['markdown']->transformMarkdown(file_get_contents($file));

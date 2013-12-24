@@ -8,6 +8,8 @@ use Hateoas\Representation\Factory\PagerfantaFactory;
 use Hateoas\UrlGenerator\SymfonyUrlGenerator;
 use Hautelook\TemplatedUriRouter\Routing\Generator\Rfc6570Generator;
 use Propilex\Model\Document;
+use Propilex\Model\DocumentQuery;
+use Propilex\Model\Repository\PropelDocumentRepository;
 use Propilex\View\Error;
 use Propilex\View\FormErrors;
 use Propilex\View\ViewHandler;
@@ -130,6 +132,11 @@ $app->error(function (\Exception $e, $code) use ($app) {
         new VndErrorRepresentation($e->getMessage()),
         $code
     );
+});
+
+// Model Layer
+$app['document_repository'] = $app->share(function () {
+    return new PropelDocumentRepository(DocumentQuery::create());
 });
 
 return $app;

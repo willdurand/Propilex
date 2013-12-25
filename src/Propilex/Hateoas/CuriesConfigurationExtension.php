@@ -25,7 +25,7 @@ class CuriesConfigurationExtension implements ConfigurationExtensionInterface
     public function decorate(ClassMetadataInterface $classMetadata)
     {
         $classes = [
-            'Propilex\Model\Document',
+            'Propilex\View\Endpoint',
             'Hateoas\Representation\CollectionRepresentation',
         ];
 

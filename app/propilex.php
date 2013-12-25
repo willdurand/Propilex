@@ -12,9 +12,9 @@ $app['curies_route_name']     = 'curies_get';
 /**
  * Entry point
  */
-$app->get('/', function () {
-    return file_get_contents(__DIR__ . '/../web/index.html');
-});
+$app
+    ->get('/', 'Propilex\Controller\HomeController::indexAction')
+    ->bind('home');
 
 /**
  * Documents

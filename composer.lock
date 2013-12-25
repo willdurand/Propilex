@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "1338531f61076224f07007eb9c0938fc",
+    "hash": "96a6ec321a3ba89f6da44736d939f627",
     "packages": [
         {
             "name": "dflydev/markdown",
@@ -2079,16 +2079,16 @@
         },
         {
             "name": "willdurand/hateoas",
-            "version": "dev-master",
+            "version": "dev-user-expression-function",
             "source": {
                 "type": "git",
                 "url": "https://github.com/willdurand/Hateoas.git",
-                "reference": "3bde391474591bf216a81ef04d7eb37b91582255"
+                "reference": "00dc470d922cf911d732e7f41f8fa4c91de15b7b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/willdurand/Hateoas/zipball/3bde391474591bf216a81ef04d7eb37b91582255",
-                "reference": "3bde391474591bf216a81ef04d7eb37b91582255",
+                "url": "https://api.github.com/repos/willdurand/Hateoas/zipball/00dc470d922cf911d732e7f41f8fa4c91de15b7b",
+                "reference": "00dc470d922cf911d732e7f41f8fa4c91de15b7b",
                 "shasum": ""
             },
             "require": {
@@ -2122,15 +2122,13 @@
                     "Hateoas": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
             "authors": [
                 {
                     "name": "William Durand",
-                    "email": "william.durand1@gmail.com",
-                    "homepage": "http://www.willdurand.fr"
+                    "email": "william.durand1@gmail.com"
                 },
                 {
                     "name": "Adrien Brault",
@@ -2138,7 +2136,11 @@
                 }
             ],
             "description": "A PHP library to support implementing representations for HATEOAS REST web services",
-            "time": "2013-12-24 10:37:43"
+            "support": {
+                "source": "https://github.com/willdurand/Hateoas/tree/user-expression-function",
+                "issues": "https://github.com/willdurand/Hateoas/issues"
+            },
+            "time": "2013-12-25 04:05:42"
         },
         {
             "name": "willdurand/negotiation",
@@ -2717,7 +2719,12 @@
         }
     ],
     "aliases": [
-
+        {
+            "alias": "2.0.0",
+            "alias_normalized": "2.0.0.0",
+            "version": "dev-user-expression-function",
+            "package": "willdurand/hateoas"
+        }
     ],
     "minimum-stability": "stable",
     "stability-flags": {

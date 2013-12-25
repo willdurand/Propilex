@@ -1,0 +1,17 @@
+Propilex\View\Endpoint:
+    exclusion_policy: ALL
+    relations:
+        -
+            rel: self
+            href:
+                route: home
+                absolute: true
+            attributes:
+                title: "expr(trans('The API starting point.'))"
+        -
+            rel: "expr(curies_prefix ~ ':documents')"
+            href:
+                route: document_list
+                absolute: true
+            attributes:
+                title: "expr(trans('List of all documents.'))"

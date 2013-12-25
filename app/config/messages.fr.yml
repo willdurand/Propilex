@@ -1,1 +1,3 @@
 document_not_found: "Le document avec id = \"%id%\" n'existe pas."
+"The API starting point.": "Point d'entrée de l'API."
+"List of all documents.": "Liste de tous les documents."

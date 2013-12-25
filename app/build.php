@@ -14,10 +14,10 @@ use Propilex\View\Error;
 use Propilex\View\FormErrors;
 use Propilex\View\ViewHandler;
 use Propilex\Hateoas\CuriesConfigurationExtension;
+use Propilex\Hateoas\TransExpressionFunction;
 use Propilex\Hateoas\VndErrorRepresentation;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Exception\NotAcceptableHttpException;
 use Symfony\Component\Validator\Mapping\ClassMetadataFactory;
 use Symfony\Component\Validator\Mapping\Loader\YamlFileLoader;
 
@@ -62,6 +62,7 @@ $app['serializer'] = $app->share(function () use ($app) {
             'templated'
         ))
         ->setExpressionContextVariable('curies_prefix', $app['curies_prefix'])
+        ->registerExpressionFunction(new TransExpressionFunction($app['translator']))
         ->build();
 });
 

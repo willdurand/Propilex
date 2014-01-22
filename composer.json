@@ -23,7 +23,8 @@
         "pagerfanta/pagerfanta": "~1.0",
         "hautelook/templated-uri-router": "~1.0@dev",
         "nicl/silex-markdown": "~1.1",
-        "kphoen/negotiation-service-provider": "~1.0"
+        "kphoen/negotiation-service-provider": "~1.0",
+        "asm89/stack-cors": "0.2.*"
     },
     "require-dev": {
         "symfony/browser-kit": "~2.4",

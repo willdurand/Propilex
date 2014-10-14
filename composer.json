@@ -46,8 +46,7 @@
                 "cp app/config/propel/build.properties.dist app/config/propel/build.properties",
                 "chmod +x vendor/propel/propel1/generator/bin/phing.php",
                 "bin/bootstrap",
-                "./node_modules/.bin/bower install || true",
-                "pushd . && cd web/ng-admin/ && ../../node_modules/.bin/bower install && popd || true"
+                "./node_modules/.bin/bower install || true"
             ]
         }
     }

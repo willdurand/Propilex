@@ -2,6 +2,7 @@
 
 namespace Propilex\Controller;
 
+use Hateoas\Configuration\Relation;
 use Hateoas\Configuration\Route;
 use Hateoas\Representation\CollectionRepresentation;
 use Propilex\Model\Document;
@@ -24,7 +25,7 @@ class DocumentController
         $results  = (array) $pager->getCurrentPageResults();
 
         $response->setPublic();
-        $response->setETag($this->computeETag($results));
+        $response->setETag($this->computeETag($request, $results));
 
         if ($response->isNotModified($request)) {
             return $response;
@@ -32,7 +33,7 @@ class DocumentController
 
         $documents = $app['hateoas.pagerfanta_factory']->createRepresentation(
             $pager,
-            new Route('document_list', []),
+            new Route('document_list', [], true),
             new CollectionRepresentation(
                 $results,
                 'documents',
@@ -40,9 +41,9 @@ class DocumentController
                 null,
                 null,
                 [
-                    new \Hateoas\Configuration\Relation(
+                    new Relation(
                         "expr(curies_prefix ~ ':documents')",
-                        new \Hateoas\Configuration\Route("document_list", [], true)
+                        new Route("document_list", [], true)
                     )
                 ]
             ),
@@ -54,17 +55,7 @@ class DocumentController
 
     public function getAction(Request $request, Application $app, $id)
     {
-        $response = new Response();
-        $document = $this->findDocument($app, $id);
-
-        $response->setPublic();
-        $response->setLastModified($document->getUpdatedAt());
-
-        if ($response->isNotModified($request)) {
-            return $response;
-        }
-
-        return $app['view_handler']->handle($document, 200, [], $response);
+        return $app['view_handler']->handle($this->findDocument($app, $id), 200);
     }
 
     public function postAction(Request $request, Application $app)
@@ -130,9 +121,9 @@ class DocumentController
         );
     }
 
-    private function computeETag($documents)
+    private function computeETag(Request $request, $documents)
     {
-        return md5(implode('|', array_map(function ($document) {
+        return md5($request->attributes->get('_format') . implode('|', array_map(function ($document) {
             return (string) $document;
         }, $documents)));
     }

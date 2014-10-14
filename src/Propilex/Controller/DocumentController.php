@@ -131,8 +131,8 @@ class DocumentController
 
     private function computeETag($documents)
     {
-        return md5(implode('-', array_map(function ($document) {
-            return $document->getId();
+        return md5(implode('|', array_map(function ($document) {
+            return (string) $document;
         }, $documents)));
     }
 }

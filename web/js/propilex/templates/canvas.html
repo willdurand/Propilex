@@ -44,8 +44,10 @@
 </div>
 
 <script type="text/template" id="message">
+    <% if (typeof(level) != "undefined") { %>
     <div class="alert alert-<%- level %>">
         <button type="button" class="close" data-dismiss="alert">×</button>
         <%- message %>
     </div>
+    <% } %>
 </script>

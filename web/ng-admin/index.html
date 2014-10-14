@@ -3,8 +3,9 @@
     <head>
         <meta charset="utf-8">
         <title>Propilex Backend</title>
-        <link rel="stylesheet" href="./web/components/ng-admin/build/ng-admin.min.css">
-        <script src="./web/components/ng-admin/build/ng-admin.min.js" type="text/javascript"></script>
+
+        <link rel="stylesheet" href="../components/ng-admin/build/ng-admin.min.css">
+        <script src="../components/ng-admin/build/ng-admin.min.js" type="text/javascript"></script>
     </head>
     <body ng-app="myApp">
         <div ui-view></div>
@@ -32,7 +33,7 @@
 
                     return response.data;
                 })
-                // how many element should be displayed in dashboard ?
+                // how many element should be displayed in dashboard?
                 .dashboard(10)
                 // define your specific pagination function returning GET parameters
                 .pagination(function(page, maxPerPage) {

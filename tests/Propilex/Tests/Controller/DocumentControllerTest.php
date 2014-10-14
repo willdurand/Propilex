@@ -126,11 +126,6 @@ class DocumentRestControllerTest extends WebTestCase
         $data = json_decode($response->getContent(), true);
 
         $this->assertValidDocument($data);
-
-        // cache
-        $this->assertTrue($response->isValidateable());
-        $this->assertTrue($response->headers->hasCacheControlDirective('public'));
-        $this->assertTrue($response->headers->has('Last-Modified'));
     }
 
     public function testGetUnknownDocumentReturns404()

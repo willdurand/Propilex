@@ -8,3 +8,8 @@ Propilex\Model\Document:
                 route: document_get
                 parameters: { id: expr(object.getId()) }
                 absolute: true
+        -
+            rel: documents
+            href:
+                route: document_list
+                absolute: true

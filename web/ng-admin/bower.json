@@ -1,0 +1,6 @@
+{
+  "name": "Propilex Backend",
+  "dependencies": {
+    "ng-admin": "~0.2.3"
+  }
+}

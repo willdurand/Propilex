@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Propilex Backend</title>
+        <link rel="stylesheet" href="./web/components/ng-admin/build/ng-admin.min.css">
+        <script src="./web/components/ng-admin/build/ng-admin.min.js" type="text/javascript"></script>
+    </head>
+    <body ng-app="myApp">
+        <div ui-view></div>
+    </body>
+    <script>
+        var app = angular.module('myApp', ['ng-admin']);
+
+        app.config(function(NgAdminConfigurationProvider, Application, Entity, Field, Reference, ReferencedList, ReferenceMany) {
+            var app = new Application('Propilex Backend')
+            .baseApiUrl('http://localhost:4000/')
+            .headers(function (entityName, action) {
+                return { 'Accept': 'application/hal+json' }
+            })
+            .addEntity(new Entity('documents')
+                .label('Documents')
+                // change how the response content is parsed
+                .interceptor(function (data, operation, what, url, response, deferred) {
+                    if (operation === 'getList') {
+                        return response.data._embedded.documents;
+                    }
+
+                    if (operation === 'get') {
+                        return response.data;
+                    }
+
+                    return response.data;
+                })
+                // how many element should be displayed in dashboard ?
+                .dashboard(10)
+                // define your specific pagination function returning GET parameters
+                .pagination(function(page, maxPerPage) {
+                    return {
+                        page: page,
+                        limit: maxPerPage
+                    }
+                })
+                .addField(new Field('id')
+                    .order(1)
+                    .label('ID')
+                    .type('number')
+                    .identifier(true)
+                    .edition('read-only')
+                )
+                .addField(new Field('title')
+                    .order(2)
+                    .label('Title')
+                    .edition('editable')
+                    .validation({
+                        "required": true,
+                        "min-length" : 1
+                    })
+                )
+                .addField(new Field('body')
+                    .order(3)
+                    .label('Body')
+                    .edition('editable')
+                    .validation({
+                        "required": true,
+                        "min-length" : 1
+                    })
+                )
+            );
+
+            NgAdminConfigurationProvider.configure(app);
+        });
+    </script>
+</html>

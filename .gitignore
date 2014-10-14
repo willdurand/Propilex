@@ -11,3 +11,4 @@ bin/phpunit
 bin/propel*
 bin/phing
 node_modules/
+web/ng-admin/web/

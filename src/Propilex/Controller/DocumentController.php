@@ -2,6 +2,7 @@
 
 namespace Propilex\Controller;
 
+use Hateoas\Configuration\Route;
 use Hateoas\Representation\CollectionRepresentation;
 use Propilex\Model\Document;
 use Propilex\Response\NoContentResponse;
@@ -29,9 +30,9 @@ class DocumentController
             return $response;
         }
 
-        $documents = $app['hateoas.pagerfanta_factory']->create(
+        $documents = $app['hateoas.pagerfanta_factory']->createRepresentation(
             $pager,
-            'document_list', [],
+            new Route('document_list', []),
             new CollectionRepresentation(
                 $results,
                 'documents',
@@ -80,7 +81,7 @@ class DocumentController
         $app['document_repository']->add($document);
 
         return $app['view_handler']->handle($document, 201, [
-            'Location' => $app['serializer']->getLinkHref($document, 'self', true),
+            'Location' => $app['serializer']->getLinkHelper()->getLinkHref($document, 'self', true),
         ]);
     }
 

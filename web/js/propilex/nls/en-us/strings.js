@@ -19,5 +19,7 @@ define({
     'save': 'Save',
     'title.edit': 'Editing %title%',
     'title.list': 'My Documents',
-    'title.new': 'New Document'
+    'title.new': 'New Document',
+    'prev': 'prev',
+    'next': 'next'
 });

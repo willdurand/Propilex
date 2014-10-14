@@ -19,5 +19,7 @@ define({
     'save': 'Enregistrer',
     'title.edit': 'Edition de %title%',
     'title.list': 'Mes Documents',
-    'title.new': 'Nouveau Document'
+    'title.new': 'Nouveau Document',
+    'prev': 'prec',
+    'next': 'suiv'
 });

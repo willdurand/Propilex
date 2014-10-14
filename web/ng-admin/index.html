@@ -15,7 +15,7 @@
 
         app.config(function(NgAdminConfigurationProvider, Application, Entity, Field, Reference, ReferencedList, ReferenceMany) {
             var app = new Application('Propilex Backend')
-            .baseApiUrl('http://localhost:4000/')
+            .baseApiUrl('/')
             .headers(function (entityName, action) {
                 return { 'Accept': 'application/hal+json' }
             })

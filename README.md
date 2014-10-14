@@ -25,6 +25,10 @@ And:
 * [Stack](http://stackphp.com);
 * [TemplatedUriRouter](https://github.com/hautelook/TemplatedUriRouter).
 
+This project also features:
+
+* [HAL Browser](https://github.com/mikekelly/hal-browser);
+* [NG Admin](https://github.com/marmelab/ng-admin).
 
 Installation
 ------------

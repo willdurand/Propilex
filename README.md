@@ -66,8 +66,8 @@ You can use the web interface, or the command line and tools such as
 
 ### GET
 
-You can get either a set of documents, or a single document. The responses for
-these data are cacheable, using the `Last-Modified` and `ETag` headers.
+You can get either a set of documents, or a single document. The response for
+the set of documents is cacheable, relying on the `ETag` headers.
 
 Getting all documents in JSON:
 
@@ -187,9 +187,7 @@ Getting a single document in JSON:
 
     $ http http://localhost:4000/documents/1 Accept:application/hal+json
     HTTP/1.1 200 OK
-    Cache-Control: public
     Content-Type: application/hal+json
-    Last-Modified: Sun, 22 Dec 2013 21:41:55 GMT
 
 ```json
 {
@@ -217,9 +215,7 @@ Getting a single document in XML:
 
     $ http http://localhost:4000/documents/1 Accept:application/hal+xml
     HTTP/1.1 200 OK
-    Cache-Control: public
     Content-Type: application/hal+xml
-    Last-Modified: Sun, 22 Dec 2013 21:41:55 GMT
 
 ```xml
 <?xml version="1.0" ?>

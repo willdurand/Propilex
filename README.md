@@ -55,6 +55,21 @@ You're done! You can run the application using the PHP built-in webserver:
 
 Open `http://localhost:4000/` in your browser to see Propilex running.
 
+### Docker
+
+Build the container:
+
+    docker build -t propilex .
+
+Run it:
+
+    docker run -itP propilex
+
+Retrieve the public port mapped to the container's port 80:
+
+    docker port $(docker ps -aql 1) 80
+
+Open `http://localhost:<port>/`, and profit!
 
 Usage
 -----

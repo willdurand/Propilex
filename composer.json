@@ -9,7 +9,7 @@
         }
     ],
     "require": {
-        "php": ">=5.5.0",
+        "php": ">=5.4.0",
         "propel/propel-service-provider": "~1.0@dev",
         "propel/propel1": "~1.7",
         "silex/silex": "~1.0",

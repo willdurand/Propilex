@@ -37,7 +37,7 @@ RUN cp app/config/propel/runtime-conf.xml.dist app/config/propel/runtime-conf.xm
 RUN cp app/config/propel/build.properties.dist app/config/propel/build.properties
 RUN chmod +x vendor/propel/propel1/generator/bin/phing.php
 RUN bin/bootstrap
-RUN chown www-data:www-data app/cache/database.db
+RUN chown -R www-data:www-data app/cache
 
 # Forward request and error logs to docker log collector
 RUN ln -sf /dev/stdout /var/log/nginx/access.log

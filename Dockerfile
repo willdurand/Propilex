@@ -39,6 +39,10 @@ RUN chmod +x vendor/propel/propel1/generator/bin/phing.php
 RUN bin/bootstrap
 RUN chown www-data:www-data app/cache/database.db
 
+# Forward request and error logs to docker log collector
+RUN ln -sf /dev/stdout /var/log/nginx/access.log
+RUN ln -sf /dev/stderr /var/log/nginx/error.log
+
 EXPOSE 80
 
 CMD ["/usr/bin/supervisord"]
